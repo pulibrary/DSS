@@ -1,0 +1,107 @@
+<%= form_for(data_file) do |f| %>
+  <% if data_file.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(data_file.errors.count, "error") %> prohibited this data_file from being saved:</h2>
+
+      <ul>
+      <% data_file.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :legacy_id %>
+    <%= f.number_field :legacy_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :files %>
+    <%= f.text_field :files %>
+  </div>
+
+  <div class="field">
+    <%= f.label :size %>
+    <%= f.text_field :size %>
+  </div>
+
+  <div class="field">
+    <%= f.label :comp_size %>
+    <%= f.text_field :comp_size %>
+  </div>
+
+  <div class="field">
+    <%= f.label :line_count %>
+    <%= f.text_field :line_count %>
+  </div>
+
+  <div class="field">
+    <%= f.label :line_length %>
+    <%= f.text_field :line_length %>
+  </div>
+
+  <div class="field">
+    <%= f.label :part %>
+    <%= f.text_field :part %>
+  </div>
+
+  <div class="field">
+    <%= f.label :file_type_a %>
+    <%= f.text_field :file_type_a %>
+  </div>
+
+  <div class="field">
+    <%= f.label :file_type_b %>
+    <%= f.text_field :file_type_b %>
+  </div>
+
+  <div class="field">
+    <%= f.label :flag_one %>
+    <%= f.text_field :flag_one %>
+  </div>
+
+  <div class="field">
+    <%= f.label :flag_two %>
+    <%= f.text_field :flag_two %>
+  </div>
+
+  <div class="field">
+    <%= f.label :file_type_a %>
+    <%= f.text_field :file_type_a %>
+  </div>
+
+  <div class="field">
+    <%= f.label :file_type_tech %>
+    <%= f.text_field :file_type_tech %>
+  </div>
+
+  <div class="field">
+    <%= f.label :note %>
+    <%= f.text_field :note %>
+  </div>
+
+  <div class="field">
+    <%= f.label :study_num %>
+    <%= f.number_field :study_num %>
+  </div>
+
+  <div class="field">
+    <%= f.label :permission %>
+    <%= f.text_field :permission %>
+  </div>
+
+  <div class="field">
+    <%= f.label :timestamp %>
+    <%= f.datetime_select :timestamp %>
+  </div>
+
+  <div class="field">
+    <%= f.label :study_id %>
+    <%= f.number_field :study_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

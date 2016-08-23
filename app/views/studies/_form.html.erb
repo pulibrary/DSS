@@ -1,0 +1,87 @@
+<%= form_for(study) do |f| %>
+  <% if study.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(study.errors.count, "error") %> prohibited this study from being saved:</h2>
+
+      <ul>
+      <% study.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :legacy_id %>
+    <%= f.number_field :legacy_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :studynum %>
+    <%= f.number_field :studynum %>
+  </div>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :medium %>
+    <%= f.text_field :medium %>
+  </div>
+
+  <div class="field">
+    <%= f.label :icpsr_num %>
+    <%= f.text_field :icpsr_num %>
+  </div>
+
+  <div class="field">
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :directory %>
+    <%= f.text_field :directory %>
+  </div>
+
+  <div class="field">
+    <%= f.label :folder %>
+    <%= f.text_field :folder %>
+  </div>
+
+  <div class="field">
+    <%= f.label :r_flag %>
+    <%= f.check_box :r_flag %>
+  </div>
+
+  <div class="field">
+    <%= f.label :timestamp %>
+    <%= f.datetime_select :timestamp %>
+  </div>
+
+  <div class="field">
+    <%= f.label :auto_refresh %>
+    <%= f.check_box :auto_refresh %>
+  </div>
+
+  <div class="field">
+    <%= f.label :note %>
+    <%= f.text_area :note %>
+  </div>
+
+  <div class="field">
+    <%= f.label :roper %>
+    <%= f.text_field :roper %>
+  </div>
+
+  <div class="field">
+    <%= f.label :voyagre_id %>
+    <%= f.number_field :voyagre_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
