@@ -26,8 +26,15 @@
       <tr>
         <td><%= resource.name %></td>
         <td><%= resource.resource_id %></td>
-        <td><%= resource.url %></td>
-        <td><%= resource.blurb %></td>
+        <td>
+          <% unless resource.url.nil? %>
+            <%= study_link(resource.url) %></td>
+          <% end %>
+        <td>
+          <% unless resource.blurb.nil? %>
+            <%= truncate(resource.blurb.gsub('\\', '').html_safe, :length => 230, :omission => "" , :escape => false) %>
+          <% end %>
+        </td>
         <td><%= resource.link_time %></td>
         <td><%= resource.sample %></td>
         <td><%= resource.principal_investigator %></td>

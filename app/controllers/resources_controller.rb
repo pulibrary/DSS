@@ -1,5 +1,5 @@
 class ResourcesController < ApplicationController
-  before_action :set_resource, only: [:show, :edit, :update, :destroy]
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :solr]
 
   # GET /resources
   # GET /resources.json
@@ -10,6 +10,10 @@ class ResourcesController < ApplicationController
   # GET /resources/1
   # GET /resources/1.json
   def show
+  end
+
+  def solr
+    render json: @resource.to_solr
   end
 
   # GET /resources/new
