@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'mysql2'
 gem 'friendly_id', '~> 5.1.0'
+gem "blacklight"
+
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 
