@@ -4,3 +4,6 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+ZIP_URL = "https://github.com/projectblacklight/blacklight-jetty/archive/v4.10.4.zip"
+require 'jettywrapper'

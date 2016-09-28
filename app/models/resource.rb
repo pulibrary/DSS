@@ -3,6 +3,9 @@ class Resource < ApplicationRecord
   has_and_belongs_to_many :countries
   has_and_belongs_to_many :regions
 
+  after_save :index_record
+  before_destroy :remove_from_index
+
   def as_json(options={})
     to_solr.to_json
   end
@@ -10,19 +13,48 @@ class Resource < ApplicationRecord
   def to_solr
     solr_doc = {}
     attributes.each_pair do |name,value|
-      solr_doc[name] = value
+      if name == 'id'
+        solr_doc['id'] = value
+      elsif name == 'name'
+        solr_doc["title_t"] = [ value ]
+        solr_doc["title_display"] = value
+      elsif name == 'resource_type'
+        solr_doc["resource_type_s"] = value
+      elsif name == 'url'
+        solr_doc["url_s"] = value
+      else
+        solr_doc["#{name}_t"] = [ value ]
+      end
     end
     subject_values = []
     subjects.each do |subject|
       subject_values << subject.name    
     end
-    solr_doc['subjects'] = subject_values
+    solr_doc['subject_topic_facet'] = subject_values
     country_values = []
     countries.each do |country|
       country_values << country.name
     end
-    solr_doc['countries'] = country_values
+    solr_doc['subject_geo_facet'] = country_values
     solr_doc
+    region_values = []
+    regions.each do |country|
+      region_values << region.name
+    end
+    solr_doc['region_facet'] = region_values
+    solr_doc
+  end
+
+  def index_record
+    solr = RSolr.connect(url: solr_url)
+    solr.add self.to_solr #:headers => {"Content-Type"=>"application/json"})
+    solr.commit
+  end
+
+  def remove_from_index
+    solr = RSolr.connect(url: solr_url)
+    solr.delete_by_id(self.id)
+    solr.commit
   end
 
   def subjects
@@ -37,9 +69,9 @@ class Resource < ApplicationRecord
     regions = Region.find(self.region_ids).sort_by{ |region| region.name }
   end
 
-  private
-
-    def solr_mapping
+  protected
+    def solr_url
+      "#{Blacklight.blacklight_yml[Rails.env]['url']}"
     end
 
 end
