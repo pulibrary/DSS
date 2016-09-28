@@ -88,6 +88,7 @@
 <p>
   <strong>Study:</strong>
   <%= @data_file.study_id %>
+  <%= link_to 'View Related Study', study_path(@data_file.study_id) %>
 </p>
 
 <%= link_to 'Edit', edit_data_file_path(@data_file) %> |

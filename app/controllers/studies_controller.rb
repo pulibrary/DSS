@@ -12,6 +12,16 @@ class StudiesController < ApplicationController
   def show
   end
 
+  # GET/studynum/1234
+  def number_lookup
+    @study = Study.where('studynum = :studynum',  studynum: params[:studynum]).take
+    if @study 
+      redirect_to study_path(@study)
+    else
+      render status: 404
+    end
+  end
+
   # GET /studies/new
   def new
     @study = Study.new

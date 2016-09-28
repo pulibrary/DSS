@@ -8,7 +8,7 @@ class CreateRegions < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    create_table :resources_regions, id: false do |t|
+    create_table :regions_resources, id: false do |t|
       t.belongs_to :region, index: true
       t.belongs_to :resource, index: true
     end

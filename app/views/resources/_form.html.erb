@@ -71,6 +71,39 @@
     <%= f.text_field :resource_type %>
   </div>
 
+  <div class="field">
+    <div class="field_head">Regions</div>
+    <%= hidden_field_tag("resource[region_ids][]", nil) %>
+    <% Region.order(:name).each do |region| %>
+        <label>
+        <%= check_box_tag("resource[region_ids][]", region.id, region.id.in?(@resource.regions.collect(&:id))) %>  
+        <%= region.name %>
+      </label>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <div class="field_head">Countries</div>
+    <%= hidden_field_tag("resource[country_ids][]", nil) %>
+    <% Country.order(:name).each do |country| %>
+        <label>
+        <%= check_box_tag("resource[country_ids][]", country.id, country.id.in?(@resource.countries.collect(&:id))) %>  
+        <%= country.name %>
+      </label>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <div class="field_head">Subjects</div>
+    <%= hidden_field_tag("resource[subject_ids][]", nil) %>
+    <% Subject.order(:name).each do |subject| %>
+        <label>
+        <%= check_box_tag("resource[subject_ids][]", subject.id, subject.id.in?(@resource.subjects.collect(&:id))) %>  
+        <%= subject.name %>
+      </label>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
