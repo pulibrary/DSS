@@ -29,4 +29,3 @@ production:
   pool: 5
   username: <%= ENV["DSS_USER"] %>
   password: <%= ENV["DSS_PWD"] %>
-  socket: /tmp/mysql.sock
