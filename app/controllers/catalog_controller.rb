@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 class CatalogController < ApplicationController
 
+  #skip_before_filter :authenticate_user!
+  skip_before_filter :authenticate_user!
+  
   include Blacklight::Catalog
 
   configure_blacklight do |config|
