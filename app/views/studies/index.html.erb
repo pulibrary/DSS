@@ -5,7 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>Legacy</th>
       <th>Studynum</th>
       <th>Title</th>
       <th>Medium</th>
@@ -17,8 +16,7 @@
       <th>Timestamp</th>
       <th>Auto refresh</th>
       <th>Note</th>
-      <th>Roper</th>
-      <th>Voyagre</th>
+      <th>Voyager</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,7 +24,6 @@
   <tbody>
     <% @studies.each do |study| %>
       <tr>
-        <td><%= study.legacy_id %></td>
         <td><%= study.studynum %></td>
         <td><%= study.title %></td>
         <td><%= study.medium %></td>
@@ -38,7 +35,6 @@
         <td><%= study.timestamp %></td>
         <td><%= study.auto_refresh %></td>
         <td><%= study.note %></td>
-        <td><%= study.roper %></td>
         <td><%= study.voyager_id %></td>
         <td><%= link_to 'Show', study %></td>
         <td><%= link_to 'Edit', edit_study_path(study) %></td>

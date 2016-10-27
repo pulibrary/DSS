@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks//
-// Required by Blacklight
 //= require blacklight/blacklight
+
+//= require jquery-tablesorter
+//= require jquery-tablesorter/jquery.tablesorter.combined
+//= require pul-assets
 
 //= require_tree .
