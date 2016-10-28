@@ -98,6 +98,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'sample_t', label: 'Sample'
     #config.add_index_field 'title_display', label: 'Title'
     config.add_index_field 'title_vern_display', label: 'Title'
+    config.add_index_field 'blurb_t', label: 'Description'
     config.add_index_field 'author_display', label: 'Author'
     config.add_index_field 'author_vern_display', label: 'Author'
     config.add_index_field 'format', label: 'Format'

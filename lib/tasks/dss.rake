@@ -30,8 +30,20 @@ namespace :dss do
         File.open(File.join(solr_dir, 'conf', file), 'wb') { |f| f.write(response.body) }
       end
     end
-  end
 
+    desc 'Copy solr config files to Jetty wrapper'
+    task solr2jetty: :environment do
+      #cp Rails.root.join('solr_conf','solr.xml'), Rails.root.join('jetty','solr')
+      cp Rails.root.join('solr_conf','schema.xml'), Rails.root.join('jetty','solr','blacklight-core','conf')
+      cp Rails.root.join('solr_conf','solrconfig.xml'), Rails.root.join('jetty','solr','blacklight-core','conf')
+      unless File.exists?(Rails.root.join('jetty','solr','blacklight-core','conf','lang'))
+        Dir.mkdir(Rails.root.join('jetty','solr','blacklight-core','conf','lang'))
+      end
+      Dir.glob(Rails.root.join('solr_conf','lang','*')).each do |lang_file|
+        cp lang_file, Rails.root.join('jetty','solr','blacklight-core','conf', 'lang')
+      end
+    end
+  end
 
   private
 
