@@ -1,50 +1,20 @@
 <div class="page-header row">
   <h2 class="col-md-8 page-heading"><%= t('blacklight.welcome') %></h2>
 
-  <ul class="nav nav-pills col-md-4">
-    <li><a href="https://github.com/projectblacklight/blacklight/">Github</a></li>
-    <li><a href="https://github.com/projectblacklight/blacklight/wiki">Wiki</a></li>
-    <li><a href="https://github.com/projectblacklight/blacklight/releases/tag/v<%= Blacklight::VERSION %>">Release Notes</a></li>
+  <p>ACCESS TO THESE DATA FILES IS RESTRICTED TO CURRENTLY ENROLLED/EMPLOYED MEMBERS OF PRINCETON UNIVERSITY</p>
+
+</div>
+
+<div id="getting-started">
+<h3 class='section-heading'>Find Data and Statistics by other Major Providers:</h3>
+
+  <ul>
+    <li>Princeton Library <a href="http://pulsearch.princeton.edu">Catalog</a></li>
+    <li><a href="http://library.princeton.edu/resource/4899">Data-Planet</a> Statistical Datasets</li>
+    <li><a href="http://library.princeton.edu/collections/pumagic">GIS</a>: Princeton Digital Map and GIS Center</li>
+    <li><a href="http://www.icpsr.umich.edu">ICPSR</a>: Inter-university Consortium for Political and Social Research</li>
+    <li><a href="http://library.princeton.edu/resource/3878">iPOLL</a> databank (Roper)</li>
+    <li><a href="http://library.princeton.edu/resource/4085">Sociometrics</a> Social Science Electronic Data Library</li><li><a href="http://www.ipums.org/">IPUMS</a>: Integrated Public Use Microdata Series</li>
+    <li><a href="http://wrds.wharton.upenn.edu">WRDS</a>: Wharton Research Data Service</li>
   </ul>
-
 </div>
-
-
-<h2>DSS</h2>
- <div id="getting-started">
-<h3 class='section-heading'>Here&rsquo;s how to get started:</h3>
-
-<ol>
-  <li>To modify this text, you need to <a href="http://guides.rubyonrails.org/engines.html#improving-engine-functionality">override the Blacklight-provided view</a>.
-You can copy this file, located in the blacklight gem: <br />
-<%= Blacklight.root %>/app/views/catalog/_home_text.html.erb <br />
-to your own application: <br />
-<%= Rails.root %>/app/views/catalog/_home_text.html.erb
-  </li>
-  <li><a href="https://github.com/projectblacklight/blacklight/wiki/Indexing-your-data-into-solr">Index your own data</a> into Solr</li>
-  <li><a href="https://github.com/projectblacklight/blacklight/wiki#blacklight-configuration">Configure Blacklight</a> to match your data and user-experience needs</li>
-  <li><a href="https://github.com/projectblacklight/blacklight/wiki#support">Get in touch</a> with your comments, questions, and ideas</li>
-</ol>
-</div>
-
-<%# This is the same panel shown in the Rails welcome template %>
-<div id="about">
-  <h3 class='section-heading'><a href="/rails/info/properties">About your application&rsquo;s environment</a></h3>
-  <div id="about-content" class="well" style="display: none"></div>
-</div>
-
-<script>
-  $(function() {
-    $('#about a').on('click', function(e) {
-      e.preventDefault();
-
-      if ($('#about-content').html() == "") {
-        $('#about-content').load($(this).attr("href"), function() {
-          $('#about-content').show();
-        });
-      } else {
-        $('#about-content').toggle();
-      }
-    });
-  });
-</script>

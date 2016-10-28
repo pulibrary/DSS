@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
   mount Blacklight::Engine => '/'
-  root to: 'high_voltage/pages#show', id: 'home'
-    concern :searchable, Blacklight::Routes::Searchable.new
+  get "/pages/*id" => 'pages#show', as: :page, format: false
+  root to: 'pages#show', id: 'home'
+  concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable

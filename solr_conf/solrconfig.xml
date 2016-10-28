@@ -108,6 +108,7 @@
          title_series_unstem_search^25
          title_series_t^10
          isbn_t
+         blurb_t
          text
        </str>
        <str name="pf">
@@ -132,6 +133,7 @@
          title_series_unstem_search^250
          title_series_t^100
          text^10
+         blurb_t
        </str>
        <str name="author_qf">
          author_unstem_search^200
@@ -213,6 +215,7 @@
          subtitle_vern_display,
          url_fulltext_display,
          url_suppl_display,
+         blurb_t
        </str>
 
        <str name="facet">true</str>
@@ -398,6 +401,7 @@
         published_display,
         published_vern_display,
         pub_date,
+        blurb_t,
         title_display,
         title_vern_display,
         subject_topic_facet,
