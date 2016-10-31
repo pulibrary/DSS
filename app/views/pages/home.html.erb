@@ -36,7 +36,219 @@
       <%= render :partial=>'/flash_msg', layout: 'shared/flash_messages' %>
 
       <div class="row">
-        Home page content
+        <div id="sidebar">
+          <ul class="menu">
+            <li>Finding Data
+              <ul>
+                <li><a href="http://dss.princeton.edu/cgi-bin/dataresources/guides.cgi">Data</a></li>
+                <li><a href="http://dss.princeton.edu/contacts/datacontacts.html">Subject specialists</a></li>
+              </ul>
+            </li>
+            <li>Analyzing Data
+              <ul>
+                <li><a href="http://dss.princeton.edu/online_help/">Software</a>
+                  <ul>
+                    <li><a href="http://dss.princeton.edu/online_help/stats_packages/stata/">Stata</a></li>
+                    <li><a href="http://dss.princeton.edu/online_help/stats_packages/r">R</a></li>
+                  </ul>
+                </li>
+                <li><a href="http://dss.princeton.edu/training">Getting Started</a></li>
+                <li><a href="http://dss.princeton.edu/contacts/consultants.html">Consultants</a></li>
+              </ul>
+            </li>
+            <li><a href="http://libguides.princeton.edu/citingdata">Citing data</a></li>
+            <li><a href="http://dss.princeton.edu/about.html">About Us</a></li>
+          </ul>
+
+          <hr>
+
+          <h3><a href="http://dss.princeton.edu/dsslab">DSS lab consultation schedule</a></h3>
+          <div class="font-small">(Monday-Friday)</div>
+
+          <table>
+            <tbody>
+              <tr>
+                <td>Sep 1-Nov 4</td>
+                <td><a href="http://dss.princeton.edu/contacts/appts.html">By appt. here</a></td>
+              </tr>
+              <tr>
+                <td>Nov 7-Dec 16</td>
+                <td><a href="http://dss.princeton.edu/dsslab/">Walk-in, 2-5pm*</a></td>
+              </tr>
+              <tr>
+                <td>Dec 19-Feb 3</td>
+                <td><a href="http://dss.princeton.edu/contacts/appts.html">By appt. here</a></td>
+              </tr>
+              <tr>
+                <td>Feb 6-May 5</td>
+                <td><a href="http://dss.princeton.edu/dsslab/">Walk-in, 1-5pm*</a></td>
+              </tr>
+              <tr>
+                <td>May 8-May 16</td>
+                <td><a href="http://dss.princeton.edu/dsslab/">Walk-in, 2-5pm*</a></td>
+              </tr>
+              <tr>
+                <td>May 17-Aug 31</td>
+                <td><a href="http://dss.princeton.edu/contacts/appts.html">By appt. here</a></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="note">
+            <p>For quick questions email data@princeton.edu.</p>
+            <p>*No appts. necessary during walk-in hrs.</p>
+            <p>Note: the DSS lab is open as long as Firestone is open, no appointments necessary to use the lab computers for your own analysis.</p>
+          </div>
+
+          <div class="social">
+            <a href="http://www.twitter.com/DssData"><img src="http://twitter-badges.s3.amazonaws.com/t_mini-a.png" alt="Follow DssData on Twitter"></a>
+            <a href="http://www.facebook.com/pages/DSS/214968338545309"><img src="http://dss.princeton.edu/images/facebook3.jpg" alt="See DSS on Facebook"></a>
+          </div>
+        </div>
+        <div id="content">
+          <%= render 'shared/restricted_message' %>
+          <main>
+            <h2>Find Data by Subject</h2>
+            <ul>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=38">Art &amp; Culture</a>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=98">Businesses</a>
+                    </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=23">Children &amp; Families</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=28">Community &amp; Urban Studies</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=47">Conflicts, Aggresion, Wars, Terrorism</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=48">Consumer Spending</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=20">Crime &amp; Justice</a><br>
+                </li>
+                <li>
+                    <a href="/cgi-bin/dataresources/newdataresources.cgi?term=7">Education</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=40">Finance</a><br>
+                    </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=35">Frequently used data</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=4">Health</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=99">Housing</a><br>
+                    </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=8">Income &amp; Employment</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=21">Longitudinal Surveys</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=39">Macroeconomic Statistics</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=2">Politics, Elections, Governing Bodies</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=41">Population, Demography, Fertility</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=24">Public Opinion Polls</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=25">Race, Ethnicity, Ethnic relations</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=1">Religion</a><br>
+                    </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=37">Science, Technology, Computers, Internet</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=3">Sexual Attitudes, Orientation &amp; Behavior</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=9">Social Attitudes &amp; Values</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=80">Transportation</a><br>
+                    </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=27">Women &amp; Gender</a><br>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=36">Young Adults</a><br>
+                </li>
+            </ul>
+            <h2>Find Data by Region</h2>
+            <ul>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=14">Africa</a>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=12">Asia</a>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=30">Australia &amp; New Zealand</a>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=5">Canada</a>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=11">Europe</a>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=13">Latin America &amp; the Carribean</a>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=31">Middle East</a>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=15">Multinational/Crossnational</a>
+                </li>
+                <li>
+                    <a href="http://dss.princeton.edu/cgi-bin/dataresources/newdataresources.cgi?term=10">Oceania</a>
+                </li>
+            </ul>
+            <h2>Find Data and Statistics by Major Providers</h2>
+            <div class="font-small">(you are leaving DSS sites)</div>
+            <ul>
+                <li>
+                  Princeton Library <a href="http://pulsearch.princeton.edu">Catalog</a>
+                </li>
+                <li>
+                    <a href="http://library.princeton.edu/resource/4899">Data-Planet</a> Statistical Datasets
+                </li>
+                <li>
+                    <a href="http://library.princeton.edu/collections/pumagic">GIS</a>: Princeton Digital Map and GIS Center
+                </li>
+                <li>
+                    <a href="http://www.icpsr.umich.edu">ICPSR</a>: Inter-university Consortium for Political and Social Research
+                </li>
+                <li>
+                    <a href="http://library.princeton.edu/resource/3878">iPOLL</a> databank (Roper)
+                </li>
+                <li>
+                    <a href="http://library.princeton.edu/resource/4085">Sociometrics</a> Social Science Electronic Data Library
+                </li>
+                <li>
+                    <a href="http://www.ipums.org/">IPUMS</a>: Integrated Public Use Microdata Series
+                </li>
+                <li>
+                    <a href="http://wrds.wharton.upenn.edu">WRDS</a>: Wharton Research Data Service
+                </li>
+            </ul>
+          </main>
+        </div>
       </div>
     </div>
 
