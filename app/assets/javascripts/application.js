@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require blacklight/blacklight
 //= require pul-assets
+//= require select2
 
 //= require_tree .
