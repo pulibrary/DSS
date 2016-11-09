@@ -70,5 +70,32 @@
   <%= @study.voyager_id %>
 </p>
 
+<p>
+<strong>Data Files</strong>
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Part</td>
+      <td>File Type</td>
+      <td>File Techology</td>
+      <td>Note</td>
+      <td>Edit</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @study.data_files.each do |data_file| %>
+      <tr>
+        <td><%= data_file.files %></td>
+        <td><%= data_file.part %></td>
+        <td><%= data_file.file_type_a %></td>
+        <td><%= data_file.file_type_b %></td>
+        <td><%= data_file.note %></td>
+        <td>EDIT</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_study_path(@study) %> |
 <%= link_to 'Back', studies_path %>
