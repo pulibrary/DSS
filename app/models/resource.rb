@@ -38,7 +38,7 @@ class Resource < ApplicationRecord
     solr_doc['subject_geo_facet'] = country_values
     solr_doc
     region_values = []
-    regions.each do |country|
+    regions.each do |region|
       region_values << region.name
     end
     solr_doc['region_facet'] = region_values

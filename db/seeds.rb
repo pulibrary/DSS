@@ -198,6 +198,11 @@ group_countries.each do |key, subject|
   end
 end
 
+# removing Canada
+def region_ids
+  [14,12,30,11,13,31,15,10]
+end
+
 ## Add Region Relationships
 terms_regions_map = get_regions_via_terms
 
@@ -213,5 +218,3 @@ terms_regions_map = get_regions_via_terms
 #   end
 # end
 ## Build relatiohships btw regions + resources
-
-
