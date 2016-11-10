@@ -98,7 +98,7 @@
             <td><%= data_file.file_type_b %></td>
             <td><%= data_file.file_type_tech %></td>
             <td><%= data_file.note %></td>
-            <td><%= link_to 'EDIT', edit_data_file_path(@study.folder) %></td>
+            <td><%= link_to 'EDIT', edit_data_file_path(data_file.id) %></td>
           </tr>
         <% end %>
         <tr>
