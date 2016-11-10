@@ -1,7 +1,7 @@
 class StudiesController < ApplicationController
   before_action :set_study, only: [:show, :edit, :update, :destroy]
 
-  skip_before_filter :authenticate_user!, only: [:show]
+  skip_before_filter :authenticate_user!, only: [:show, :index, :edit, :update]
   # GET /studies
   # GET /studies.json
   def index
@@ -80,6 +80,6 @@ class StudiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def study_params
-      params.require(:study).permit(:legacy_id, :studynum, :title, :medium, :icpsr_num, :url, :directory, :folder, :r_flag, :timestamp, :auto_refresh, :note, :roper, :voyager_id)
+      params.require(:study).permit(:legacy_id, :studynum, :title, :medium, :icpsr_num, :url, :directory, :folder, :r_flag, :timestamp, :auto_refresh, :note, :roper, :voyager_id, data_files_attributes: [:id, :files, :file_type_a, :file_type_b, :flag_one, :flag_two, :file_type_tech, :part, :studynum, :note])
     end
 end

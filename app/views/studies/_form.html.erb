@@ -81,7 +81,40 @@
     <%= f.number_field :voyager_id %>
   </div>
 
+  <h3>Attached Files</h3>
+  <table>
+    <%= f.fields_for :data_files do |data_files_form| %>
+      <tr>
+        <td>
+          <%= data_files_form.label :files %>
+          <%= data_files_form.text_field :files %>
+        </td>
+        <td>
+          <%= data_files_form.label :part %>
+          <%= data_files_form.text_field :part %>
+        </td>
+        <td>
+          <%= data_files_form.label :file_type_a %>
+          <%= data_files_form.text_field :file_type_a %>
+        </td>
+        <td>
+          <%= data_files_form.label :file_type_b %>
+          <%= data_files_form.text_field :file_type_b %>
+        </td>
+        <td>
+          <%= data_files_form.label :file_type_tech %>
+          <%= data_files_form.text_field :file_type_tech %>
+        </td>
+        <td>
+          <%= data_files_form.label :note %>
+          <%= data_files_form.text_field :note %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>

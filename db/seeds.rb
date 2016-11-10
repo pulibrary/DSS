@@ -25,6 +25,10 @@ CSV.foreach("#{Rails.root}/db/seeds/files.csv", :headers => true) do |row|
   end
 end
 
+CSV.foreach("#{Rails.root}/db/seeds/regions.csv", :headers => true) do |row|
+  Region.create!(row.to_hash)
+end
+
 def get_terms
   terms = []
   CSV.foreach("#{Rails.root}/db/seeds/KeyTerms.csv", :headers => true) do |row|
@@ -112,15 +116,15 @@ def get_united_states_terms
 end
 
 
-
+# get_united_states_terms no longer needed in import routine
 def get_relationships
   link_terms = []
-  us_terms = get_united_states_terms
+  #us_terms = get_united_states_terms
   CSV.foreach("#{Rails.root}/db/seeds/LinkResourceTerm.csv", :headers => true) do |row|
     link_terms << row.to_hash
-    if us_terms.key?(row['link_to_term'])
-      link_terms << { "link_to_term" => '29', "link_to_resource" => row.to_hash['link_to_resource'] }
-    end
+    # if us_terms.key?(row['link_to_term'])
+    #   link_terms << { "link_to_term" => '29', "link_to_resource" => row.to_hash['link_to_resource'] }
+    # end
   end
   link_terms
 end
@@ -198,6 +202,11 @@ group_countries.each do |key, subject|
   end
 end
 
+# removing Canada
+def region_ids
+  [14,12,30,11,13,31,15,10]
+end
+
 ## Add Region Relationships
 terms_regions_map = get_regions_via_terms
 
@@ -213,5 +222,3 @@ terms_regions_map = get_regions_via_terms
 #   end
 # end
 ## Build relatiohships btw regions + resources
-
-

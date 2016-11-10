@@ -19,6 +19,16 @@ module ResourcesHelper
     end
   end
 
+  # accepts an array of country ids
+  def region_list(regions)
+    regions = Region.find(regions).sort_by{ |region| region.name }
+    content_tag(:ul, class: "term-list") do
+      regions.each do |region|
+        concat content_tag(:li, region.name, class: "term")
+      end
+    end
+  end
+
   # munges urls to get a link to a study
   def study_link(url)
     if study_id = url.match(/studyno=(\d+)$/)
