@@ -72,38 +72,43 @@
 <% end %>
 
 <% unless @study.data_files.nil? %>
-<h3>Data Files</h3>
-<p>This dataset is located on the DSS Server. If you are at a computer connected to the Princeton Network, you should be able to access it through the following links:</p>
-<table>
-  <thead>
-    <tr>
-      <td>Name</td>
-      <td>Part</td>
-      <td>File Type</td>
-      <td>File Techology</td>
-      <td>Note</td>
-      <td>Edit</td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @study.data_files.each do |data_file| %>
-      <tr>
-        <td><%= build_file_path(@study.folder, data_file.files) %></td>
-        <td><%= data_file.part %></td>
-        <td><%= data_file.file_type_a %></td>
-        <td><%= data_file.file_type_b %></td>
-        <td><%= data_file.file_type_tech %></td>
-        <td><%= data_file.note %></td>
-        <td><%= link_to 'EDIT', edit_data_file_path(@study.folder) %></td>
-      </tr>
-    <% end %>
-    <tr>
-      <td colspan='6'>
-        <%= build_file_path(@study.folder) %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <% if @study.r_flag %>
+    <h3>Restricted Data</h3>
+    <%= render 'r_flag_message' %>
+  <% else %>
+    <h3>Data Files</h3>
+    <p>This dataset is located on the DSS Server. If you are at a computer connected to the Princeton Network, you should be able to access it through the following links:</p>
+    <table>
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Part</td>
+          <td>File Type</td>
+          <td>File Techology</td>
+          <td>Note</td>
+          <td>Edit</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @study.data_files.each do |data_file| %>
+          <tr>
+            <td><%= build_file_path(@study.folder, data_file.files) %></td>
+            <td><%= data_file.part %></td>
+            <td><%= data_file.file_type_a %></td>
+            <td><%= data_file.file_type_b %></td>
+            <td><%= data_file.file_type_tech %></td>
+            <td><%= data_file.note %></td>
+            <td><%= link_to 'EDIT', edit_data_file_path(@study.folder) %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td colspan='6'>
+            <%= build_file_path(@study.folder) %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
 <% end %>
 
 <%= link_to 'Edit', edit_study_path(@study) %> |
