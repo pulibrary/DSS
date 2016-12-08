@@ -95,6 +95,13 @@ GEM
       capistrano-bundler (~> 1.1)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
+    ckeditor (4.2.0)
+      cocaine
+      orm_adapter (~> 0.5.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.8)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -294,6 +301,7 @@ DEPENDENCIES
   byebug
   capistrano-passenger
   capistrano-rails
+  ckeditor
   coffee-rails (~> 4.2)
   devise
   devise-guests (~> 0.5)

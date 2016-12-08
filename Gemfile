@@ -60,5 +60,6 @@ gem 'devise-guests', '~> 0.5'
 gem 'omniauth-cas'
 gem 'high_voltage', '~> 3.0.0'
 gem 'select2-rails'
+gem 'ckeditor'
 
 gem 'pul-assets', :git => 'git@github.com:pulibrary/pul_assets.git', :branch => :master
