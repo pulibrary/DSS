@@ -2,51 +2,33 @@
 
 <h1>Data Files</h1>
 
-<table>
+<table class="responsive no-wrap datatable">
   <thead>
     <tr>
-      <th>Legacy</th>
       <th>Files</th>
-      <th>Size</th>
-      <th>Comp size</th>
-      <th>Line count</th>
-      <th>Line length</th>
       <th>Part</th>
       <th>File type a</th>
       <th>File type b</th>
-      <th>Flag one</th>
-      <th>Flag two</th>
-      <th>File type a</th>
       <th>File type tech</th>
       <th>Note</th>
       <th>Study num</th>
-      <th>Permission</th>
-      <th>Timestamp</th>
       <th>Study</th>
-      <th colspan="3"></th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Destroy</th>
     </tr>
   </thead>
 
   <tbody>
     <% @data_files.each do |data_file| %>
       <tr>
-        <td><%= data_file.legacy_id %></td>
         <td><%= data_file.files %></td>
-        <td><%= data_file.size %></td>
-        <td><%= data_file.comp_size %></td>
-        <td><%= data_file.line_count %></td>
-        <td><%= data_file.line_length %></td>
         <td><%= data_file.part %></td>
         <td><%= data_file.file_type_a %></td>
         <td><%= data_file.file_type_b %></td>
-        <td><%= data_file.flag_one %></td>
-        <td><%= data_file.flag_two %></td>
-        <td><%= data_file.file_type_a %></td>
         <td><%= data_file.file_type_tech %></td>
         <td><%= data_file.note %></td>
         <td><%= data_file.study_num %></td>
-        <td><%= data_file.permission %></td>
-        <td><%= data_file.timestamp %></td>
         <td><%= data_file.study_id %></td>
         <td><%= link_to 'Show', data_file %></td>
         <td><%= link_to 'Edit', edit_data_file_path(data_file) %></td>
