@@ -9,7 +9,6 @@
       <th>Resource</th>
       <th>Url</th>
       <th>Blurb</th>
-      <!-- <th>Link time</th> -->
       <th>Sample</th>
       <th>Resource type</th>
       <th>Show</th>
@@ -32,7 +31,6 @@
             <%= truncate(resource.blurb.gsub('\\', '').html_safe, :length => 230, :omission => "" , :escape => false) %>
           <% end %>
         </td>
-        <!-- <td><%#= resource.link_time %></td> -->
         <td><%= resource.sample %></td>
         <td><%= resource.resource_type %></td>
         <td><%= link_to 'Show', resource %></td>
