@@ -80,6 +80,7 @@ GEM
       sassy-maps (< 1.0.0)
     builder (3.2.2)
     byebug (9.0.6)
+    cancancan (1.15.0)
     capistrano (3.6.1)
       airbrussh (>= 1.0.0)
       capistrano-harrow
@@ -307,6 +308,7 @@ PLATFORMS
 DEPENDENCIES
   blacklight
   byebug
+  cancancan (~> 1.15)
   capistrano-passenger
   capistrano-rails
   ckeditor
