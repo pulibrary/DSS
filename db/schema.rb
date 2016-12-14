@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 20161210231849) do
     t.index ["resource_id"], name: "index_countries_resources_on_resource_id", using: :btree
   end
 
+  create_table "countries_studies", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "country_id"
+    t.integer "study_id"
+    t.index ["country_id"], name: "index_countries_studies_on_country_id", using: :btree
+    t.index ["study_id"], name: "index_countries_studies_on_study_id", using: :btree
+  end
+
   create_table "data_files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "legacy_id"
     t.string   "files"
@@ -76,6 +83,13 @@ ActiveRecord::Schema.define(version: 20161210231849) do
     t.integer "resource_id"
     t.index ["region_id"], name: "index_regions_resources_on_region_id", using: :btree
     t.index ["resource_id"], name: "index_regions_resources_on_resource_id", using: :btree
+  end
+
+  create_table "regions_studies", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "region_id"
+    t.integer "study_id"
+    t.index ["region_id"], name: "index_regions_studies_on_region_id", using: :btree
+    t.index ["study_id"], name: "index_regions_studies_on_study_id", using: :btree
   end
 
   create_table "resources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -128,6 +142,13 @@ ActiveRecord::Schema.define(version: 20161210231849) do
     t.integer  "voyager_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+  end
+
+  create_table "studies_subjects", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "subject_id"
+    t.integer "study_id"
+    t.index ["study_id"], name: "index_studies_subjects_on_study_id", using: :btree
+    t.index ["subject_id"], name: "index_studies_subjects_on_subject_id", using: :btree
   end
 
   create_table "subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
