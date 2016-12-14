@@ -13,5 +13,10 @@ class CreateSubjects < ActiveRecord::Migration[5.0]
       t.belongs_to :subject, index: true
       t.belongs_to :resource, index: true
     end
+
+    create_table :studies_subjects, id: false do |t|
+      t.belongs_to :subject, index: true
+      t.belongs_to :study, index: true
+    end
   end
 end
