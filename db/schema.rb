@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004231849) do
+ActiveRecord::Schema.define(version: 20161210231849) do
 
   create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",                     null: false
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(version: 20161004231849) do
     t.integer "resource_id"
     t.index ["country_id"], name: "index_countries_resources_on_country_id", using: :btree
     t.index ["resource_id"], name: "index_countries_resources_on_resource_id", using: :btree
+  end
+
+  create_table "countries_studies", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "country_id"
+    t.integer "study_id"
+    t.index ["country_id"], name: "index_countries_studies_on_country_id", using: :btree
+    t.index ["study_id"], name: "index_countries_studies_on_study_id", using: :btree
   end
 
   create_table "data_files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -74,8 +81,15 @@ ActiveRecord::Schema.define(version: 20161004231849) do
   create_table "regions_resources", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "region_id"
     t.integer "resource_id"
-    t.index ["region_id"], name: "index_resources_regions_on_region_id", using: :btree
-    t.index ["resource_id"], name: "index_resources_regions_on_resource_id", using: :btree
+    t.index ["region_id"], name: "index_regions_resources_on_region_id", using: :btree
+    t.index ["resource_id"], name: "index_regions_resources_on_resource_id", using: :btree
+  end
+
+  create_table "regions_studies", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "region_id"
+    t.integer "study_id"
+    t.index ["region_id"], name: "index_regions_studies_on_region_id", using: :btree
+    t.index ["study_id"], name: "index_regions_studies_on_study_id", using: :btree
   end
 
   create_table "resources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -130,6 +144,13 @@ ActiveRecord::Schema.define(version: 20161004231849) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "studies_subjects", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "subject_id"
+    t.integer "study_id"
+    t.index ["study_id"], name: "index_studies_subjects_on_study_id", using: :btree
+    t.index ["subject_id"], name: "index_studies_subjects_on_subject_id", using: :btree
+  end
+
   create_table "subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "key_term_id"
@@ -155,9 +176,11 @@ ActiveRecord::Schema.define(version: 20161004231849) do
     t.string   "provider"
     t.string   "uid"
     t.string   "username"
+    t.string   "role"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["provider"], name: "index_users_on_provider", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["role"], name: "index_users_on_role", using: :btree
     t.index ["uid"], name: "index_users_on_uid", using: :btree
     t.index ["username"], name: "index_users_on_username", using: :btree
   end

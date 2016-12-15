@@ -7,28 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
 
-CSV.foreach("#{Rails.root}/db/seeds/resources.csv", :headers => true) do |row|
-  Resource.create!(row.to_hash)
-end
-
-CSV.foreach("#{Rails.root}/db/seeds/studies.csv", :headers => true) do |row|
-  Study.create!(row.to_hash)
-end
-
-CSV.foreach("#{Rails.root}/db/seeds/files.csv", :headers => true) do |row|
-  data_file = DataFile.create(row.to_hash)
-  study = Study.where("legacy_id = ?", row['original_study_id']).first
-  unless study.nil?
-    puts study.id
-    data_file.study_id = study.id
-    data_file.save
-  end
-end
-
-CSV.foreach("#{Rails.root}/db/seeds/regions.csv", :headers => true) do |row|
-  Region.create!(row.to_hash)
-end
-
 def get_terms
   terms = []
   CSV.foreach("#{Rails.root}/db/seeds/KeyTerms.csv", :headers => true) do |row|
@@ -62,58 +40,66 @@ def get_term_resource_links
   link_terms
 end
 
-def get_regions_via_terms
-  regions = []
-  terms = get_terms
-  link_terms = get_term_resource_links
-  region_terms = terms.group_by{|term| term['region'] }.except('NULL')
-  region_terms.each do |region_key, region_references|
-    regions = terms.select{|term| term['key_term_id'] == region_key }
-    regions.each do |region|
-      if region['type'] == 'R'
-        country = Country.where("name = ?", region['key_term']).first
-      else
-        subject = Subject.where("name = ?", region['key_term']).first
-      end
-      region_references.each do |region_term|
-        region_links = link_terms.select{|term| term['link_to_term'] == region_term['key_term_id']}
-        region_links.each do |matching_region_term|
-          resource = Resource.where("resource_id = ?", matching_region_term['link_to_resource']).first
-          unless resource.nil?
-            if !country.nil?
-              puts resource.id
-              country.resource_ids = country.resource_ids << resource.id
-              country.save
-            elsif !subject.nil?
-              puts subject.id
-              resource.subject_ids = resource.subject_ids << subject.id
-              resource.save
-            end
-          end
-        end
-      end
-    end
-  end
-  regions
-end
+# Not used
+# def get_regions_via_terms
+#   regions = []
+#   terms = get_terms
+#   link_terms = get_term_resource_links
+#   region_terms = terms.group_by{|term| term['region'] }.except('NULL')
+#   region_terms.each do |region_key, region_references|
+#     regions = terms.select{|term| term['key_term_id'] == region_key }
+#     regions.each do |region|
+#       if region['type'] == 'R'
+#         country = Country.where("name = ?", region['key_term']).first
+#       else
+#         subject = Subject.where("name = ?", region['key_term']).first
+#       end
+#       region_references.each do |region_term|
+#         region_links = link_terms.select{|term| term['link_to_term'] == region_term['key_term_id']}
+#         region_links.each do |matching_region_term|
+#           resource = Resource.where("resource_id = ?", matching_region_term['link_to_resource']).first
+#           unless resource.nil?
+#             if !country.nil?
+#               puts resource.id
+#               country.resource_ids = country.resource_ids << resource.id
+#               country.save
+#               geo_region= Region.where("name = ?", region['key_term']).first
+#               unless geo_region.nil?
+#                 geo_region.resource_ids = geo_region.resource_ids << resource.id
+#                 geo_region.save
+#               end
+#             elsif !subject.nil?
+#               puts subject.id
+#               resource.subject_ids = resource.subject_ids << subject.id
+#               resource.save
+#             end
+#           end
+#         end
+#       end
+#     end
+#   end
+#   regions
+# end
 
-def get_united_states_terms
-  us_terms = { }
-  terms = []
-  CSV.foreach("#{Rails.root}/db/seeds/KeyTerms.csv", :headers => true) do |row|
-    terms << row.to_hash
-  end
-  terms.each do |term|
-    term_split = term['key_term'].split(/-/)
-    if term_split.size == 1
-      ## united states as a Country
-      if term['type'] == 'S'
-        us_terms[term['key_term_id']] = term
-      end
-    end
-  end
-  us_terms
-end
+# no longer needed - see bobray
+# 
+# def get_united_states_terms
+#   us_terms = { }
+#   terms = []
+#   CSV.foreach("#{Rails.root}/db/seeds/KeyTerms.csv", :headers => true) do |row|
+#     terms << row.to_hash
+#   end
+#   terms.each do |term|
+#     term_split = term['key_term'].split(/-/)
+#     if term_split.size == 1
+#       ## united states as a Country
+#       if term['type'] == 'S'
+#         us_terms[term['key_term_id']] = term
+#       end
+#     end
+#   end
+#   us_terms
+# end
 
 
 # get_united_states_terms no longer needed in import routine
@@ -129,6 +115,34 @@ def get_relationships
   link_terms
 end
 
+# currently including canada and the us as regions
+def region_ids
+  [14,12,30,11,13,31,15,10]
+end
+
+CSV.foreach("#{Rails.root}/db/seeds/Resources.csv", :headers => true) do |row|
+  Resource.create!(row.to_hash)
+end
+
+CSV.foreach("#{Rails.root}/db/seeds/Study.csv", :headers => true) do |row|
+  Study.create!(row.to_hash)
+end
+
+CSV.foreach("#{Rails.root}/db/seeds/File.csv", :headers => true) do |row|
+  data_file = DataFile.create(row.to_hash)
+  puts data_file.to_s
+  puts row['original_study_id']
+  study = Study.where("legacy_id = ?", row['original_study_id']).first
+  unless study.nil?
+    puts study.id
+    data_file.study_id = study.id
+    data_file.save
+  end
+end
+
+CSV.foreach("#{Rails.root}/db/seeds/regions.csv", :headers => true) do |row|
+  Region.create!(row.to_hash)
+end
 
 processed_terms = get_terms
 term_resource_links = get_relationships
@@ -146,11 +160,6 @@ end
 group_subjects = subjects.group_by{|term| term['key_term']}
 group_countries = countries.group_by{|term| term['key_term']}
 
-
-# get_links.each do |link|
-#   puts link['link_to_resource']
-#   puts link['link_to_term']
-# end
 
 group_subjects.each do |key, subject|
   puts key
@@ -202,23 +211,6 @@ group_countries.each do |key, subject|
   end
 end
 
-# removing Canada
-def region_ids
-  [14,12,30,11,13,31,15,10]
-end
-
-## Add Region Relationships
-terms_regions_map = get_regions_via_terms
-
-## Build relationships btw countries + resources
-# group_countries.each do |key, subject|
-#   puts key
-#   unless key.nil?
-#     subject.each do |subject|
-#       puts subject['key_term_id']
-#       links = term_resource_links.select{|term| term['link_to_term'] == subject['key_term_id']}
-#       puts links
-#     end
-#   end
-# end
-## Build relatiohships btw regions + resources
+### Not Used
+# ## Add Region Relationships
+#terms_regions_map = get_regions_via_terms

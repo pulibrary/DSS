@@ -12,5 +12,10 @@ class CreateCountries < ActiveRecord::Migration[5.0]
       t.belongs_to :country, index: true
       t.belongs_to :resource, index: true
     end
+
+    create_table :countries_studies, id: false do |t|
+      t.belongs_to :country, index: true
+      t.belongs_to :study, index: true
+    end
   end
 end
