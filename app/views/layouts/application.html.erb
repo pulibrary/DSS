@@ -28,7 +28,9 @@
   </head>
   <body class="<%= render_body_class %>">
   <%= render 'pul-assets/blacklight/header_navbar' %>
-
+  <% if admin_user? %>
+    <%= render 'pul-assets/menu' %>
+  <% end %>
   <%= render partial: 'shared/ajax_modal' %>
 
   <div id="main-container" class="<%= container_classes %>">

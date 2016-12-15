@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 class CatalogController < ApplicationController
 
-  #skip_before_filter :authenticate_user!
   skip_before_filter :authenticate_user!
 
   include Blacklight::Catalog
@@ -70,7 +69,7 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'resource_type_s', label: 'Format', show: false
+    config.add_facet_field 'resource_type_s', label: 'Format', show: true
     config.add_facet_field 'pub_date', label: 'Publication Year', single: true
     config.add_facet_field 'subject_topic_facet', label: 'Topic', limit: 25, index_range: 'A'..'Z', sort: 'index'
     config.add_facet_field 'language_facet', label: 'Language', limit: true
@@ -99,7 +98,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'sample_t', label: 'Sample'
     #config.add_index_field 'title_display', label: 'Title'
     config.add_index_field 'title_vern_display', label: 'Title'
-    config.add_index_field 'blurb_t', label: 'Description'
+    config.add_index_field 'blurb_t', label: 'Description', helper_method: :html_safe
     config.add_index_field 'author_display', label: 'Author'
     config.add_index_field 'author_vern_display', label: 'Author'
     config.add_index_field 'format', label: 'Format'
@@ -110,14 +109,13 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field 'subject_facet', label: 'Subjects'
-    config.add_show_field 'country_facet', label: 'Countries'
-    config.add_show_field 'url_s', label: 'URL'
-    config.add_show_field 'blurb_t', label: 'Description'
+    config.add_show_field 'url_s', label: 'URL', helper_method: :link
+    config.add_show_field 'blurb_t', label: 'Description', helper_method: :html_safe
     config.add_show_field 'sample_t', label: 'Sample'
-    config.add_show_field 'resource_type_s', label: 'Format'
-    config.add_show_field 'subject_topic_facet', label: 'Topic'
-    config.add_show_field 'subject_region_facet', label: 'Region'
+    config.add_show_field 'resource_type_s', label: 'Format', link_to_search: true
+    config.add_show_field 'subject_topic_facet', label: 'Topic', link_to_search: true
+    config.add_show_field 'subject_geo_facet', label: 'Country', link_to_search: true
+    config.add_show_field 'region_facet', label: 'Region', link_to_search: true
     config.add_show_field 'title_display', label: 'Title'
     config.add_show_field 'title_vern_display', label: 'Title'
     config.add_show_field 'subtitle_display', label: 'Subtitle'

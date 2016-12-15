@@ -18,12 +18,16 @@ class Study < ApplicationRecord
     solr_doc = {}
     attributes.each_pair do |name,value|
       if name == 'id'
-        solr_doc['id'] = value
+        solr_doc['id'] = "study#{value}"
       elsif name == 'title'
         solr_doc["title_t"] = [ value ]
         solr_doc["title_display"] = value
       elsif name == 'url'
         solr_doc["url_s"] = value
+      elsif name == 'note'
+        unless value.nil?
+          solr_doc["blurb_t"] = value.gsub('\\', '')
+        end
       else
         solr_doc["#{name}_t"] = [ value ]
       end

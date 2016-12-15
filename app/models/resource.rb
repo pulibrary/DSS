@@ -3,6 +3,7 @@ class Resource < ApplicationRecord
   has_and_belongs_to_many :countries
   has_and_belongs_to_many :regions
 
+  # remove until import is taken care of.
   after_save :index_record
   before_destroy :remove_from_index
 
@@ -14,7 +15,7 @@ class Resource < ApplicationRecord
     solr_doc = {}
     attributes.each_pair do |name,value|
       if name == 'id'
-        solr_doc['id'] = value
+        solr_doc['id'] = "resource#{value}"
       elsif name == 'name'
         solr_doc["title_t"] = [ value ]
         solr_doc["title_display"] = value
@@ -22,6 +23,10 @@ class Resource < ApplicationRecord
         solr_doc["resource_type_s"] = value
       elsif name == 'url'
         solr_doc["url_s"] = value
+      elsif name == 'blurb'
+        unless value.nil?
+          solr_doc["blurb_t"] = value.gsub('\\', '')
+        end
       else
         solr_doc["#{name}_t"] = [ value ]
       end
