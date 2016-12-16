@@ -71,10 +71,10 @@ class CatalogController < ApplicationController
 
     config.add_facet_field 'resource_type_s', label: 'Format', show: true
     config.add_facet_field 'pub_date', label: 'Publication Year', single: true
-    config.add_facet_field 'subject_topic_facet', label: 'Topic', limit: 25, index_range: 'A'..'Z', sort: 'index'
+    config.add_facet_field 'subject_topic_facet', label: 'Topic', limit: 25, index_range: 'A'..'Z', sort: 'index', collapse: false
     config.add_facet_field 'language_facet', label: 'Language', limit: true
     config.add_facet_field 'lc_1letter_facet', label: 'Call Number'
-    config.add_facet_field 'subject_geo_facet', label: 'Country', limit: 10, sort: 'index'
+    config.add_facet_field 'subject_geo_facet', label: 'Country', limit: 10, sort: 'index', collapse: false
     config.add_facet_field 'region_facet', label: 'Region', limit: 10
     config.add_facet_field 'subject_era_facet', label: 'Era'
 
@@ -206,5 +206,9 @@ class CatalogController < ApplicationController
     # Configuration for autocomplete suggestor
     config.autocomplete_enabled = true
     config.autocomplete_path = 'suggest'
+
+    # navbar partials
+    config.navbar.partials.delete(:search_history)
+    config.navbar.partials.delete(:saved_searches)
   end
 end
