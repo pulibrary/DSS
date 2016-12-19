@@ -1,6 +1,8 @@
 <h1>Editing Subject</h1>
 
-<%= render 'form', subject: @subject %>
+<div class="admin-edit">
+  <%= link_to 'Show', @subject %> |
+  <%= link_to 'Back', subjects_path %>
+</div>
 
-<%= link_to 'Show', @subject %> |
-<%= link_to 'Back', subjects_path %>
+<%= render 'form', subject: @subject %>

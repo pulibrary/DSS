@@ -88,7 +88,7 @@
     <%= select_tag "resource[subject_ids]", options_from_collection_for_select(Subject.order(:name), 'id', 'name', @resource.subjects.collect(&:id)), multiple: true, class: 'select2' %>
   </div>
 
-  <div class="actions">
+  <div class="form-actions">
     <%= f.submit %>
   </div>
 <% end %>
