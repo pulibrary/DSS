@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
   mount Blacklight::Engine => '/'
-  get "/pages/*id" => 'pages#show', as: :page, format: false
-  # root to: 'pages#show', id: 'home'
   root to: 'catalog#index'
   concern :searchable, Blacklight::Routes::Searchable.new
 
@@ -34,6 +32,4 @@ Rails.application.routes.draw do
   get '/studynum/:studynum', to: 'studies#number_lookup'
   get '/resources/:id/solr', to: 'resources#solr', defaults: { format: :json }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  get '/*id' => 'high_voltage/pages#show', as: :static_page, format: false
 end

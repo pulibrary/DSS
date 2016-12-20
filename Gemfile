@@ -60,7 +60,6 @@ gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.5'
 gem 'omniauth-cas'
-gem 'high_voltage', '~> 3.0.0'
 gem 'select2-rails'
 gem 'ckeditor'
 
