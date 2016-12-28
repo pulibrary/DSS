@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1><%= @study.title %></h1>
 <!--
 <p>
@@ -94,8 +92,7 @@
           <tr>
             <td><%= build_file_path(@study.folder, data_file.files) %></td>
             <td><%= data_file.part %></td>
-            <td><%= data_file.file_type_a %></td>
-            <td><%= data_file.file_type_b %></td>
+            <td><%= data_file.file_type_a %> <%= data_file.file_type_b %></td>
             <td><%= data_file.file_type_tech %></td>
             <td><%= data_file.note %></td>
             <td><%= link_to 'EDIT', edit_data_file_path(data_file.id) %></td>
