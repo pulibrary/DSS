@@ -18,4 +18,11 @@
  *= require_tree .
  */
 
+ $logo_image: 'dss-logo.svg' !default;
+
  @import "pul-assets__blacklight";
+
+.navbar-brand {
+  width:  140px;
+  height: 55px;
+}
