@@ -7,3 +7,5 @@ en:
         label: '%{label}'
       show:
         label: '%{label}'
+    header_links:
+      search_history: 'Search History'

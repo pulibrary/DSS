@@ -1,82 +1,57 @@
-<p id="notice"><%= notice %></p>
+<%= link_to 'Edit this Study', edit_study_path(@study), class: 'btn pull-right heading__inline' %>
+<%= link_to 'Back to Studies', studies_path, class: 'btn pull-left heading__inline' %>
 
-<h1><%= @study.title %></h1>
-<!--
-<p>
-  <strong>Legacy:</strong>
-  <%= @study.legacy_id %>
-</p>
--->
-<p>
-  <strong>Study Number:</strong>
-  <%= @study.studynum %>
-</p>
+<h1 class="heading__block"><%= @study.title %></h1>
 
-<!--
-<p>
-  <strong>Medium:</strong>
-  <%= @study.medium %>
-</p>
--->
-<p>
-  <strong>Icpsr num:</strong>
-  <%= @study.icpsr_num %>
-</p>
+<dl>
+  <!-- <dt>Legacy</dt> -->
+  <!-- <dd><%#= @study.legacy_id %></dd> -->
 
-<p>
-  <strong>Url:</strong>
-  <%= @study.url %>
-</p>
-<!--
-<p>
-  <strong>Directory:</strong>
-  <%= @study.directory %>
-</p>
+  <dt>Study number</dt>
+  <dd><%= @study.studynum %></dd>
 
-<p>
-  <strong>Folder:</strong>
-  <%= @study.folder %>
-</p>
+  <!-- <dt>Medium</dt> -->
+  <!-- <dd><%#= @study.medium %></dd> -->
 
-<p>
-  <strong>R flag:</strong>
-  <%= @study.r_flag %>
-</p>
+  <dt>ICPSR number</dt>
+  <dd><%= @study.icpsr_num %></dd>
 
-<p>
-  <strong>Last Update:</strong>
-  <%= @study.timestamp %>
-</p>
+  <dt>URL</dt>
+  <dd><%= @study.url %></dd>
 
-<p>
-  <strong>Auto refresh:</strong>
-  <%= @study.auto_refresh %>
-</p>
--->
-<p>
-  <strong>Note:</strong>
-  <%= @study.note %>
-</p>
+  <!-- <dt>Directory</dt> -->
+  <!-- <dd><%#= @study.directory %></dd> -->
 
-<!--
-<p>
-  <strong>Roper:</strong>
-  <%= @study.roper %>
-</p>
--->
-<% unless @study.voyager_id.nil? %>
-<p>
-  <strong>Catalog:</strong>
-  <%= catalog_path(@study.voyager_id) %>
-</p>
-<% end %>
+  <!-- <dt>Folder</dt> -->
+  <!-- <dd><%#= @study.folder %></dd> -->
+
+  <!-- <dt>R flag</dt> -->
+  <!-- <dd><%#= @study.r_flag %></dd> -->
+
+  <!-- <dt>Last updated</dt> -->
+  <!-- <dd><%#= @study.timestamp %></dd> -->
+
+  <!-- <dt>Auto refresh</dt> -->
+  <!-- <dd><%#= @study.auto_refresh %></dd> -->
+
+  <dt>Note</dt>
+  <dd><%= @study.note %></dd>
+
+  <!-- <dt>Roper</dt> -->
+  <!-- <dd><%#= @study.roper %></dd> -->
+
+  <% unless @study.voyager_id.nil? %>
+    <dt>Catalog</dt>
+    <dd><%= catalog_path(@study.voyager_id) %></dd>
+  <% end %>
+</dl>
 
 <% unless @study.data_files.nil? %>
   <% if @study.r_flag %>
-    <h3>Restricted Data</h3>
+    <h2>Restricted Data</h2>
     <%= render 'r_flag_message' %>
   <% else %>
-    <h3>Data Files</h3>
+    <h2>Data Files</h2>
     <p>This dataset is located on the DSS Server. If you are at a computer connected to the Princeton Network, you should be able to access it through the following links:</p>
     <table>
       <thead>
@@ -86,7 +61,7 @@
           <td>File Type</td>
           <td>File Techology</td>
           <td>Note</td>
-          <td>Edit</td>
+          <td></td>
         </tr>
       </thead>
       <tbody>
@@ -94,11 +69,10 @@
           <tr>
             <td><%= build_file_path(@study.folder, data_file.files) %></td>
             <td><%= data_file.part %></td>
-            <td><%= data_file.file_type_a %></td>
-            <td><%= data_file.file_type_b %></td>
+            <td><%= data_file.file_type_a %> <%= data_file.file_type_b %></td>
             <td><%= data_file.file_type_tech %></td>
             <td><%= data_file.note %></td>
-            <td><%= link_to 'EDIT', edit_data_file_path(data_file.id) %></td>
+            <td><%= link_to 'Edit', edit_data_file_path(data_file.id) %></td>
           </tr>
         <% end %>
         <tr>
@@ -111,5 +85,3 @@
   <% end %>
 <% end %>
 
-<%= link_to 'Edit', edit_study_path(@study) %> |
-<%= link_to 'Back', studies_path %>

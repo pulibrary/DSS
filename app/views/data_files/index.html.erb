@@ -2,6 +2,8 @@
 
 <h1>Data Files</h1>
 
+<%= link_to 'Add New Data File', new_data_file_path, class: 'btn pull-right heading__inline' %>
+
 <table class="responsive no-wrap datatable">
   <thead>
     <tr>
@@ -13,9 +15,9 @@
       <th>Note</th>
       <th>Study num</th>
       <th>Study</th>
-      <th>Show</th>
-      <th>Edit</th>
-      <th>Destroy</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -37,7 +39,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Data File', new_data_file_path %>

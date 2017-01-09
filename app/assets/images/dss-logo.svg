@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="104px" height="42px" viewBox="0 0 104 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Slice 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="graph-bar-movement.3.3.1" transform="translate(3.000000, 1.000000)">
+            <g id="Group">
+                <g id="Outline_Icons" stroke="#000000">
+                    <g id="Group">
+                        <g transform="translate(0.000000, 11.375000)" id="Shape">
+                            <path d="M0.8125,25.1875 L38.1875,25.1875"></path>
+                            <polyline points="7.3125 25.1875 7.3125 17.0625 2.4375 17.0625 2.4375 25.1875"></polyline>
+                            <polyline points="17.0625 25.1875 17.0625 8.9375 12.1875 8.9375 12.1875 25.1875"></polyline>
+                            <polyline points="26.8125 25.1875 26.8125 12.1875 21.9375 12.1875 21.9375 25.1875"></polyline>
+                            <polyline points="36.5625 25.1875 36.5625 0.8125 31.6875 0.8125 31.6875 25.1875"></polyline>
+                        </g>
+                        <g transform="translate(4.875000, 0.000000)" id="Shape">
+                            <polyline points="30.0625 0.8125 19.5 12.1875 9.75 8.9375 0 17.0625"></polyline>
+                            <polyline points="23.5625 0.8125 30.0625 0.8125 30.0625 7.3125"></polyline>
+                        </g>
+                    </g>
+                </g>
+                <g id="Invisibla_Shape">
+                    <rect id="Rectangle-path" x="0" y="0" width="39" height="39"></rect>
+                </g>
+            </g>
+        </g>
+        <text id="Data-and-Statistical" font-family="AvenirNextCondensed-Regular, Avenir Next Condensed" font-size="12" font-style="condensed" font-weight="normal" line-spacing="14" letter-spacing="0.286153853" fill="#000000">
+            <tspan x="51" y="11">Data and </tspan>
+            <tspan x="51" y="25">Statistical </tspan>
+            <tspan x="51" y="39">Service</tspan>
+            <tspan x="82.823077" y="39" letter-spacing="0.264142007">s</tspan>
+        </text>
+    </g>
+</svg>

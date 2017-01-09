@@ -1,14 +1,9 @@
-<p id="notice"><%= notice %></p>
+<%= link_to 'Edit this Subject', edit_subject_path(@subject), class: 'btn pull-right heading__inline' %>
+<%= link_to 'Back to Subjects', subjects_path, class: 'btn pull-left heading__inline' %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @subject.name %>
-</p>
+<h1 class="heading__block"><%= @subject.name %></h1>
 
-<p>
-  <strong>Key term:</strong>
-  <%= @subject.key_term_id %>
-</p>
-
-<%= link_to 'Edit', edit_subject_path(@subject) %> |
-<%= link_to 'Back', subjects_path %>
+<dl>
+  <dt>Key term</dt>
+  <dd><%= @subject.key_term_id %></dd>
+</dl>

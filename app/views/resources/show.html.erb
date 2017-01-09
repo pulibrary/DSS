@@ -1,82 +1,54 @@
-<p id="notice"><%= notice %></p>
+<%= link_to 'Edit this Resource', edit_resource_path(@resource), class: 'btn pull-right heading__inline' %>
+<%= link_to 'Back to Resources', resources_path, class: 'btn pull-left heading__inline' %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @resource.name %>
-</p>
+<h1 class="heading__block"><%= @resource.name %></h1>
 
-<p>
-  <strong>Resource:</strong>
-  <%= @resource.resource_id %>
-</p>
+<dl>
+  <dt>Resource</dt>
+  <dd><%= @resource.resource_id %></dd>
 
-<p>
-  <strong>Url:</strong>
-  <%= study_link(@resource.url) %>
-</p>
+  <dt>URL</dt>
+  <dd><%= study_link(@resource.url) %></dd>
 
-<p>
-  <strong>Blurb:</strong>
-  <% unless @resource.blurb.nil? %>
-    <%= @resource.blurb.gsub('\\', '').html_safe %>
-  <% end %>
-</p>
+  <dt>Blurb</dt>
+  <dd>
+    <% unless @resource.blurb.nil? %>
+      <%= @resource.blurb.gsub('\\', '').html_safe %>
+    <% end %>
+  </dd>
 
-<p>
-  <strong>Link time:</strong>
-  <%= @resource.link_time %>
-</p>
+  <dt>Link time</dt>
+  <dd><%= @resource.link_time %></dd>
 
-<p>
-  <strong>Sample:</strong>
-  <%= @resource.sample %>
-</p>
+  <dt>Sample</dt>
+  <dd><%= @resource.sample %></dd>
 
-<p>
-  <strong>Principal investigator:</strong>
-  <%= @resource.principal_investigator %>
-</p>
+  <dt>Principal investigator</dt>
+  <dd><%= @resource.principal_investigator %></dd>
 
-<p>
-  <strong>Producer:</strong>
-  <%= @resource.producer %>
-</p>
+  <dt>Producer</dt>
+  <dd><%= @resource.producer %></dd>
 
-<p>
-  <strong>Distributor:</strong>
-  <%= @resource.distributor %>
-</p>
+  <dt>Distributor</dt>
+  <dd><%= @resource.distributor %></dd>
 
-<p>
-  <strong>Version:</strong>
-  <%= @resource.version %>
-</p>
+  <dt>Version</dt>
+  <dd><%= @resource.version %></dd>
 
-<p>
-  <strong>More detail url:</strong>
-  <%= @resource.more_detail_url %>
-</p>
+  <dt>More detail URL</dt>
+  <dd><%= @resource.more_detail_url %></dd>
 
-<p>
-  <strong>Resource type:</strong>
-  <%= @resource.resource_type %>
-</p>
+  <dt>Resource type</dt>
+  <dd><%= @resource.resource_type %></dd>
+
+  <dt>Subjects</dt>
+  <dd><%= subject_list(@resource.subject_ids) %></dd>
+
+  <dt>Regions</dt>
+  <dd><%= region_list(@resource.region_ids) %></dd>
+
+  <dt>Countries</dt>
+  <dd><%= country_list(@resource.country_ids) %></dd>
+</dl>
 
 
-<p>
-  <strong>Subjects</strong>
-  <%= subject_list(@resource.subject_ids) %>
-</p>
-
-<p>
-  <strong>Regions</strong>
-  <%= region_list(@resource.region_ids) %>
-<p>
-
-<p>
-  <strong>Countries</strong>
-  <%= country_list(@resource.country_ids) %>
-<p>
-
-<%= link_to 'Edit', edit_resource_path(@resource) %> |
-<%= link_to 'Back', resources_path %>
