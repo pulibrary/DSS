@@ -1,12 +1,9 @@
-<p>
-  <strong>Name:</strong>
-  <%= @region.name %>
-</p>
+<%= link_to 'Edit this Region', edit_region_path(@region), class: 'btn pull-right heading__inline' %>
+<%= link_to 'Back to Regions', regions_path, class: 'btn pull-left heading__inline' %>
 
-<p>
-  <strong>Key term:</strong>
-  <%= @region.key_term_id %>
-</p>
+<h1 class="heading__block"><%= @region.name %></h1>
 
-<%= link_to 'Edit', edit_region_path(@region) %> |
-<%= link_to 'Back', regions_path %>
+<dl>
+  <dt>Key term</dt>
+  <dd><%= @region.key_term_id %></dd>
+</dl>

@@ -1,93 +1,58 @@
-<p>
-  <strong>Legacy:</strong>
-  <%= @data_file.legacy_id %>
-</p>
+<%= link_to 'Edit this Data File', edit_data_file_path(@data_file), class: 'btn pull-right heading__inline' %>
+<%= link_to 'Back to Data Files', data_files_path, class: 'btn pull-left heading__inline' %>
 
-<p>
-  <strong>Files:</strong>
-  <%= @data_file.files %>
-</p>
+<h1 class="heading__block">Data File</h1>
 
-<p>
-  <strong>Size:</strong>
-  <%= @data_file.size %>
-</p>
+<dl>
+  <dt>Legacy</dt>
+  <dd><%= @data_file.legacy_id %></dd>
 
-<p>
-  <strong>Comp size:</strong>
-  <%= @data_file.comp_size %>
-</p>
+  <dt>Files</dt>
+  <dd><%= @data_file.files %></dd>
 
-<p>
-  <strong>Line count:</strong>
-  <%= @data_file.line_count %>
-</p>
+  <dt>Size</dt>
+  <dd><%= @data_file.size %></dd>
 
-<p>
-  <strong>Line length:</strong>
-  <%= @data_file.line_length %>
-</p>
+  <dt>Comp size</dt>
+  <dd><%= @data_file.comp_size %></dd>
 
-<p>
-  <strong>Part:</strong>
-  <%= @data_file.part %>
-</p>
+  <dt>Line count</dt>
+  <dd><%= @data_file.line_count %></dd>
 
-<p>
-  <strong>File type a:</strong>
-  <%= @data_file.file_type_a %>
-</p>
+  <dt>Line length</dt>
+  <dd><%= @data_file.line_length %></dd>
 
-<p>
-  <strong>File type b:</strong>
-  <%= @data_file.file_type_b %>
-</p>
+  <dt>Part</dt>
+  <dd><%= @data_file.part %></dd>
 
-<p>
-  <strong>Flag one:</strong>
-  <%= @data_file.flag_one %>
-</p>
+  <dt>File type a</dt>
+  <dd><%= @data_file.file_type_a %></dd>
 
-<p>
-  <strong>Flag two:</strong>
-  <%= @data_file.flag_two %>
-</p>
+  <dt>File type b</dt>
+  <dd><%= @data_file.file_type_b %></dd>
 
-<p>
-  <strong>File type a:</strong>
-  <%= @data_file.file_type_a %>
-</p>
+  <dt>File type tech</dt>
+  <dd><%= @data_file.file_type_tech %></dd>
 
-<p>
-  <strong>File type tech:</strong>
-  <%= @data_file.file_type_tech %>
-</p>
+  <dt>Flag one</dt>
+  <dd><%= @data_file.flag_one %></dd>
 
-<p>
-  <strong>Note:</strong>
-  <%= @data_file.note %>
-</p>
+  <dt>Flag two</dt>
+  <dd><%= @data_file.flag_two %></dd>
 
-<p>
-  <strong>Study num:</strong>
-  <%= @data_file.study_num %>
-</p>
+  <dt>Note</dt>
+  <dd><%= @data_file.note %></dd>
 
-<p>
-  <strong>Permission:</strong>
-  <%= @data_file.permission %>
-</p>
+  <dt>Study number</dt>
+  <dd><%= @data_file.study_num %></dd>
 
-<p>
-  <strong>Timestamp:</strong>
-  <%= @data_file.timestamp %>
-</p>
+  <dt>Permission</dt>
+  <dd><%= @data_file.permission %></dd>
 
-<p>
-  <strong>Study:</strong>
-  <%= @data_file.study_id %>
-  <%= link_to 'View Related Study', study_path(@data_file.study_id) %>
-</p>
+  <dt>Timestamp</dt>
+  <dd><%= @data_file.timestamp %></dd>
 
-<%= link_to 'Edit', edit_data_file_path(@data_file) %> |
-<%= link_to 'Back', data_files_path %>
+  <dt>Study</dt>
+  <dd><%= @data_file.study_id %>
+  <%= link_to '(View Related Study)', study_path(@data_file.study_id) %></dd>
+</dl>

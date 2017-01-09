@@ -2,6 +2,8 @@
 
 <h1>Studies</h1>
 
+<%= link_to 'Add New Study', new_study_path, class: 'btn pull-right heading__inline' %>
+
 <table class="responsive no-wrap datatable">
   <thead>
     <tr>
@@ -10,9 +12,9 @@
       <th>Medium</th>
       <th>Url</th>
       <th>Voyager</th>
-      <th>Show</th>
-      <th>Edit</th>
-      <th>Destroy</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -31,7 +33,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Study', new_study_path %>

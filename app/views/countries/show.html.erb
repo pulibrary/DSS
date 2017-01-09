@@ -1,12 +1,9 @@
-<p>
-  <strong>Name:</strong>
-  <%= @country.name %>
-</p>
+<%= link_to 'Edit this Country', edit_country_path(@country), class: 'btn pull-right heading__inline' %>
+<%= link_to 'Back to Countries', countries_path, class: 'btn pull-left heading__inline' %>
 
-<p>
-  <strong>Key term:</strong>
-  <%= @country.key_term_id %>
-</p>
+<h1 class="heading__block"><%= @country.name %></h1>
 
-<%= link_to 'Edit', edit_country_path(@country) %> |
-<%= link_to 'Back', countries_path %>
+<dl>
+  <dt>Key term</dt>
+  <dd><%= @country.key_term_id %></dd>
+</dl>

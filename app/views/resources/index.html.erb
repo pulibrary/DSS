@@ -1,5 +1,7 @@
 <h1>Resources</h1>
 
+<%= link_to 'Add New Resource', new_resource_path, class: 'btn pull-right heading__inline' %>
+
 <table class="responsive no-wrap datatable">
   <thead>
     <tr>
@@ -9,9 +11,9 @@
       <th>Blurb</th>
       <th>Sample</th>
       <th>Resource type</th>
-      <th>Show</th>
-      <th>Edit</th>
-      <th>Destroy</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -38,7 +40,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Resource', new_resource_path %>

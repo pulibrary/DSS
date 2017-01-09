@@ -1,5 +1,7 @@
 <h1>Subjects</h1>
 
+<%= link_to 'Add New Subject', new_subject_path, class: 'btn pull-right heading__inline' %>
+
 <table>
   <thead>
     <tr>
@@ -21,7 +23,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Subject', new_subject_path %>
