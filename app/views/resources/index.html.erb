@@ -24,7 +24,7 @@
         <td><%= resource.resource_id %></td>
         <td>
           <% unless resource.url.nil? %>
-            <%= study_link(resource.url) %></td>
+            <%= study_link(resource.url, resource.url) %></td>
           <% end %>
         <td>
           <% unless resource.blurb.nil? %>

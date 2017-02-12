@@ -2,6 +2,31 @@ require 'json'
 
 namespace :dss do
 
+  namespace :terms do
+    desc 'Bulk assigns a country term id to a subject term id' 
+    task :country_to_subject, [:country_id, :subject_id] => :environment do |t, args|
+      puts "#{args[:country_id]}"
+      country = Country.find(args[:country_id])
+      puts country.name
+      subject = Subject.find(args[:subject_id])
+      puts subject.name
+      resources = Country.includes(:resources).find(args[:country_id]).resources
+      puts resources.size
+      resources.each do |r|
+        subjects = r.subject_ids.push(args[:subject_id].to_i)
+        puts subjects.to_s
+        r.subject_ids = subjects
+        r.save!
+        r.reload
+        r.country_ids.delete(args[:country_id].to_i)
+        r.country_ids = r.country_ids
+        r.save!
+        puts "updating #{r.id}"
+      end
+    end
+
+  end
+
   namespace :solr do
     
     desc 'Posts fixtures to Solr'
@@ -17,6 +42,15 @@ namespace :dss do
       solr = RSolr.connect :url => Blacklight.connection_config[:url]
       solr.update data: '<delete><query>*:*</query></delete>'
       solr.update data: '<commit/>'
+    end
+
+    desc 'Reindexes all current Resource objects'
+    task reindex: :environment do
+      resources = Resource.all
+      resources.each do |r|
+        r.save!
+        puts "index rid: #{r.id}"
+      end
     end
 
     desc 'Updates solr config files from github'

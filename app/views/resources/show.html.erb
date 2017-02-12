@@ -1,6 +1,7 @@
-<%= link_to 'Edit this Resource', edit_resource_path(@resource), class: 'btn pull-right heading__inline' %>
-<%= link_to 'Back to Resources', resources_path, class: 'btn pull-left heading__inline' %>
-
+<% if admin_user? %>
+  <%= link_to 'Edit this Resource', edit_resource_path(@resource), class: 'btn pull-right heading__inline' %>
+  <%= link_to 'Back to Resources', resources_path, class: 'btn pull-left heading__inline' %>
+<% end %>
 <h1 class="heading__block"><%= @resource.name %></h1>
 
 <dl>
@@ -8,7 +9,7 @@
   <dd><%= @resource.resource_id %></dd>
 
   <dt>URL</dt>
-  <dd><%= study_link(@resource.url) %></dd>
+  <dd><%= study_link(@resource.url, @resource.url) %></dd>
 
   <dt>Blurb</dt>
   <dd>
