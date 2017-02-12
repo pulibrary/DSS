@@ -19,6 +19,10 @@ module ApplicationHelper
     study_link args[:document][args[:field]], args[:document][args[:field]]
   end
 
+  def resource_id(catalog_id)
+    catalog_id.gsub("resource", '').html_safe
+  end
+
   # munges urls to get a link to a study
   def study_link(label, url)
     if study_id = url.match(/studyno=(\d+)$/)
