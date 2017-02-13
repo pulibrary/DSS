@@ -3,6 +3,7 @@ class Study < ApplicationRecord
   has_and_belongs_to_many :countries
   has_and_belongs_to_many :regions
   has_many :data_files
+  belongs_to :resource
   accepts_nested_attributes_for :data_files
 
 

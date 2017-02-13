@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161210231849) do
+ActiveRecord::Schema.define(version: 20170213193036) do
 
   create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",                     null: false
@@ -142,6 +142,8 @@ ActiveRecord::Schema.define(version: 20161210231849) do
     t.integer  "voyager_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "resource_id"
+    t.index ["resource_id"], name: "index_studies_on_resource_id", using: :btree
   end
 
   create_table "studies_subjects", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
