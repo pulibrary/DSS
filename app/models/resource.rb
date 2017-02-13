@@ -19,6 +19,7 @@ class Resource < ApplicationRecord
       elsif name == 'name'
         solr_doc["title_t"] = [ value ]
         solr_doc["title_display"] = value
+        solr_doc["title_sort"] = value
       elsif name == 'resource_type'
         solr_doc["resource_type_s"] = value
       elsif name == 'url'
