@@ -1,6 +1,7 @@
-<%= link_to 'Edit this Data File', edit_data_file_path(@data_file), class: 'btn pull-right heading__inline' %>
-<%= link_to 'Back to Data Files', data_files_path, class: 'btn pull-left heading__inline' %>
-
+<% if admin_user? %>
+  <%= link_to 'Edit this Data File', edit_data_file_path(@data_file), class: 'btn pull-right heading__inline' %>
+  <%= link_to 'Back to Data Files', data_files_path, class: 'btn pull-left heading__inline' %>
+<% end %>
 <h1 class="heading__block">Data File</h1>
 
 <dl>

@@ -7,8 +7,8 @@ class Study < ApplicationRecord
 
 
   # remove until import is taken care of.
-  after_save :index_record
-  before_destroy :remove_from_index
+  # after_save :index_record
+  # before_destroy :remove_from_index
 
   def as_json(options={})
     to_solr.to_json

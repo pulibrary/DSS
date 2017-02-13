@@ -69,13 +69,13 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'resource_type_s', label: 'Format', show: true
     config.add_facet_field 'pub_date', label: 'Publication Year', single: true
     config.add_facet_field 'subject_topic_facet', label: 'Topic', limit: 25, index_range: 'A'..'Z', sort: 'index', collapse: false
     config.add_facet_field 'language_facet', label: 'Language', limit: true
     config.add_facet_field 'lc_1letter_facet', label: 'Call Number'
     config.add_facet_field 'subject_geo_facet', label: 'Country', limit: 10, sort: 'index', collapse: false
     config.add_facet_field 'region_facet', label: 'Region', limit: 10
+    config.add_facet_field 'resource_type_s', label: 'Format'
     config.add_facet_field 'subject_era_facet', label: 'Era'
 
     config.add_facet_field 'example_pivot_field', label: 'Pivot Field', :pivot => ['format', 'language_facet']

@@ -16,7 +16,22 @@ module ApplicationHelper
   end
 
   def link(args)
-    link_to args[:document][args[:field]], args[:document][args[:field]]
+    study_link args[:document][args[:field]], args[:document][args[:field]]
   end
 
+  def resource_id(catalog_id)
+    catalog_id.gsub("resource", '').html_safe
+  end
+
+  # munges urls to get a link to a study
+  def study_link(label, url)
+    if study_id = url.match(/studyno=(\d+)$/)
+      study = Study.where(studynum: "#{study_id[1]}").take
+      unless study.nil? 
+        link_to('View Data Files', study_path(study))
+      end
+    else
+      link_to label, url
+    end
+  end
 end

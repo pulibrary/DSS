@@ -28,16 +28,4 @@ module ResourcesHelper
       end
     end
   end
-
-  # munges urls to get a link to a study
-  def study_link(url)
-    if study_id = url.match(/studyno=(\d+)$/)
-      study = Study.where(studynum: "#{study_id[1]}").take
-      unless study.nil? 
-        link_to('view resource', study_path(study))
-      end
-    else
-      link_to 'view resource', url
-    end
-  end
 end

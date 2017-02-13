@@ -1,6 +1,7 @@
-<%= link_to 'Edit this Study', edit_study_path(@study), class: 'btn pull-right heading__inline' %>
-<%= link_to 'Back to Studies', studies_path, class: 'btn pull-left heading__inline' %>
-
+<% if admin_user? %>
+  <%= link_to 'Edit this Study', edit_study_path(@study), class: 'btn pull-right heading__inline' %>
+  <%= link_to 'Back to Studies', studies_path, class: 'btn pull-left heading__inline' %>
+<% end %>
 <h1 class="heading__block"><%= @study.title %></h1>
 
 <dl>
