@@ -1,3 +1,6 @@
+<% unless @study.resource.nil? %>
+  <%= link_to 'Back to Resource', resource_path(@study.resource_id), class: 'btn pull-right heading__inline' %>
+<% end %>
 <% if admin_user? %>
   <%= link_to 'Edit this Study', edit_study_path(@study), class: 'btn pull-right heading__inline' %>
   <%= link_to 'Back to Studies', studies_path, class: 'btn pull-left heading__inline' %>

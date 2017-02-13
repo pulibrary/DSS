@@ -24,7 +24,27 @@ namespace :dss do
         puts "updating #{r.id}"
       end
     end
+  end
 
+  namespace :studies do
+    desc 'Assign resource ids to subjects based on study number'
+    task resource_study_map: :environment do
+      resources = Resource.all
+      resources.each do |r|
+        unless r.url.nil?
+          if dss_url = /(^http:\/\/dss.princeton.edu\/cgi-bin\/catalog\/search.cgi\?studyno\=)(\d+)/.match(r.url)
+            studynum = dss_url[2]
+            study = Study.where(studynum: "#{studynum}").take
+            unless study.nil?
+              puts "matching study num #{studynum} with study id #{study.id}"
+              study.resource_id = r.id
+              study.save!
+              study.reload
+            end
+          end
+        end
+      end
+    end 
   end
 
   namespace :solr do
