@@ -56,48 +56,54 @@
     <%= render 'r_flag_message' %>
   <% else %>
     <h2>Data Files</h2>
-    <p>This dataset is located on the DSS Server. 
-If you experience any difficulties or have any questions about using the data, please email Data and Statistical Services at data@princeton.edu for assistance. If you are at a computer connected to the Princeton Network, you should be able to access it through the following links:</p>
-    <table>
-      <thead>
-        <tr>
-          <td>Name</td>
-          <td>Part</td>
-          <td>File Type</td>
-          <td>File Techology</td>
-          <td>Note</td>
-          <td></td>
-        </tr>
-      </thead>
-      <tbody>
-        <% @study.data_files.each do |data_file| %>
+    <% if @user.guest %>
+      <div>
+        <%= link_to 'Login Via CAS', '/users/auth/cas', class: 'btn btn-md btn-primary btn-full' %>
+      </div>
+    <% else %>
+      <p>This dataset is located on the DSS Server. 
+  If you experience any difficulties or have any questions about using the data, please email Data and Statistical Services at data@princeton.edu for assistance. If you are at a computer connected to the Princeton Network, you should be able to access it through the following links:</p>
+      <table>
+        <thead>
           <tr>
-            <td><%= build_file_path(@study.folder, data_file.files) %></td>
-            <td><%= data_file.part %></td>
-            <td><%= data_file.file_type_a %> <%= data_file.file_type_b %></td>
-            <td><%= data_file.file_type_tech %></td>
-            <td><%= data_file.note %></td>
-            <td><%= link_to 'Edit', edit_data_file_path(data_file.id) %></td>
+            <td>Name</td>
+            <td>Part</td>
+            <td>File Type</td>
+            <td>File Techology</td>
+            <td>Note</td>
+            <td></td>
           </tr>
-        <% end %>
-        <tr>
-          <td colspan='6'>
-            <%= build_file_path(@study.folder) %>
-          </td>
-        </tr>
-        <% if !@study.file_list.nil? %>
-          <% @study.file_list.each do |file| %>
+        </thead>
+        <tbody>
+          <% @study.data_files.each do |data_file| %>
             <tr>
-              <td colspan='6'><%= build_file_path(@study.folder, file) %></td>
+              <td><%= build_file_path(@study.folder, data_file.files) %></td>
+              <td><%= data_file.part %></td>
+              <td><%= data_file.file_type_a %> <%= data_file.file_type_b %></td>
+              <td><%= data_file.file_type_tech %></td>
+              <td><%= data_file.note %></td>
+              <td><%= link_to 'Edit', edit_data_file_path(data_file.id) %></td>
             </tr>
           <% end %>
-        <% else %>
           <tr>
-            <td>Server Cannot be reach at this time</td>
+            <td colspan='6'>
+              <%= build_file_path(@study.folder) %>
+            </td>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+          <% if !@study.file_list.nil? %>
+            <% @study.file_list.each do |file| %>
+              <tr>
+                <td colspan='6'><%= build_file_path(@study.folder, file) %></td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td>Server Cannot be reach at this time</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
   <% end %>
 <% end %>
 

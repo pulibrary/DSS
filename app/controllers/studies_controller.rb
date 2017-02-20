@@ -1,7 +1,7 @@
 class StudiesController < ApplicationController
   before_action :set_study, only: [:show, :edit, :update, :destroy]
 
-  skip_before_filter :authenticate_user!, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show]
   # GET /studies
   # GET /studies.json
   def index
@@ -11,6 +11,10 @@ class StudiesController < ApplicationController
   # GET /studies/1
   # GET /studies/1.json
   def show
+    @user = current_or_guest_user
+    if @user.guest
+      flash[:alert] = 'Data Files are for Use only By Princeton, Faculty, Students, and Staff'
+    end
   end
 
   # GET/studynum/1234
