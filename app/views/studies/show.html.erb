@@ -85,6 +85,17 @@ If you experience any difficulties or have any questions about using the data, p
             <%= build_file_path(@study.folder) %>
           </td>
         </tr>
+        <% if !@study.file_list.nil? %>
+          <% @study.file_list.each do |file| %>
+            <tr>
+              <td colspan='6'><%= build_file_path(@study.folder, file) %></td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td>Server Cannot be reach at this time</td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   <% end %>

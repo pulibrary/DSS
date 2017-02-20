@@ -99,9 +99,9 @@
 
   <h3>Related Resource</h3>
   <div class="field">
-  <div class="field_head">Select the Resource this Study is associated with</div>
-    <%= select_tag "study[resource_id]", options_from_collection_for_select(Resource.order(:name), 'id', 'name', @study.resource_id), multiple: false, class: 'select2' %>
-  </div>
+    <div class="field_head">Select the Resource this Study is associated with</div>
+      <%= select_tag "study[resource_id]", options_from_collection_for_select(Resource.order(:name), 'id', 'name', @study.resource_id), multiple: false, class: 'select2' %>
+    </div>
   </div>
   <h3>Attached Files</h3>
   <table>

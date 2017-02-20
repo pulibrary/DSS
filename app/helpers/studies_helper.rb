@@ -11,4 +11,12 @@ module StudiesHelper
   def catalog_path(id)
     link_to id, "https://pulsearch.princeton.edu/#{id}"
   end
+
+  def file_label(data_file)
+    if data_file.files.nil?
+      "Directory Listing"
+    else
+      data_file.files
+    end
+  end
 end

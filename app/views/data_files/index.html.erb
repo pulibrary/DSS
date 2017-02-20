@@ -8,7 +8,9 @@
   <thead>
     <tr>
       <th>Files</th>
+      <!--
       <th>Part</th>
+      -->
       <th>File type a</th>
       <th>File type b</th>
       <th>File type tech</th>
@@ -17,15 +19,19 @@
       <th>Study</th>
       <th></th>
       <th></th>
+      <!--
       <th></th>
+      -->
     </tr>
   </thead>
 
   <tbody>
     <% @data_files.each do |data_file| %>
       <tr>
-        <td><%= data_file.files %></td>
+        <td><%= file_label(data_file) %></td>
+        <!--
         <td><%= data_file.part %></td>
+        -->
         <td><%= data_file.file_type_a %></td>
         <td><%= data_file.file_type_b %></td>
         <td><%= data_file.file_type_tech %></td>
@@ -34,7 +40,9 @@
         <td><%= data_file.study_id %></td>
         <td><%= link_to 'Show', data_file %></td>
         <td><%= link_to 'Edit', edit_data_file_path(data_file) %></td>
+        <!--
         <td><%= link_to 'Destroy', data_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        -->
       </tr>
     <% end %>
   </tbody>
