@@ -1,10 +1,12 @@
+require 'net/ssh'
+
 class Study < ApplicationRecord
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :countries
   has_and_belongs_to_many :regions
   has_many :data_files
-  accepts_nested_attributes_for :data_files
-
+  belongs_to :resource
+  accepts_nested_attributes_for :data_files, reject_if: lambda {|attributes| attributes['files'].blank?}
 
   # remove until import is taken care of.
   # after_save :index_record
@@ -65,6 +67,19 @@ class Study < ApplicationRecord
     solr.commit
   end
 
+  def file_list
+    command = "ls #{dir_path}"
+    @files ||= dss(command)
+  end
+
+  def dir_path
+    if !folder.nil?
+      "/var/www/html/data/#{folder}"
+    else
+      false
+    end
+  end
+
   def subjects
     subjects = Subject.find(self.subject_ids).sort_by{ |subject| subject.name }
   end
@@ -80,5 +95,19 @@ class Study < ApplicationRecord
   protected
     def solr_url
       "#{Blacklight.blacklight_yml[Rails.env]['url']}"
+    end
+
+    def dss(command)
+      files = nil
+      begin
+        hostname = ENV["DSS_SERVER"]
+        username = ENV["DSS_DATA_USER"]
+        ssh = Net::SSH.start(hostname, username, timeout: 10)
+        files = ssh.exec!(command).split( "\n" )
+        ssh.close
+      rescue
+        Rails.logger.error "Unable to connect to #{@hostname} using #{@username}/#{@password}"
+      end
+      files
     end
 end

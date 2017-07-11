@@ -1,7 +1,7 @@
 class StudiesController < ApplicationController
   before_action :set_study, only: [:show, :edit, :update, :destroy]
 
-  skip_before_filter :authenticate_user!, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show]
   # GET /studies
   # GET /studies.json
   def index
@@ -11,6 +11,10 @@ class StudiesController < ApplicationController
   # GET /studies/1
   # GET /studies/1.json
   def show
+    @user = current_or_guest_user
+    if @user.guest
+      flash[:alert] = 'Data Files are for Use only By Princeton, Faculty, Students, and Staff'
+    end
   end
 
   # GET/studynum/1234
@@ -80,6 +84,6 @@ class StudiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def study_params
-      params.require(:study).permit(:legacy_id, :studynum, :title, :medium, :icpsr_num, :url, :directory, :folder, :r_flag, :timestamp, :auto_refresh, :note, :roper, :voyager_id, country_ids: [], subject_ids: [], region_ids: [], data_files_attributes: [:id, :files, :file_type_a, :file_type_b, :flag_one, :flag_two, :file_type_tech, :part, :studynum, :note])
+      params.require(:study).permit(:legacy_id, :studynum, :title, :medium, :icpsr_num, :url, :directory, :folder, :r_flag, :timestamp, :auto_refresh, :note, :roper, :voyager_id, :resource_id, country_ids: [], subject_ids: [], region_ids: [], data_files_attributes: [:id, :files, :file_type_a, :file_type_b, :flag_one, :flag_two, :file_type_tech, :part, :studynum, :note])
     end
 end
