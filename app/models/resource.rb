@@ -34,7 +34,7 @@ class Resource < ApplicationRecord
     end
     subject_values = []
     subjects.each do |subject|
-      subject_values << subject.name    
+      subject_values << subject.name
     end
     solr_doc['subject_topic_facet'] = subject_values
     country_values = []
@@ -61,6 +61,13 @@ class Resource < ApplicationRecord
     solr = RSolr.connect(url: solr_url)
     solr.delete_by_id(self.id)
     solr.commit
+  end
+
+  def study
+    studies = Study.where(resource_id: self.id)
+    if studies.size == 1
+      studies.first
+    end
   end
 
   def subjects

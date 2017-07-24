@@ -38,7 +38,7 @@ module ApplicationHelper
   def format_types
     ['Archive or collection of studies',
      'Data archive or collection',
-     'Macrodata sourcs',
+     'Macrodata source',
      'Series - completed',
      'Series - ongoing',
      'Single study']
