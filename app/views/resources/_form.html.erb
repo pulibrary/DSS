@@ -68,10 +68,8 @@
 
   <div class="field">
     <%= f.label :resource_type %>
-    <%= f.text_field :resource_type %>
+    <%= f.select :resource_type, options_for_select(format_types, @resource.resource_type) %>
   </div>
-
-
 
   <div class="field">
     <div class="field_head">Regions</div>

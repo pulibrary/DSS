@@ -27,11 +27,20 @@ module ApplicationHelper
   def study_link(label, url)
     if study_id = url.match(/studyno=(\d+)$/)
       study = Study.where(studynum: "#{study_id[1]}").take
-      unless study.nil? 
+      unless study.nil?
         link_to('View Data Files', study_path(study))
       end
     else
       link_to label, url
     end
+  end
+
+  def format_types
+    ['Archive or collection of studies',
+     'Data archive or collection',
+     'Macrodata sourcs',
+     'Series - completed',
+     'Series - ongoing',
+     'Single study']
   end
 end
