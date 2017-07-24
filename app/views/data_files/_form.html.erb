@@ -93,7 +93,7 @@
 
   <h3>Related Resource</h3>
   <div class="field">
-    <div class="field_head">Select the Resource this Study is associated with</div>
+    <div class="field_head">Select the Study this Data File is associated with</div>
       <%= select_tag "data_file[study_id]", options_from_collection_for_select(Study.order(:title), 'id', 'title', @data_file.study_id), multiple: false, class: 'select2' %>
     </div>
   </div>
