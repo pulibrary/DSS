@@ -25,5 +25,7 @@ production:
   reconnect: false
   database: <%= ENV["DSS_DB"] %>
   pool: 5
-  username: <%= ENV["DSS_USER"] %>
-  password: <%= ENV["DSS_PWD"] %>
+  username: <%= ENV["DSS_DB_USERNAME"] %>
+  password: <%= ENV["DSS_DB_PASSWORD"] %>
+  host: <%= ENV['DSS_DB_HOST'] %>
+  port: 3306
