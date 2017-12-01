@@ -29,6 +29,7 @@ gem 'cancancan', '~> 1.15'
 
 gem 'mysql2'
 gem "blacklight"
+gem 'solr_wrapper'
 
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
@@ -57,7 +58,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'jettywrapper', '>= 2.0'
 gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.5'
