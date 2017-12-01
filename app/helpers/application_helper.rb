@@ -25,13 +25,13 @@ module ApplicationHelper
 
   # munges urls to get a link to a study
   def study_link(label, url)
-    if study_id = url.match(/studyno=(\d+)$/)
+    if study_id = url.first.match(/studyno=(\d+)$/)
       study = Study.where(studynum: "#{study_id[1]}").take
       unless study.nil?
         link_to('View Data Files', study_path(study))
       end
     else
-      link_to label, url
+      link_to label, url.first
     end
   end
 
