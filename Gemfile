@@ -66,4 +66,3 @@ gem 'select2-rails'
 gem 'ckeditor'
 
 gem 'pul-assets', :git => 'git@github.com:pulibrary/pul_assets.git', :branch => :master
-gem 'net-ssh', '~> 3.2.0'
