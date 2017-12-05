@@ -3,7 +3,7 @@ require 'json'
 namespace :dss do
 
   namespace :terms do
-    desc 'Bulk assigns a country term id to a subject term id' 
+    desc 'Bulk assigns a country term id to a subject term id'
     task :country_to_subject, [:country_id, :subject_id] => :environment do |t, args|
       puts "#{args[:country_id]}"
       country = Country.find(args[:country_id])
@@ -44,21 +44,21 @@ namespace :dss do
           end
         end
       end
-    end 
+    end
   end
 
   namespace :solr do
-    
+
     desc 'Posts fixtures to Solr'
-    task :index do
+    task index: :environment do
       solr = RSolr.connect :url => Blacklight.connection_config[:url]
       resource_list = Resource.all.map { |r| r.to_solr }
-      solr.add JSON.parse(resource_list)
+      solr.add JSON.parse(resource_list.to_json)
       solr.update data: '<commit/>'
     end
 
     desc 'Delete fixtures from Solr'
-    task :deindex do
+    task deindex: :environment do
       solr = RSolr.connect :url => Blacklight.connection_config[:url]
       solr.update data: '<delete><query>*:*</query></delete>'
       solr.update data: '<commit/>'
@@ -82,19 +82,6 @@ namespace :dss do
        'CJKFoldingFilter.jar', 'lucene-umich-solr-filters-6.0.0-SNAPSHOT.jar'].each do |file|
         response = Faraday.get url_for_file("conf/#{file}")
         File.open(File.join(solr_dir, 'conf', file), 'wb') { |f| f.write(response.body) }
-      end
-    end
-
-    desc 'Copy solr config files to Jetty wrapper'
-    task solr2jetty: :environment do
-      #cp Rails.root.join('solr_conf','solr.xml'), Rails.root.join('jetty','solr')
-      cp Rails.root.join('solr_conf','schema.xml'), Rails.root.join('jetty','solr','blacklight-core','conf')
-      cp Rails.root.join('solr_conf','solrconfig.xml'), Rails.root.join('jetty','solr','blacklight-core','conf')
-      unless File.exists?(Rails.root.join('jetty','solr','blacklight-core','conf','lang'))
-        Dir.mkdir(Rails.root.join('jetty','solr','blacklight-core','conf','lang'))
-      end
-      Dir.glob(Rails.root.join('solr_conf','lang','*')).each do |lang_file|
-        cp lang_file, Rails.root.join('jetty','solr','blacklight-core','conf', 'lang')
       end
     end
   end

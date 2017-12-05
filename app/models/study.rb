@@ -38,7 +38,7 @@ class Study < ApplicationRecord
     solr_doc["resource_type_s"] = 'Study'
     subject_values = []
     subjects.each do |subject|
-      subject_values << subject.name    
+      subject_values << subject.name
     end
     solr_doc['subject_topic_facet'] = subject_values
     country_values = []
@@ -102,11 +102,20 @@ class Study < ApplicationRecord
       begin
         hostname = ENV["DSS_SERVER"]
         username = ENV["DSS_DATA_USER"]
-        ssh = Net::SSH.start(hostname, username, timeout: 10)
-        files = ssh.exec!(command).split( "\n" )
-        ssh.close
+        Net::SSH.start(hostname, username, timeout: 10) do |ssh|
+          files = ssh.exec!(command).split( "\n" )
+          ssh.close
+        end
+      rescue Timeout::Error
+        Rails.logger.error "Connection to #{hostname} Timed out"
+      rescue Errno::EHOSTUNREACH
+        Rails.logger.error "#{hostname} Host unreachable"
+      rescue Errno::ECONNREFUSED
+        Rails.logger.error "#{hostname} Connection refused"
+      rescue Net::SSH::AuthenticationFailed
+        Rails.logger.error "Unable to connect to #{@hostname} using #{@username}"
       rescue
-        Rails.logger.error "Unable to connect to #{@hostname} using #{@username}/#{@password}"
+        Rails.logger.error "Unable to connect to #{@hostname}"
       end
       files
     end

@@ -1,10 +1,10 @@
-class CreateRegions < ActiveRecord::Migration[5.0]
+class CreateRegions < ActiveRecord::Migration[5.1]
   def change
     create_table :regions do |t|
       t.string :name
       t.integer :key_term_id
       t.timestamp :key_time
-      
+
       t.timestamps
     end
 

@@ -2,10 +2,10 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: dss_catalog_dev
+  database: dss_dev
   pool: 5
   username: root
-  password: 
+  password:
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -14,10 +14,10 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: dss_catalog_test
+  database: dss_test
   pool: 5
   username: root
-  password: 
+  password:
 
 production:
   adapter: mysql2
@@ -25,5 +25,7 @@ production:
   reconnect: false
   database: <%= ENV["DSS_DB"] %>
   pool: 5
-  username: <%= ENV["DSS_USER"] %>
-  password: <%= ENV["DSS_PWD"] %>
+  username: <%= ENV["DSS_DB_USERNAME"] %>
+  password: <%= ENV["DSS_DB_PASSWORD"] %>
+  host: <%= ENV['DSS_DB_HOST'] %>
+  port: 3306

@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.0'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -31,6 +29,7 @@ gem 'cancancan', '~> 1.15'
 
 gem 'mysql2'
 gem "blacklight"
+gem 'solr_wrapper'
 
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
@@ -39,6 +38,7 @@ gem 'sshkit', '1.12.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  # Use sqlite3 as the database for Active Record
   gem 'byebug', platform: :mri
   gem "rspec-rails"
   gem "pry-byebug"
@@ -58,7 +58,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'jettywrapper', '>= 2.0'
 gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.5'
@@ -67,4 +66,3 @@ gem 'select2-rails'
 gem 'ckeditor'
 
 gem 'pul-assets', :git => 'git@github.com:pulibrary/pul_assets.git', :branch => :master
-gem 'net-ssh', '~> 3.2.0'

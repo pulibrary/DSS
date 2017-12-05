@@ -1,0 +1,20 @@
+<% if admin_user? %>
+  <div class="panel panel-default">
+    <div class="panel-heading">Related Study</div>
+    <div class="panel-body">
+      <% unless resource.study.nil? %>
+          <%= resource.study.title %>
+          <%= resource.study.folder %>
+          <%= link_to 'View', study_path(resource.study), class: 'btn pull-left' %>
+          <%= link_to 'Edit', edit_study_path(resource.study), class: 'btn pull-left' %>
+      <% else %>
+        <%= link_to 'Add new Study', '/study/new', class: 'btn pull-left' %>
+        <div class="field">
+          <div class="field_head">Select exiting Study</div>
+            <%= select_tag "study[resource_id]", options_from_collection_for_select(Study.order(:title), 'id', 'title'), multiple: false, class: 'select2', include_blank: true %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
