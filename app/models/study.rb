@@ -113,9 +113,9 @@ class Study < ApplicationRecord
       rescue Errno::ECONNREFUSED
         Rails.logger.error "#{hostname} Connection refused"
       rescue Net::SSH::AuthenticationFailed
-        Rails.logger.error "Unable to connect to #{@hostname} using #{@username}"
+        Rails.logger.error "Unable to connect to #{hostname} using #{username}"
       rescue
-        Rails.logger.error "Unable to connect to #{@hostname}"
+        Rails.logger.error "Unable to connect to #{hostname}"
       end
       files
     end
