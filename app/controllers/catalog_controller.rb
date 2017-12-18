@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 class CatalogController < ApplicationController
+  include Dss::Catalog
 
   skip_before_action :authenticate_user!
 

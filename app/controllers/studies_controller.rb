@@ -1,7 +1,7 @@
 class StudiesController < ApplicationController
   before_action :set_study, only: [:show, :edit, :update, :destroy]
 
-  skip_before_action :authenticate_user!, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show, :number_lookup]
   # GET /studies
   # GET /studies.json
   def index
@@ -20,7 +20,7 @@ class StudiesController < ApplicationController
   # GET/studynum/1234
   def number_lookup
     @study = Study.where('studynum = :studynum',  studynum: params[:studynum]).take
-    if @study 
+    if @study
       redirect_to study_path(@study)
     else
       render status: 404

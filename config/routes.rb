@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :regions
   resources :subjects
   resources :resources
+  get '/cgi-bin/catalog/search.cgi', to: 'catalog#studylink'
   get '/studynum/:studynum', to: 'studies#number_lookup'
   get '/resources/:id/solr', to: 'resources#solr', defaults: { format: :json }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
