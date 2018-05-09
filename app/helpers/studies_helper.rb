@@ -9,7 +9,7 @@ module StudiesHelper
   end
 
   def catalog_path(id)
-    link_to id, "https://pulsearch.princeton.edu/#{id}"
+    link_to id, "https://catalog.princeton.edu/catalog/#{id}"
   end
 
   def file_label(data_file)
