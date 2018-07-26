@@ -66,3 +66,6 @@ gem 'select2-rails'
 gem 'ckeditor'
 
 gem 'pul-assets', :git => 'git@github.com:pulibrary/pul_assets.git', :branch => :master
+
+# LUX dependency
+gem "webpacker", "~> 3.3"

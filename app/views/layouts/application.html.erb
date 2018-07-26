@@ -23,11 +23,14 @@
     <%= javascript_include_tag :modernizr %>
     <%= javascript_include_tag Ckeditor.cdn_url %>
     <%= javascript_include_tag "application" %>
+    <%= javascript_pack_tag 'application' %>
+    <%= stylesheet_pack_tag 'application' %>
     <%= csrf_meta_tags %>
     <%= content_for(:head) %>
   </head>
   <body class="<%= render_body_class %>">
-  <%= render 'pul-assets/blacklight/shared/header_navbar' %>
+    <div data-behavior="vue">
+  <%= render 'shared/header_navbar' %>
 
   <% if admin_user? %>
     <%= render 'shared/menu--admin' %>
@@ -42,6 +45,7 @@
   </div>
 
   <%= render :partial => 'shared/footer' %>
-  <%= render 'pul-assets/footer' %>
+  <%#= render 'pul-assets/footer' %>
+    </div>
   </body>
 </html>
