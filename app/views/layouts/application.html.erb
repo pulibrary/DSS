@@ -39,6 +39,9 @@
   <%= render partial: 'shared/ajax_modal' %>
 
   <div id="main-container" class="<%= container_classes %>">
+    <div class="banner">
+      <%= image_tag "dss_banner_cropped.jpg", alt: "" %>
+    </div>
     <%= render :partial=>'pul-assets/blacklight/flash_msg', layout: 'pul-assets/blacklight/shared/flash_messages' %>
 
     <%= yield %>
