@@ -3,7 +3,7 @@
 </div>
 
 <div id="content" class="content--catalog">
-  <div class="middle-content">
+  <div class="middle-content static">
     <!-- <h2>DSS lab schedule, walk-in hours (subject to change without prior notice).</h2>
     <p><b>No appointments necessary, feel free to stop by anytime during the posted walk-in hours. Please see the note right below the
     calendar.</b></p>
@@ -45,20 +45,19 @@
 
     <p><b><font color="red"> NOTE:</font></b> We do not provide assistance with homework assignments, problem sets or take-home exams but students are welcome to use our online resources, tutorials and computing resources.</p>
 
-    <p>For a DSS brochure, <a href="http://dss.princeton.edu/dsslab/DSSBrochure.pdf">click here.</a></p>
+    <p>For a DSS brochure, <%= link_to "click here", asset_path("DSSBrochure.pdf") %></p>
 
-    <p>For a DSS tutorials brochure, <a href="http://dss.princeton.edu/dsslab/DSSTutorials.pdf">click here.</a></p>
+    <p>For a DSS tutorials brochure, <%= link_to "click here", asset_path("DSSTutorials.pdf") %></p>
 
-    <p>For a DSS poster, <a href="http://dss.princeton.edu/dsslab/DSS.pdf">click here.</a></p>
+    <p>For a DSS poster, <%= link_to "click here", asset_path("DSS.pdf") %></p>
 
     <h2>Location</h2>
 
-    <p>The DSS computer lab is located at <b>A-12-G</b> (A-floor, <a href="/dsslab/DSSlab.pdf">click here for a map</a>) in <a href="/docs/Firestone.pdf">Firestone
-    Library</a></p>
+    <p>The DSS computer lab is located at <b>A-12-G</b> (A-floor, <%= link_to "click here for a map", asset_path("DSSlab.pdf") %>) in <%= link_to "Firestone Library", "https://library.princeton.edu/firestone" %></p>
 
     <h2>Hours</h2>
 
-    <p>The lab is open when <a href="http://libweb.princeton.edu/about/hours/">Firestone Library is open</a>.  If you would like to use lab computers and do not need assistance, you may come in anytime when the library is open.  Assistance is provided according to the staffing schedule posted on the sidemenu on the left.  If you need assistance but can not come during the staffed hours, please email <a href="mailto:data@princeton.edu">data@princeton.edu </a>. When requesting an appointment, and to make the most out of it, please provide as much information as possible so we can better plan a way to help you. </p>
+    <p>The lab is open when <a href="https://library.princeton.edu/hours/firestone">Firestone Library is open</a>.  If you would like to use lab computers and do not need assistance, you may come in anytime when the library is open.  Assistance is provided according to the staffing schedule posted on the sidemenu on the left.  If you need assistance but can not come during the staffed hours, please email <a href="mailto:data@princeton.edu">data@princeton.edu </a>. When requesting an appointment, and to make the most out of it, please provide as much information as possible so we can better plan a way to help you. </p>
 
     <h2>Making the most from the consultation</h2>
     <b>Before coming to the lab:</b>
@@ -66,8 +65,8 @@
     <p><b>At an earlier stage in your research:</b></p>
 
     <ul>
-      <li>Have a feasible research question, <a href="http://dss.princeton.edu/training/FindingData101.pdf#page=5">click here for some tips on crafting research questions</a></li>
-      <li>Try to locate the data you need, <a href="http://dss.princeton.edu/training/FindingData101.pdf#page=3">click here for some tips on finding data</a></li>
+      <li>Have a feasible research question, <%= link_to "click here for some tips on crafting research questions", asset_path("FindingData101.pdf#page=5") %></li>
+      <li>Try to locate the data you need, <%= link_to "click here for some tips on finding data", asset_path("FindingData101.pdf#page=3") %></li>
       <li>Identify the variables relevant your research question.</li>
       <li>Use the coodebook to understand your data</li>
       <li>Unlike homework assignments independent research can't be done overnight. JPs, senior theses, term papers, dissertation take time and resources. Once you define your research question you need to get the data, select the variables, clean and prepare them for analysis, select the model, interpret the results, write the conclusions. So, plan ahead and start as early as possible.</li>
