@@ -69,4 +69,7 @@ gem 'ckeditor'
 gem 'pul-assets', :git => 'git@github.com:pulibrary/pul_assets.git', :branch => :master
 
 # LUX dependency
-gem "webpacker", "~> 3.3"
+gem 'webpacker', '~> 3.3'
+
+# static pages
+gem 'high_voltage', '~> 3.1'
