@@ -33,4 +33,7 @@ Rails.application.routes.draw do
   get '/studynum/:studynum', to: 'studies#number_lookup'
   get '/resources/:id/solr', to: 'resources#solr', defaults: { format: :json }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # Static pages
+  get "/*id" => 'pages#show', as: :page, format: false, constraint: HighVoltage::Constraints::RootRoute
 end

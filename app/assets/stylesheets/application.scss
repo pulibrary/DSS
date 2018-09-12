@@ -36,6 +36,12 @@
     padding: 0;
   }
 
+  .banner {
+    object-fit: cover;
+    height: 150px;
+    overflow: hidden;
+  }
+
   .lside--catalog {
     width: 23.52941%;
     float: left;
@@ -55,6 +61,7 @@
     width: 64.01961%;
     float: left;
     margin-right: 1.96078%;
+    margin-bottom: 3em;
 
     .menu--grid > li:first-child {
       width: 37%;
