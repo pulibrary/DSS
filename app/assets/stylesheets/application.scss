@@ -30,3 +30,75 @@
 .schedule .schedule--current {
 	background: $yellow-light;
 }
+
+@media (min-width: 768px) {
+  main {
+    padding: 0;
+  }
+
+  .banner {
+    object-fit: cover;
+    height: 150px;
+    overflow: hidden;
+  }
+
+  .lside--catalog {
+    width: 23.52941%;
+    float: left;
+    margin-right: 1.96078%;
+    margin-left: 0;
+  }
+
+  #content {
+   padding: 0;
+  }
+
+  .content--catalog {
+    width: 74%;
+  }
+
+  .content--catalog .middle-content {
+    width: 64.01961%;
+    float: left;
+    margin-right: 1.96078%;
+    margin-bottom: 3em;
+
+    .interior-photo {
+      margin: 1em 0;
+    }
+
+    &.static {
+      ul {
+        margin: 1rem 0 1rem 1.75rem;
+      }
+
+      li {
+        list-style: initial;
+      }
+    }
+  }
+
+  .content--catalog .right-sidebar {
+    width: 31.72941%;
+    float: right;
+    margin-right: 0;
+
+    h2, h3 {
+      display: block;
+    }
+
+    .menu--secondary {
+      margin-top: 1em;
+    }
+
+    .menu--secondary a {
+      display: block;
+      margin-bottom: .5em;
+    }
+  }
+
+  .quick-links li {
+    margin-bottom: 0.6rem;
+  }
+
+}

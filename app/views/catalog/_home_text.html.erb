@@ -1,72 +1,14 @@
-<%= render 'shared/restricted_message' %>
-
-<div>
-  <ul class="menu--grid">
-    <li><a href="/training">Getting Started in Data Analysis</a></li>
-    <li><a href="/contacts/datacontacts.html">Subject specialists</a></li>
-    </li>
-    <li><a href="/contacts/consultants.html">Consultants</a></li>
-
-    </li>
-    <li><a href="/catalog?utf8=✓&search_field=all_fields&q=">Catalog</a></li>
-    <li><a href="/online_help/">Software</a>
-    <li><a href="http://libguides.princeton.edu/citingdata">Citing data</a></li>
-    <li><a href="/about.html">About Us</a></li>
-  </ul>
-</div>
-
-<div class="container">
-  <div class="secondary-links contain--half">
-  <h3 class='section-heading'>Find Data and Statistics by other Major Providers:</h3>
-
-    <ul>
-      <li>Princeton Library <a href="http://pulsearch.princeton.edu">Catalog</a></li>
-      <li><a href="http://library.princeton.edu/resource/4899">Data-Planet</a> Statistical Datasets</li>
-      <li><a href="http://library.princeton.edu/collections/pumagic">GIS</a>: Princeton Digital Map and GIS Center</li>
-      <li><a href="http://www.icpsr.umich.edu">ICPSR</a>: Inter-university Consortium for Political and Social Research</li>
-      <li><a href="http://library.princeton.edu/resource/3878">iPOLL</a> databank (Roper)</li>
-      <li><a href="http://library.princeton.edu/resource/4085">Sociometrics</a> Social Science Electronic Data Library</li><li><a href="http://www.ipums.org/">IPUMS</a>: Integrated Public Use Microdata Series</li>
-      <li><a href="http://wrds.wharton.upenn.edu">WRDS</a>: Wharton Research Data Service</li>
-    </ul>
+<div class="middle-content">
+  <div class="interior-photo">
+    <%= image_tag "dss_inner.jpg", alt: "Students working on computers in the Data and Statistical Services Lab" %>
   </div>
+  <%= render 'shared/restricted_message' %>
 
-  <div class="schedule contain--half">
-    <h3><a href="/dsslab">DSS lab consultation schedule</a></h3>
-    <div class="font-small">(Monday-Friday)</div>
-
-    <table>
-      <tbody>
-        <tr>
-          <td>Sep 1-Nov 3</td>
-          <td><a href="http://dss.princeton.edu/contacts/appts.html">By appt. here</a></td>
-        </tr>
-        <tr>
-          <td>Nov 6-Dec 15</td>
-          <td><a href="http://dss.princeton.edu/dsslab/">Walk-in, 2-5pm*</a></td>
-        </tr>
-        <tr class="schedule--current">
-          <td>Dec 18-Feb 2</td>
-          <td><a href="http://dss.princeton.edu/contacts/appts.html">By appt. here</a></td>
-        </tr>
-        <tr>
-          <td>Feb 5-May 4</td>
-          <td><a href="http://dss.princeton.edu/dsslab/">Walk-in, 1-5pm*</a></td>
-        </tr>
-        <tr>
-          <td>May 7-May 15</td>
-          <td><a href="http://dss.princeton.edu/dsslab/">Walk-in, 2-5pm*</a></td>
-        </tr>
-        <tr>
-          <td>May 16-Aug 31</td>
-          <td><a href="/contacts/appts.html">By appt. here</a></td>
-        </tr>
-      </tbody>
-    </table>
+  <div>
+    <p>Data and Statistical Services (DSS) provides data and statistical consulting.  The service is located in Firestone Library.</p>
+    <p>Experts are available to advise Princeton University student, faculty, and staff on choosing appropriate data, application of quantitative research methods, the interpretation of statistical analyses, data conversion, and data visualization.  Subject specialists help choose appropriate data.  The statistical packages supported by consultants are R/R Studio, Stata, and SPSS.   We provide statistical and software assistance in quantitative analysis of electronic data as part of independent research projects, such as junior papers, senior theses, term papers, dissertations, and scholarly articles.*</p>
+    <p>* Please note:  Students are welcome to use our online tutorials and computing services.  DSS consultants, however, do not provide assistance with homework assignments, problem sets, or take-home exams.</p>
   </div>
 </div>
 
-<div class="note">
-  <p>For quick questions email data@princeton.edu.</p>
-  <p>*No appts. necessary during walk-in hrs.</p>
-  <p>Note: the DSS lab is open as long as Firestone is open, no appointments necessary to use the lab computers for your own analysis.</p>
-</div>
+<%= render 'shared/right-sidebar' %>

@@ -3,6 +3,8 @@ en:
     application_name: 'Data and Statistical Services'
     welcome: 'Data and Statistical Services'
     search:
+      facets:
+        title: 'Data Catalog'
       index:
         label: '%{label}'
       show:

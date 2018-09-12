@@ -34,7 +34,6 @@ gem 'solr_wrapper'
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 gem 'capistrano', '3.7.2'
-gem 'capistrano-yarn'
 gem 'sshkit', '1.12.0'
 
 group :development, :test do
@@ -68,5 +67,5 @@ gem 'ckeditor'
 
 gem 'pul-assets', :git => 'git@github.com:pulibrary/pul_assets.git', :branch => :master
 
-# LUX dependency
-gem "webpacker", "~> 3.3"
+# static pages
+gem 'high_voltage', '~> 3.1'
