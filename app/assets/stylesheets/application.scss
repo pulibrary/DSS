@@ -63,14 +63,6 @@
     margin-right: 1.96078%;
     margin-bottom: 3em;
 
-    .menu--grid > li:first-child {
-      width: 37%;
-    }
-
-    .menu--grid > li {
-      width: 28%;
-    }
-
     .interior-photo {
       margin: 1em 0;
     }
@@ -95,12 +87,13 @@
       display: block;
     }
 
-    ul {
-      margin: 1rem 0 1rem 1.75rem;
+    .menu--secondary {
+      margin-top: 1em;
     }
 
-    li {
-      list-style: initial;
+    .menu--secondary a {
+      display: block;
+      margin-bottom: .5em;
     }
   }
 
