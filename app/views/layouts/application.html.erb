@@ -29,7 +29,7 @@
     <%= content_for(:head) %>
   </head>
   <body class="<%= render_body_class %>">
-    <div class="container" data-behavior="vue">
+    <div class="container lux">
       <library-header app-name="Data and Statistical Services" app-url="https://catalog.princeton.edu">
         <menu-bar type="nav" :menu-items="[
           {name: 'Help', component: 'Help', href: '/help/'},
@@ -57,7 +57,7 @@
 
     <%= render :partial => 'shared/footer' %>
     <%= render 'pul-assets/footer' %>
-    <div class="container" data-behavior="vue">
+    <div class="container lux">
       <library-footer></library-footer>
     </div>
   </body>
