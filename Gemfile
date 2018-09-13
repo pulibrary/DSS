@@ -69,3 +69,6 @@ gem 'pul-assets', :git => 'git@github.com:pulibrary/pul_assets.git', :branch => 
 
 # static pages
 gem 'high_voltage', '~> 3.1'
+
+# lux
+gem 'webpacker', '~> 3.5'
