@@ -8,11 +8,13 @@
 4. ```bundle install```
 5. ```rake db:create```
 6. ```rake db:migrate```
-7. ```rake jetty:download```
-8. ```rake jetty:unzip```
-9. ```rake jetty:start```
-10. ```rake db:seed``` (If you start jetty before running the seed routine the appropriate data will be loaded into solr.)
-11. ```rails s```
+7. ```rake db:seed``` 
+8. ```rake rake:server```
+9. ```rake dss:solr:update```
+10. ```rake dss:solr:index```
 
 ## Production
-TBD
+Integrated with capistrano
+```bundle exec rake cap production deploy```
+or
+```bundle exec rake cap staging deploy```
