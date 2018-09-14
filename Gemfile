@@ -35,6 +35,7 @@ gem 'solr_wrapper'
 gem 'capistrano-rails', group: :development
 gem 'capistrano', '3.7.2'
 gem 'sshkit', '1.12.0'
+gem 'ffi', '~> 1.9.24'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
