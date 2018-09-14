@@ -13,21 +13,12 @@ import 'lux-design-system/lib/system/system.css'
 
 Vue.use(system)
 
-// create the LUX app and mount it to a wrapper with data-behavior="vue"
+// create the LUX app and mount it to wrappers with class="lux"
 document.addEventListener('DOMContentLoaded', () => {
-  // this works, but not sure about the let within the for loop for IE11
-  let elements = document.getElementsByClassName('lux')
-  for(let el of elements){
-  	new Vue({
-    	el
+  var elements = document.getElementsByClassName('lux')
+  for(var i = 0; i < elements.length; i++){
+    new Vue({
+      el: elements[i]
     })
   }
-
-  // this _should_ work, but is causing an issue in Rails Webpacker manifest
-  // var elements = document.getElementsByClassName('lux')
-  // for(var i = 0; i < elements.length; i++)
-  //   new Vue({
-  //     el: elements[i]
-  //   })
-  // }
 })
