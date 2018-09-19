@@ -3188,9 +3188,9 @@ lru-cache@^4.0.1, lru-cache@^4.1.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-lux-design-system@^0.0.22:
-  version "0.0.22"
-  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-0.0.22.tgz#b8a35703f952071131a452ccbdfb0137328df842"
+lux-design-system@^0.0.23:
+  version "0.0.23"
+  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-0.0.23.tgz#d2eeb4873acea373ad479c469dd336943a3482ca"
   dependencies:
     lodash "^4.17.5"
     openseadragon "^2.3.1"
