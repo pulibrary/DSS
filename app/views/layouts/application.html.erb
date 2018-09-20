@@ -35,8 +35,9 @@
           {name: 'Sign In', component: 'Sign In', href: '/users/sign_in/'},
           {name: 'Search History', component: 'Search History', href: '/search_history/'}
         ]"/>
-      </library-header>
+      </library-header>  
     </div>
+  <noscript><%= render 'pul-assets/blacklight/shared/header_navbar' %></noscript>
   <%= render 'shared/header_navbar' %>
 
   <% if admin_user? %>
@@ -55,7 +56,7 @@
   </div>
 
   <%= render :partial => 'shared/footer' %>
-  <%#= render 'pul-assets/footer' %>
+  <noscript><%= render 'pul-assets/footer' %></noscript>
   <div class="lux">
     <library-footer></library-footer>
   </div>

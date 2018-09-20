@@ -14,4 +14,4 @@
 10. ```foreman start```
 
 ## Production
-TBD
+Deploy with capistrano: `bundle exec cap production deploy` or `bundle exec cap staging deploy`
