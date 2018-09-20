@@ -19,17 +19,24 @@
     <title><%= render_page_title %></title>
     <%= opensearch_description_tag application_name, opensearch_catalog_url(:format => 'xml') %>
     <%= favicon_link_tag %>
+    <%= javascript_pack_tag 'application' %>
+    <%= stylesheet_pack_tag 'application' %>
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= javascript_include_tag :modernizr %>
     <%= javascript_include_tag Ckeditor.cdn_url %>
     <%= javascript_include_tag "application" %>
-    <%= javascript_pack_tag 'application' %>
-    <%= stylesheet_pack_tag 'application' %>
     <%= csrf_meta_tags %>
     <%= content_for(:head) %>
   </head>
   <body class="<%= render_body_class %>">
-    <div data-behavior="vue">
+    <div class="lux">
+      <library-header app-name="Data and Statistical Services" app-url="https://catalog.princeton.edu">
+        <menu-bar type="nav" :menu-items="[
+          {name: 'Sign In', component: 'Sign In', href: '/users/sign_in/'},
+          {name: 'Search History', component: 'Search History', href: '/search_history/'}
+        ]"/>
+      </library-header>
+    </div>
   <%= render 'shared/header_navbar' %>
 
   <% if admin_user? %>
@@ -49,6 +56,8 @@
 
   <%= render :partial => 'shared/footer' %>
   <%#= render 'pul-assets/footer' %>
-    </div>
+  <div class="lux">
+    <library-footer></library-footer>
+  </div>
   </body>
 </html>

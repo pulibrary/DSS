@@ -13,9 +13,12 @@ import 'lux-design-system/lib/system/system.css'
 
 Vue.use(system)
 
-// create the LUX app and mount it to a wrapper with data-behavior="vue"
+// create the LUX app and mount it to wrappers with class="lux"
 document.addEventListener('DOMContentLoaded', () => {
-  const app = new Vue({
-    el: '[data-behavior="vue"]'
-  })
+  var elements = document.getElementsByClassName('lux')
+  for(var i = 0; i < elements.length; i++){
+    new Vue({
+      el: elements[i]
+    })
+  }
 })
