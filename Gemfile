@@ -34,6 +34,7 @@ gem 'solr_wrapper'
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 gem 'capistrano', '3.7.2'
+gem 'capistrano-yarn'
 gem 'sshkit', '1.12.0'
 gem 'ffi', '~> 1.9.24'
 
