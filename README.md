@@ -8,13 +8,13 @@
 4. ```bundle install```
 5. ```rake db:create```
 6. ```rake db:migrate```
-7. ```rake db:seed``` 
+7. ```rake db:seed```
 8. ```rake rake:server```
 9. ```rake dss:solr:update```
 10. ```rake dss:solr:index```
 
 ## Production
 Integrated with capistrano
-```bundle exec rake cap production deploy```
+```bundle exec cap production deploy```
 or
-```bundle exec rake cap staging deploy```
+```bundle exec cap staging deploy```
