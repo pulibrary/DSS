@@ -2,7 +2,7 @@
     <library-header app-name="<%= application_name %>" app-url="<%= root_path %>">
       <% if has_user_authentication_provider? %>
         <% if current_user %>
-        <dropdown-menu buttonLabel="<%= current_user.to_s %>" :menu-items="[
+        <dropdown-menu button-label="<%= current_user.to_s %>" type="links" :menu-items="[
           <% unless current_user.to_s.blank? -%>
           {name: '<%= current_user %>', component: '<%= current_user %>', href: '<%= edit_user_registration_path %>'},
           <% end %>
@@ -11,9 +11,8 @@
           {name: '<%= t('blacklight.header_links.logout') %>', component: '<%= t('blacklight.header_links.logout') %>', href: '<%= destroy_user_session_path %>'}
         ]"/>
         <% else %>
-        <menu-bar type="nav" active="All" :menu-items="[
-          {name: '<%= t('blacklight.header_links.login') %>', component: '<%= t('blacklight.header_links.login') %>', href: '<%= new_user_session_path %>'},
-          {name: '<%= t('blacklight.header_links.search_history') %>', component: '<%= t('blacklight.header_links.search_history') %>', href: '<%= blacklight.search_history_path %>'}
+        <menu-bar type="links" active="All" :menu-items="[
+          {name: '<%= t('blacklight.header_links.login') %>', component: '<%= t('blacklight.header_links.login') %>', href: '<%= new_user_session_path %>'}
         ]"/>
         <% end %>
       <% end %>
