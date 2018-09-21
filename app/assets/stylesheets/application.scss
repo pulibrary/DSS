@@ -90,15 +90,15 @@
     .menu--secondary {
       margin-top: 1em;
     }
-
-    .menu--secondary a {
-      display: block;
-      margin-bottom: .5em;
-    }
   }
 
   .quick-links li {
     margin-bottom: 0.6rem;
   }
 
+}
+
+.menu--secondary a {
+  display: block;
+  margin-bottom: .5em;
 }
