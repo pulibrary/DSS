@@ -1,13 +1,15 @@
-<div id="sidebar" class="lside--catalog">
-  <%= render 'search_sidebar' %>
-</div>
+<div class="container--catalog">
+  <div id="sidebar" class="lside--catalog <%= has_search_parameters? %>">
+    <%= render 'search_sidebar' %>
+  </div>
 
-<div id="content" class="content--catalog">
-  <% unless has_search_parameters? %>
-    <%# if there are no input/search related params, display the "home" partial -%>
-    <%= render 'home' %>
-    <%= render 'shared/sitelinks_search_box' %>
-  <% else %>
-    <%= render 'search_results' %>
-  <% end %>
+  <div id="content" class="content--catalog <%= has_search_parameters? %>">
+    <% unless has_search_parameters? %>
+      <%# if there are no input/search related params, display the "home" partial -%>
+      <%= render 'home' %>
+      <%= render 'shared/sitelinks_search_box' %>
+    <% else %>
+      <%= render 'search_results' %>
+    <% end %>
+  </div>
 </div>
