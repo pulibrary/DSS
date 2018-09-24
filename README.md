@@ -9,9 +9,13 @@
 5. ```rake db:create```
 6. ```rake db:migrate```
 7. ```rake db:seed```
-8. ```rake rake:server```
+8. ```rake rake:server:dev```
 9. ```rake dss:solr:update```
 10. ```rake dss:solr:index```
+11. ```yarn install```
+12. ```foreman start```
+
+(You may need to install [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) and [foreman](https://github.com/ddollar/foreman) separately, if you haven't already.)
 
 ## Production
 Integrated with capistrano
