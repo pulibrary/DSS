@@ -22,6 +22,10 @@ $logo_image: 'dss-logo.svg' !default;
 
 @import "pul-assets__blacklight";
 
+.navigation {
+  z-index: 2;
+}
+
 .navbar-brand {
   width: 140px;
   height: 55px;
