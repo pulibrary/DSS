@@ -18,17 +18,17 @@
  *= require_tree .
  */
 
- $logo_image: 'dss-logo.svg' !default;
+$logo_image: 'dss-logo.svg' !default;
 
- @import "pul-assets__blacklight";
+@import "pul-assets__blacklight";
 
 .navbar-brand {
-  width:  140px;
+  width: 140px;
   height: 55px;
 }
 
 .schedule .schedule--current {
-	background: $yellow-light;
+  background: $yellow-light;
 }
 
 .banner,
@@ -58,8 +58,24 @@
   margin-bottom: .5em;
 }
 
-main > .container {
+main>.container {
   padding: 0 1em;
+}
+
+.datatable .limit-width {
+  min-width: 100px;
+  width: 200px;
+  max-width: 200px;
+}
+
+.word-break {
+  word-break: break-all;
+}
+
+.input-group>.search_q {
+  width: auto;
+  height: 40px;
+  margin-top: 0;
 }
 
 @media (min-width: 768px) {
@@ -86,7 +102,7 @@ main > .container {
   }
 
   #content {
-   padding: 0;
+    padding: 0;
   }
 
   .content--catalog {
@@ -120,7 +136,8 @@ main > .container {
     float: right;
     margin-right: 0;
 
-    h2, h3 {
+    h2,
+    h3 {
       display: block;
     }
 
