@@ -7,7 +7,7 @@
     <tr>
       <th>Name</th>
       <th>Resource</th>
-      <th>Url</th>
+      <th class="limit-width word-break">Url</th>
       <th>Blurb</th>
       <th>Sample</th>
       <th>Resource type</th>
@@ -22,13 +22,13 @@
       <tr>
         <td><%= resource.name %></td>
         <td><%= resource.resource_id %></td>
-        <td>
+        <td class="limit-width word-break">
           <% unless resource.url.nil? %>
             <%= study_link(resource.url, resource.url) %></td>
           <% end %>
         <td>
           <% unless resource.blurb.nil? %>
-            <%= truncate(resource.blurb.gsub('\\', '').html_safe, :length => 230, :omission => "" , :escape => false) %>
+            <%= truncate(resource.blurb.gsub(/<\/?[^>]*>/, '').html_safe, :length => 230, :omission => "" , :escape => false) %>
           <% end %>
         </td>
         <td><%= resource.sample %></td>

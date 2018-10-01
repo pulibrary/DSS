@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@rails/webpacker": "3.5",
+    "lux-design-system": "^0.0.24"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  }
+}

@@ -18,28 +18,84 @@
  *= require_tree .
  */
 
- $logo_image: 'dss-logo.svg' !default;
+$logo_image: 'dss-logo.svg' !default;
 
- @import "pul-assets__blacklight";
+@import "pul-assets__blacklight";
+
+.navigation {
+  z-index: 2;
+}
 
 .navbar-brand {
-  width:  140px;
+  width: 140px;
   height: 55px;
 }
 
 .schedule .schedule--current {
-	background: $yellow-light;
+  background: $yellow-light;
+}
+
+.banner,
+.interior-photo {
+  display: none;
+}
+
+.container--catalog {
+  display: flex;
+  flex-direction: column;
+}
+
+.lside--catalog.false {
+  order: 2;
+}
+
+.container--catalog.false {
+  order: 1;
+}
+
+.content--catalog .right-sidebar {
+  padding: 0 1em 0 0;
+}
+
+.menu--secondary a {
+  display: block;
+  margin-bottom: .5em;
+}
+
+main>.container {
+  padding: 0 1em;
+}
+
+.datatable .limit-width {
+  min-width: 100px;
+  width: 200px;
+  max-width: 200px;
+}
+
+.word-break {
+  word-break: break-all;
+}
+
+.input-group>.search_q {
+  width: auto;
+  height: 40px;
+  margin-top: 0;
 }
 
 @media (min-width: 768px) {
   main {
-    padding: 0;
+    padding: 0 0 2em 0;
   }
 
   .banner {
     object-fit: cover;
     height: 150px;
     overflow: hidden;
+    display: block;
+  }
+
+  .container--catalog {
+    display: inline-block;
   }
 
   .lside--catalog {
@@ -50,7 +106,7 @@
   }
 
   #content {
-   padding: 0;
+    padding: 0;
   }
 
   .content--catalog {
@@ -65,6 +121,7 @@
 
     .interior-photo {
       margin: 1em 0;
+      display: inline-block;
     }
 
     &.static {
@@ -83,17 +140,13 @@
     float: right;
     margin-right: 0;
 
-    h2, h3 {
+    h2,
+    h3 {
       display: block;
     }
 
     .menu--secondary {
       margin-top: 1em;
-    }
-
-    .menu--secondary a {
-      display: block;
-      margin-bottom: .5em;
     }
   }
 
