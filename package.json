@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@rails/webpacker": "3.5",
-    "lux-design-system": "^0.0.24"
+    "lux-design-system": "^1.0.1"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"
