@@ -1,47 +1,49 @@
-<div id="sidebar" class="lside--catalog">
-  <%= render 'shared/quick-links' %>
-</div>
-
-<div id="content" class="content--catalog">
-  <div class="middle-content static">
-  <h2>DSS Computing Resources</h2>
-  <h3>Hardware</h3>
-
-  <ul>
-    <li>13 PCs w/Windows 7 and 28" monitors</li>
-    <li>1 Scanner (<%= link_to "click here", asset_path("HowToScan.pdf") %> for instructions on how to use. Must bring USB to extract scanned files)</li>
-    <li>Printer</li>
-  </ul>
-
-  <h3 class="panel-title">Statistics software</h3>
-
-  <ul>
-    <li>Stata 9-14 (32/64 bit) (also available in all OIT clusters)</li>
-    <li>SPSS 18 (PASW), <%= link_to "click here for more info", "http://www.princeton.edu/clusters/winsoftware/" %></li>
-    <li>SAS</li>
-    <li>R, RStudio</li>
-    <li>MATLAB</li>
-    <li>Python 2.7/3.6 (Anaconda suite)</li>
-  </ul>
-
-  <h3 class="panel-title">Conversion software</h3>
-
-  <ul>
-    <li>Stat/Transfer (<%= link_to "click here", asset_path("StatTransfer.pdf#page=2") %> for instructions on how to use)</li>
-  </ul>
-
-  <h3 class="panel-title">Compression software</h3>
-
-  <ul>
-    <li>7-Zip (freeware)</li>
-  </ul>
-
-  <h3 class="panel-title">From PDF to Excel/Word</h3>
-
-  <ul>
-    <li>OmniPage 18 (OCR text recognition, only in the computer attached to the scanner. Must bring USB to extract files). <%= link_to "Click here", asset_path("PDFToExcel.pdf") %> for instructions on how to use.</li>
-  </ul>
+<div class="container--catalog">
+  <div id="sidebar" class="lside--catalog">
+    <%= render 'shared/quick-links' %>
   </div>
 
-  <%= render 'shared/right-sidebar' %>
+  <div id="content" class="content--catalog">
+    <div class="middle-content static">
+    <h2>DSS Computing Resources</h2>
+    <h3>Hardware</h3>
+
+    <ul>
+      <li>13 PCs w/Windows 7 and 28" monitors</li>
+      <li>1 Scanner (<%= link_to "click here", asset_path("HowToScan.pdf") %> for instructions on how to use. Must bring USB to extract scanned files)</li>
+      <li>Printer</li>
+    </ul>
+
+    <h3 class="panel-title">Statistics software</h3>
+
+    <ul>
+      <li>Stata 9-14 (32/64 bit) (also available in all OIT clusters)</li>
+      <li>SPSS 18 (PASW), <%= link_to "click here for more info", "http://www.princeton.edu/clusters/winsoftware/" %></li>
+      <li>SAS</li>
+      <li>R, RStudio</li>
+      <li>MATLAB</li>
+      <li>Python 2.7/3.6 (Anaconda suite)</li>
+    </ul>
+
+    <h3 class="panel-title">Conversion software</h3>
+
+    <ul>
+      <li>Stat/Transfer (<%= link_to "click here", asset_path("StatTransfer.pdf#page=2") %> for instructions on how to use)</li>
+    </ul>
+
+    <h3 class="panel-title">Compression software</h3>
+
+    <ul>
+      <li>7-Zip (freeware)</li>
+    </ul>
+
+    <h3 class="panel-title">From PDF to Excel/Word</h3>
+
+    <ul>
+      <li>OmniPage 18 (OCR text recognition, only in the computer attached to the scanner. Must bring USB to extract files). <%= link_to "Click here", asset_path("PDFToExcel.pdf") %> for instructions on how to use.</li>
+    </ul>
+    </div>
+
+    <%= render 'shared/right-sidebar' %>
+  </div>
 </div>
