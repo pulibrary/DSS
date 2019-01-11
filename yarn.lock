@@ -3708,10 +3708,10 @@ lru-cache@^4.0.1, lru-cache@^4.1.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-lux-design-system@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-1.0.1.tgz#e444c0b029880e886121a4c4bbc43ec77e2e473c"
-  integrity sha512-hVTpA4tBQ2gllL/MLjB+PyqJmKvYQfL8chDLqo4jYt5fUQSU7tVDyHBKK2stTwh+RQZsGazLMExDOEFP1TU6+w==
+lux-design-system@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-1.0.3.tgz#a77edcf6a98f1fcbf89fec8f25893de5cec7c470"
+  integrity sha512-bonanwU6SbBjhHTPiR1/f8hxEOH3CogVgkOxt4zxEXYO7BkAZLYsczUf8DQhVIq56ylOotFaSd6QB9sPwdLBwA==
   dependencies:
     lodash "^4.17.5"
     openseadragon "^2.3.1"
