@@ -89,6 +89,6 @@ namespace :dss do
   private
 
     def url_for_file(file)
-      "https://raw.githubusercontent.com/pulibrary/pul_solr/master/solr_configs/orangelight/#{file}"
+      "https://raw.githubusercontent.com/pulibrary/pul_solr/master/solr_configs/catalog-production/#{file}"
     end
 end
