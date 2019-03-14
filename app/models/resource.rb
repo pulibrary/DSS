@@ -52,6 +52,10 @@ class Resource < ApplicationRecord
     solr_doc
   end
 
+  def catalog_id
+    "resource#{self.id}"
+  end
+
   def index_record
     solr = RSolr.connect(url: solr_url)
     solr.add self.to_solr #:headers => {"Content-Type"=>"application/json"})
@@ -60,7 +64,7 @@ class Resource < ApplicationRecord
 
   def remove_from_index
     solr = RSolr.connect(url: solr_url)
-    solr.delete_by_id(self.id)
+    solr.delete_by_id(catalog_id)
     solr.commit
   end
 
