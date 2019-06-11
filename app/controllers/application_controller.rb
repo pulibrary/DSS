@@ -7,7 +7,11 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def after_sign_in_path_for(resource)
-    if !request.env['omniauth.origin'].nil?
+    if params[:origin]
+      request.flash.delete('alert')
+      request.flash.keep('notice')
+      params[:origin].chomp('/email')
+    elsif !request.env['omniauth.origin'].nil?
       request.env['omniauth.origin']
     else
       root_path

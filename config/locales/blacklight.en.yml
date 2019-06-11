@@ -11,3 +11,6 @@ en:
         label: '%{label}'
     header_links:
       search_history: 'Search History'
+    email:
+      form:
+        subject: 'DSS Catalog Record(s)'
