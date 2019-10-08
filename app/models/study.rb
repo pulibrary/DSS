@@ -67,19 +67,6 @@ class Study < ApplicationRecord
     solr.commit
   end
 
-  # def file_list
-  #   command = "ls #{dir_path}"
-  #   @files ||= dss(command)
-  # end
-
-  # def dir_path
-  #   if !folder.nil?
-  #     "/var/www/html/data/#{folder}"
-  #   else
-  #     false
-  #   end
-  # end
-
   def subjects
     subjects = Subject.find(self.subject_ids).sort_by{ |subject| subject.name }
   end
@@ -97,26 +84,4 @@ class Study < ApplicationRecord
       "#{Blacklight.blacklight_yml[Rails.env]['url']}"
     end
 
-    # def dss(command)
-    #   files = nil
-    #   begin
-    #     hostname = ENV["DSS_SERVER"]
-    #     username = ENV["DSS_DATA_USER"]
-    #     Net::SSH.start(hostname, username, timeout: 10) do |ssh|
-    #       files = ssh.exec!(command).split( "\n" )
-    #       ssh.close
-    #     end
-    #   rescue Timeout::Error
-    #     Rails.logger.error "Connection to #{hostname} Timed out"
-    #   rescue Errno::EHOSTUNREACH
-    #     Rails.logger.error "#{hostname} Host unreachable"
-    #   rescue Errno::ECONNREFUSED
-    #     Rails.logger.error "#{hostname} Connection refused"
-    #   rescue Net::SSH::AuthenticationFailed
-    #     Rails.logger.error "Unable to connect to #{hostname} using #{username}"
-    #   rescue
-    #     Rails.logger.error "Unable to connect to #{hostname}"
-    #   end
-    #   files
-    # end
 end
