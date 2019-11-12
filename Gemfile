@@ -29,7 +29,7 @@ gem 'cancancan', '~> 1.15'
 
 gem 'mysql2'
 gem "blacklight"
-gem 'solr_wrapper'
+gem 'solr_wrapper', '~> 2.1'
 
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
