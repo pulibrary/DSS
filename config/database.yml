@@ -28,4 +28,4 @@ production:
   username: <%= ENV["DSS_DB_USERNAME"] %>
   password: <%= ENV["DSS_DB_PASSWORD"] %>
   host: <%= ENV['DSS_DB_HOST'] %>
-  port: 3306
+  port: <%= ENV['DSS_DB_PORT'] || 3306 %>
