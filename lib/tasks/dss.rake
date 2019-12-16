@@ -49,7 +49,7 @@ namespace :dss do
 
   namespace :solr do
 
-    desc 'Posts fixtures to Solr'
+    desc 'Send all Resource objects to Solr at once for indexing'
     task index: :environment do
       solr = RSolr.connect :url => Blacklight.connection_config[:url]
       resource_list = Resource.all.map { |r| r.to_solr }
@@ -57,14 +57,14 @@ namespace :dss do
       solr.update data: '<commit/>'
     end
 
-    desc 'Delete fixtures from Solr'
+    desc 'Delete all indexed Resource objects from Solr'
     task deindex: :environment do
       solr = RSolr.connect :url => Blacklight.connection_config[:url]
       solr.update data: '<delete><query>*:*</query></delete>'
       solr.update data: '<commit/>'
     end
 
-    desc 'Reindexes all current Resource objects'
+    desc 'Reindexes all current Resource objects one by one'
     task reindex: :environment do
       resources = Resource.all
       resources.each do |r|
@@ -73,7 +73,7 @@ namespace :dss do
       end
     end
 
-    desc 'Updates solr config files from github'
+    desc 'Updates solr config files from github [Use only for local development]'
     task :update, :solr_dir do |t, args|
       solr_dir = args[:solr_dir] || Rails.root.join('solr')
 

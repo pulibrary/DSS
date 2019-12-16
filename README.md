@@ -17,8 +17,19 @@
 
 (You may need to install [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) and [foreman](https://github.com/ddollar/foreman) separately, if you haven't already.)
 
-## Production
-Integrated with capistrano
+## Production Deployment
+Deploy with Capistrano
 ```bundle exec cap production deploy```
 or
 ```bundle exec cap staging deploy```
+
+## Reindexing in Production
+
+If you need to re-index you can do either of the following.
+
+```rake dss:solr:deindex```
+```rake dss:solr:index```
+
+or if you want to re-index one Reseource object at a time
+
+```rake dss:solr:reindex```
