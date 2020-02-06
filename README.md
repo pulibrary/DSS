@@ -30,6 +30,6 @@ If you need to re-index you can do either of the following.
 ```rake dss:solr:deindex```
 ```rake dss:solr:index```
 
-or if you want to re-index one Reseource object at a time
+or if you want to re-index one Resource object at a time
 
 ```rake dss:solr:reindex```
