@@ -63,37 +63,8 @@
     <% else %>
       <p>This dataset is located on the DSS Server.
   If you experience any difficulties or have any questions about using the data, please email Data and Statistical Services at data@princeton.edu for assistance. If you are at a computer connected to the Princeton Network, you should be able to access it through the following links:</p>
-      <table>
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>Part</td>
-            <td>File Type</td>
-            <td>File Techology</td>
-            <td>Note</td>
-            <td></td>
-          </tr>
-        </thead>
-        <tbody>
-          <!--
-          <% @study.data_files.each do |data_file| %>
-            <tr>
-              <td><%= build_file_path(@study.folder, data_file.files) %></td>
-              <td><%= data_file.part %></td>
-              <td><%= data_file.file_type_a %> <%= data_file.file_type_b %></td>
-              <td><%= data_file.file_type_tech %></td>
-              <td><%= data_file.note %></td>
-              <td><%= link_to 'Edit', edit_data_file_path(data_file.id) %></td>
-            </tr>
-          <% end %>
-        -->
-          <tr>
-            <td colspan='6'>
-              <%= build_file_path(@study.folder) %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+
+      <p><%= build_file_path(@study.folder) %></p>
     <% end %>
   <% end %>
 <% end %>
