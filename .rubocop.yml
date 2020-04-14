@@ -1,0 +1,40 @@
+inherit_from: .rubocop_todo.yml
+
+require: rubocop-rspec
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.4
+  Exclude:
+    - 'db/**/*'
+    - 'script/**/*'
+    - 'vendor/**/*'
+    - 'bin/*'
+    - 'node_modules/**/*'
+    - 'config/deploy.rb'
+    - 'config/initializers/blacklight_url_helper_behavior.rb'
+    - 'config/environments/**/*'
+    - 'node_modules/**/*'
+
+Layout/LineLength:
+  Max: 374 # todo really should be 120
+  Exclude:
+    - 'config/initializers/devise.rb'
+
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/features/**/*'
+    - 'spec/views/**/*'
+    - 'spec/requests/**/*'
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Max: 4
+  Exclude:
+    - 'spec/views/**/*'
+    - 'spec/features/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
