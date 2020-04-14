@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe SearchBuilder do
-  let(:user_params) { Hash.new }
-  let(:blacklight_config) { Blacklight::Configuration.new }
-  let(:scope) { double blacklight_config: blacklight_config }
   subject(:search_builder) { described_class.new scope }
+
+  let(:user_params) { {} }
+  let(:scope) { instance_double Blacklight::Configuration }
 
   # describe "my custom step" do
   #   subject(:query_parameters) do

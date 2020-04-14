@@ -1,23 +1,25 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "resources/show", type: :view do
-  before(:each) do
+RSpec.describe 'resources/show', type: :view do
+  before do
     @resource = assign(:resource, Resource.create!(
-      :name => "Name",
-      :resource_id => 2,
-      :url => "Url",
-      :blurb => "MyText",
-      :sample => "Sample",
-      :principal_investigator => "Principal Investigator",
-      :producer => "Producer",
-      :distributor => "Distributor",
-      :version => "Version",
-      :more_detail_url => "More Detail Url",
-      :resource_type => "Resource Type"
-    ))
+                                    name: 'Name',
+                                    resource_id: 2,
+                                    url: 'Url',
+                                    blurb: 'MyText',
+                                    sample: 'Sample',
+                                    principal_investigator: 'Principal Investigator',
+                                    producer: 'Producer',
+                                    distributor: 'Distributor',
+                                    version: 'Version',
+                                    more_detail_url: 'More Detail Url',
+                                    resource_type: 'Resource Type'
+                                  ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/2/)

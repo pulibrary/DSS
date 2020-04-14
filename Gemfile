@@ -43,7 +43,10 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'byebug', platform: :mri
   gem "rspec-rails"
+  gem 'rails-controller-testing'
+  gem "factory_bot_rails", require: false
   gem "pry-byebug"
+  gem "rubocop-rspec"
   #gem 'solr_wrapper', '>= 0.3'
 end
 
