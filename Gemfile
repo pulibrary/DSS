@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'cancancan', '~> 1.15'
 
-gem 'mysql2'
+gem 'pg'
 gem "blacklight"
 gem 'solr_wrapper', '~> 2.1'
 

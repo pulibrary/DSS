@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20170213193036) do
 
-  create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "user_type"
     t.string "document_id"
@@ -24,33 +27,33 @@ ActiveRecord::Schema.define(version: 20170213193036) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
-  create_table "countries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "countries", force: :cascade do |t|
     t.string "name"
     t.integer "key_term_id"
-    t.timestamp "key_time"
+    t.datetime "key_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "countries_resources", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "countries_resources", id: false, force: :cascade do |t|
     t.bigint "country_id"
     t.bigint "resource_id"
     t.index ["country_id"], name: "index_countries_resources_on_country_id"
     t.index ["resource_id"], name: "index_countries_resources_on_resource_id"
   end
 
-  create_table "countries_studies", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "countries_studies", id: false, force: :cascade do |t|
     t.bigint "country_id"
     t.bigint "study_id"
     t.index ["country_id"], name: "index_countries_studies_on_country_id"
     t.index ["study_id"], name: "index_countries_studies_on_study_id"
   end
 
-  create_table "data_files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "data_files", force: :cascade do |t|
     t.integer "legacy_id"
     t.string "files"
     t.string "size"
-    t.decimal "comp_size", precision: 10
+    t.decimal "comp_size"
     t.string "line_count"
     t.string "line_length"
     t.string "part"
@@ -62,7 +65,7 @@ ActiveRecord::Schema.define(version: 20170213193036) do
     t.string "note"
     t.integer "study_num"
     t.string "permission"
-    t.timestamp "timestamp"
+    t.datetime "timestamp"
     t.integer "original_study_id"
     t.bigint "study_id"
     t.datetime "created_at", null: false
@@ -70,34 +73,34 @@ ActiveRecord::Schema.define(version: 20170213193036) do
     t.index ["study_id"], name: "index_data_files_on_study_id"
   end
 
-  create_table "regions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "regions", force: :cascade do |t|
     t.string "name"
     t.integer "key_term_id"
-    t.timestamp "key_time"
+    t.datetime "key_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "regions_resources", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "regions_resources", id: false, force: :cascade do |t|
     t.bigint "region_id"
     t.bigint "resource_id"
     t.index ["region_id"], name: "index_regions_resources_on_region_id"
     t.index ["resource_id"], name: "index_regions_resources_on_resource_id"
   end
 
-  create_table "regions_studies", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "regions_studies", id: false, force: :cascade do |t|
     t.bigint "region_id"
     t.bigint "study_id"
     t.index ["region_id"], name: "index_regions_studies_on_region_id"
     t.index ["study_id"], name: "index_regions_studies_on_study_id"
   end
 
-  create_table "resources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "resources", force: :cascade do |t|
     t.string "name"
     t.integer "resource_id"
     t.string "url"
     t.text "blurb"
-    t.timestamp "link_time"
+    t.datetime "link_time"
     t.string "sample"
     t.string "principal_investigator"
     t.string "producer"
@@ -109,14 +112,14 @@ ActiveRecord::Schema.define(version: 20170213193036) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "resources_subjects", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "resources_subjects", id: false, force: :cascade do |t|
     t.bigint "subject_id"
     t.bigint "resource_id"
     t.index ["resource_id"], name: "index_resources_subjects_on_resource_id"
     t.index ["subject_id"], name: "index_resources_subjects_on_subject_id"
   end
 
-  create_table "searches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "searches", force: :cascade do |t|
     t.binary "query_params"
     t.integer "user_id"
     t.string "user_type"
@@ -125,7 +128,7 @@ ActiveRecord::Schema.define(version: 20170213193036) do
     t.index ["user_id"], name: "index_searches_on_user_id"
   end
 
-  create_table "studies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "studies", force: :cascade do |t|
     t.integer "legacy_id"
     t.integer "studynum"
     t.string "title"
@@ -135,7 +138,7 @@ ActiveRecord::Schema.define(version: 20170213193036) do
     t.string "directory"
     t.string "folder"
     t.boolean "r_flag"
-    t.timestamp "timestamp"
+    t.datetime "timestamp"
     t.boolean "auto_refresh"
     t.text "note"
     t.string "roper"
@@ -146,22 +149,22 @@ ActiveRecord::Schema.define(version: 20170213193036) do
     t.index ["resource_id"], name: "index_studies_on_resource_id"
   end
 
-  create_table "studies_subjects", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "studies_subjects", id: false, force: :cascade do |t|
     t.bigint "subject_id"
     t.bigint "study_id"
     t.index ["study_id"], name: "index_studies_subjects_on_study_id"
     t.index ["subject_id"], name: "index_studies_subjects_on_subject_id"
   end
 
-  create_table "subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "subjects", force: :cascade do |t|
     t.string "name"
     t.integer "key_term_id"
-    t.timestamp "key_time"
+    t.datetime "key_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
