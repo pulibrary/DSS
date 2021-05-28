@@ -37,6 +37,7 @@ gem 'capistrano', '3.7.2'
 gem 'capistrano-yarn'
 gem 'sshkit', '1.12.0'
 gem 'ffi', '~> 1.9.24'
+gem 'whenever', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,6 +49,7 @@ group :development, :test do
   gem "pry-byebug"
   gem "rubocop-rspec"
   #gem 'solr_wrapper', '>= 0.3'
+  gem "timecop"
 end
 
 group :development do

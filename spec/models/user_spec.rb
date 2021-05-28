@@ -2,6 +2,28 @@
 
 require 'rails_helper'
 
+# rubocop:disable FactoryBot/CreateList
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "when there are guest users older than 7 days" do
+    before do
+      # There's an initial user that we don't want
+      described_class.all.find_each(&:destroy)
+      Timecop.freeze(Time.now.utc - 10.days) do
+        100.times do
+          FactoryBot.create(:guest_patron, guest: true)
+        end
+        10.times do
+          FactoryBot.create(:user)
+        end
+      end
+      10.times do
+        FactoryBot.create(:guest_patron)
+      end
+    end
+
+    it "expires them" do
+      expect { described_class.expire_guest_accounts }.to change(described_class, :count).by(-100)
+    end
+  end
 end
+# rubocop:enable FactoryBot/CreateList

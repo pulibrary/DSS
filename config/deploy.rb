@@ -10,6 +10,9 @@ ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/opt/dss-blacklight'
 
+# Set roles for whenever
+set :whenever_roles, ->{ [:db] }
+
 # Default value for :scm is :git
 # set :scm, :git
 
