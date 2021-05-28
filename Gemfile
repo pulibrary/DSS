@@ -49,6 +49,7 @@ group :development, :test do
   gem "pry-byebug"
   gem "rubocop-rspec"
   #gem 'solr_wrapper', '>= 0.3'
+  gem "timecop"
 end
 
 group :development do
