@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Install Java 8
           command: |
-            sudo apt update
+            sudo apt update --allow-releaseinfo-change
             sudo apt install software-properties-common apt-transport-https
             wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
             sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
@@ -51,7 +51,12 @@ jobs:
             sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
             sudo apt-get update
             sudo apt-get -y install google-chrome-stable
-      - run: sudo apt install postgresql-client phantomjs
+      - run:
+          name: Install other dependencies 
+          command: |
+            sudo apt install postgresql-client
+            wget "https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2"
+            sudo tar -xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2 -C /usr/local/share/
       - save_cache:
           key: DSS-{{ checksum "Gemfile.lock" }}
           paths:
