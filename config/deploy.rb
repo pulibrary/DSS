@@ -2,10 +2,10 @@
 lock '3.7.2'
 
 set :application, 'dss'
-set :repo_url, 'git@github.com:pulibrary/DSS.git'
+set :repo_url, 'https://github.com/pulibrary/DSS.git'
 
-# Default branch is :master
-ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+# Default branch is :main
+set :branch, ENV["BRANCH"] || "main"
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/opt/dss-blacklight'
