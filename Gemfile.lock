@@ -1,7 +1,7 @@
 GIT
-  remote: git@github.com:pulibrary/pul_assets.git
-  revision: 52d7862d9c55def2e864791d52447953c2f236f8
-  branch: master
+  remote: https://github.com/pulibrary/pul_assets.git
+  revision: d548889f2caadf5dd24a54d4ed2f9f636a277b18
+  branch: main
   specs:
     pul-assets (0.2.2)
       bourbon (~> 4.2.6)
@@ -401,4 +401,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   2.2.18
+   2.2.27
