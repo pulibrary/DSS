@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.0'
+gem 'rails', '~> 5.1'
 # Use Puma as the app server
 gem 'puma', '~> 4.3'
 # Use SCSS for stylesheets
@@ -78,4 +78,4 @@ gem 'pul-assets', github: 'pulibrary/pul_assets', branch: :main
 gem 'high_voltage', '~> 3.1'
 
 # lux dependency
-gem 'webpacker', '~> 3.5'
+gem 'webpacker'
