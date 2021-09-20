@@ -1,9 +1,12 @@
 {
   "dependencies": {
-    "@rails/webpacker": "3.5",
-    "lux-design-system": "^1.0.3"
+    "@rails/webpacker": "5.4.3",
+    "lux-design-system": "^1.0.3",
+    "postcss-cssnext": "^3.1.1",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
   },
   "devDependencies": {
-    "webpack-dev-server": "3.1.11"
+    "webpack-dev-server": "^3"
   }
 }
