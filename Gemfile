@@ -66,7 +66,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rsolr', '~> 1.0'
-gem "devise", ">= 4.6.0"
+gem "devise"
 gem 'devise-guests', '~> 0.5'
 gem 'omniauth-cas'
 gem 'select2-rails'
