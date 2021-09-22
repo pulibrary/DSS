@@ -58,7 +58,7 @@
     <h2>Data Files</h2>
     <% if @user.guest %>
       <div>
-        <%= link_to 'Login Via CAS', '/users/auth/cas', class: 'btn btn-md btn-primary btn-full' %>
+        <%= link_to 'Login Via CAS', '/users/auth/cas', class: 'btn btn-md btn-primary btn-full', method: :post %>
       </div>
     <% else %>
       <p>This dataset is located on the DSS Server.
