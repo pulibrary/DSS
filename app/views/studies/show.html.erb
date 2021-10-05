@@ -50,7 +50,7 @@
   <% end %>
 </dl>
 
-<% unless @study.data_files.nil? %>
+<% if @study.data_files.present? && @study.medium == "Server" %>
   <% if @study.r_flag %>
     <h2>Restricted Data</h2>
     <%= render 'r_flag_message' %>
@@ -67,4 +67,6 @@
       <p><%= build_file_path(@study.folder) %></p>
     <% end %>
   <% end %>
+<% elsif @study.medium == "CD"%>
+  <p>Please go to the Microforms Office - Firestone A Floor and request CD-ROM #<%= @study.studynum %></p>
 <% end %>
