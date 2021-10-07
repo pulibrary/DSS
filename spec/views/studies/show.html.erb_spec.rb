@@ -19,7 +19,6 @@ RSpec.describe 'studies/show', type: :view do
                              roper: 'Roper',
                              voyager_id: 4
                            ))
-    DataFile.create(study: study)
     study
   end
 
