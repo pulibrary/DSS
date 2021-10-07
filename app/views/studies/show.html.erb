@@ -50,7 +50,7 @@
   <% end %>
 </dl>
 
-<% if @study.data_files.present? && @study.medium == "Server" %>
+<% if @study.folder.present? && @study.medium == "Server" %>
   <% if @study.r_flag %>
     <h2>Restricted Data</h2>
     <%= render 'r_flag_message' %>
