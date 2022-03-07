@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1'
+gem 'rails', '~> 5.2.5'
 # Use Puma as the app server
 gem 'puma', '~> 4.3'
 # Use SCSS for stylesheets
@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'cancancan', '~> 1.15'
 
 gem 'pg'
-gem "blacklight"
+gem "blacklight", '~> 6.18.0'
 gem 'solr_wrapper', '~> 2.1'
 
 # Use Capistrano for deployment
@@ -48,7 +48,6 @@ group :development, :test do
   gem "factory_bot_rails", require: false
   gem "pry-byebug"
   gem "rubocop-rspec"
-  #gem 'solr_wrapper', '>= 0.3'
   gem "timecop"
 end
 
@@ -70,7 +69,7 @@ gem "devise"
 gem 'devise-guests', '~> 0.5'
 gem 'omniauth-cas'
 gem 'select2-rails'
-gem 'ckeditor'
+gem 'ckeditor', '~> 4.2.4'
 
 gem 'pul-assets', github: 'pulibrary/pul_assets', branch: :main
 

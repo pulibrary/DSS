@@ -3,7 +3,7 @@ inherit_from: .rubocop_todo.yml
 require: rubocop-rspec
 AllCops:
   DisplayCopNames: true
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.6
   Exclude:
     - 'db/**/*'
     - 'script/**/*'
@@ -35,6 +35,28 @@ RSpec/MultipleExpectations:
     - 'spec/views/**/*'
     - 'spec/features/**/*'
 
+Metrics/AbcSize:
+  Exclude:
+    - 'app/models/resource.rb'
+    - 'app/models/study.rb'
+
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+    - 'lib/tasks/dss.rake'
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Style/CaseLikeIf:
+  Enabled: false
+
+Lint/ParenthesesAsGroupedExpression:
+  Exclude:
+    - 'lib/tasks/dss.rake'

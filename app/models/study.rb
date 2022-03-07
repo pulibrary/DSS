@@ -28,7 +28,7 @@ class Study < ApplicationRecord
         solr_doc["url_s"] = value
       elsif name == 'note'
         unless value.nil?
-          solr_doc["blurb_t"] = value.gsub('\\', '')
+          solr_doc["blurb_t"] = value.delete('\\')
         end
       else
         solr_doc["#{name}_t"] = [ value ]
@@ -57,7 +57,7 @@ class Study < ApplicationRecord
 
   def index_record
     solr = RSolr.connect(url: solr_url)
-    solr.add self.to_solr #:headers => {"Content-Type"=>"application/json"})
+    solr.add self.to_solr # :headers => {"Content-Type"=>"application/json"})
     solr.commit
   end
 
@@ -81,7 +81,7 @@ class Study < ApplicationRecord
 
   protected
     def solr_url
-      "#{Blacklight.blacklight_yml[Rails.env]['url']}"
+      (Blacklight.blacklight_yml[Rails.env]['url']).to_s
     end
     
 end

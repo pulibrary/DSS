@@ -80,8 +80,8 @@ jobs:
           command: |
             cd solr/config
             zip -1 -r solr_config.zip ./*
-            curl -H "Content-type:application/octet-stream" --data-binary @solr_config.zip "http://localhost:8888/solr/admin/configs?action=UPLOAD&name=blacklight-core-test"
-            curl -H 'Content-type: application/json' http://localhost:8888/api/collections/ -d '{create: {name: blacklight-core-test, config: blacklight-core-test, numShards: 1}}'
+            curl -H "Content-type:application/octet-stream" --data-binary @solr_config.zip "http://localhost:8888/solr/admin/configs?action=UPLOAD&name=dss-core-test"
+            curl -H 'Content-type: application/json' http://localhost:8888/api/collections/ -d '{create: {name: dss-core-test, config: dss-core-test, numShards: 1}}'
       - run:
           name: npm install
           command: npm install

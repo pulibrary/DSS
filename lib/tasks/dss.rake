@@ -1,11 +1,20 @@
 require 'json'
 
 namespace :dss do
+  namespace :servers do
+    desc "Start solr and postgres servers using lando."
+    task :start do
+      system("lando start")
+      system("rake db:create")
+      system("rake db:migrate")
+      system("rake db:migrate RAILS_ENV=test")
+    end
+  end
 
   namespace :terms do
     desc 'Bulk assigns a country term id to a subject term id'
     task :country_to_subject, [:country_id, :subject_id] => :environment do |t, args|
-      puts "#{args[:country_id]}"
+      puts (args[:country_id]).to_s
       country = Country.find(args[:country_id])
       puts country.name
       subject = Subject.find(args[:subject_id])
@@ -31,17 +40,15 @@ namespace :dss do
     task resource_study_map: :environment do
       resources = Resource.all
       resources.each do |r|
-        unless r.url.nil?
-          if dss_url = /(^http:\/\/dss.princeton.edu\/cgi-bin\/catalog\/search.cgi\?studyno\=)(\d+)/.match(r.url)
-            studynum = dss_url[2]
-            study = Study.where(studynum: "#{studynum}").take
+        if !r.url.nil? && dss_url = /(^http:\/\/dss.princeton.edu\/cgi-bin\/catalog\/search.cgi\?studyno=)(\d+)/.match(r.url)
+          studynum = dss_url[2]
+            study = Study.where(studynum: studynum.to_s).take
             unless study.nil?
               puts "matching study num #{studynum} with study id #{study.id}"
               study.resource_id = r.id
               study.save!
               study.reload
             end
-          end
         end
       end
     end
