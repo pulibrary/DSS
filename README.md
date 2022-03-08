@@ -2,15 +2,12 @@
 
 ## Local Development Basic Setup
 
-1. Create mysql databases for test and production (see config/database.yml for default naming conventions)
 1. ```git clone git@github.com:pulibrary/DSS.git```
-1. ```cd dss```
+1. ```cd DSS```
 1. ```bundle install```
 1. ```yarn install```
-1. ```rake db:create```
-1. ```rake db:migrate```
+1. ```rake dss:servers:start```
 1. ```rake db:seed```
-1. ```rake rake:server:dev```
 1. ```rake dss:solr:update```
 1. ```rake dss:solr:index```
 1. ```foreman start```
