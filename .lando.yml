@@ -1,0 +1,22 @@
+name: dss
+services:
+  dss_test_solr:
+    type: solr:8.4
+    portforward: true
+    core: dss-core-test
+    config:
+      dir: "solr/conf"
+  dss_database:
+    type: postgres:10
+    portforward: true
+  dss_development_solr:
+    type: solr:8.4
+    portforward: true
+    core: dss-core-dev
+    config:
+      dir: "solr/conf"
+proxy:
+  dss_test_solr:
+    - dss.test.solr.lndo.site:8983
+  dss_development_solr:
+    - dss.dev.solr.lndo.site:8983

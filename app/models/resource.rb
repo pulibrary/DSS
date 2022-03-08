@@ -27,7 +27,7 @@ class Resource < ApplicationRecord
         solr_doc["url_s"] = value
       elsif name == 'blurb'
         unless value.nil?
-          solr_doc["blurb_t"] = value.gsub('\\', '')
+          solr_doc["blurb_t"] = value.delete('\\')
         end
       else
         solr_doc["#{name}_t"] = [ value ]
@@ -58,7 +58,7 @@ class Resource < ApplicationRecord
 
   def index_record
     solr = RSolr.connect(url: solr_url)
-    solr.add self.to_solr #:headers => {"Content-Type"=>"application/json"})
+    solr.add self.to_solr # :headers => {"Content-Type"=>"application/json"})
     solr.commit
   end
 
@@ -89,7 +89,7 @@ class Resource < ApplicationRecord
 
   protected
     def solr_url
-      "#{Blacklight.blacklight_yml[Rails.env]['url']}"
+      (Blacklight.blacklight_yml[Rails.env]['url']).to_s
     end
 
 end

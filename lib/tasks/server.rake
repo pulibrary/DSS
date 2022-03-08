@@ -3,8 +3,8 @@ require 'solr_wrapper'
 desc 'Run test suite'
 task :ci do
   if Rails.env.test?
-    run_solr('test', { port: '8985' }) do
-      # Rake::Task['pulsearch:solr:index'].invoke
+    run_solr('test', port: '8985') do
+      # Rake::Task['dss:solr:index'].invoke
       Rake::Task['spec'].invoke
     end
   else
@@ -12,10 +12,10 @@ task :ci do
   end
 end
 
-desc 'Run solr and orangelight for interactive development'
+desc 'Run solr and dss for interactive development'
 task :server, [:rails_server_args] do |t, args|
-  run_solr('development', { port: '8983' }) do
-    # Rake::Task['pulsearch:solr:index'].invoke
+  run_solr('development', port: '8983') do
+    # Rake::Task['dss:solr:index'].invoke
     system "bundle exec rails s #{args[:rails_server_args]}"
   end
 end
@@ -23,18 +23,28 @@ end
 namespace :server do
   desc 'Run development solr'
   task :dev do
-    run_solr('development', { port: '8983' }) do
-      # Rake::Task['pulsearch:solr:index'].invoke
-      sleep
+    if ENV["lando_dss_development_solr_conn_port"]
+      # Rake::Task['dss:solr:index'].invoke
+      # puts("Indexing to Lando. Running at http://localhost:#{ENV['lando_dss_development_solr_conn_port']}")
+    else
+      run_solr('development', port: '8983') do
+        # Rake::Task['dss:solr:index'].invoke
+        sleep
+      end
     end
   end
 
   desc 'Run test solr'
   task :test do
     if Rails.env.test?
-      run_solr('test', { port: '8888' }) do
-        # Rake::Task['pulsearch:solr:index'].invoke
-        sleep
+      if ENV["lando_dss_test_solr_conn_port"]
+        # Rake::Task['dss:solr:index'].invoke
+        puts("Indexing to Lando. Running at http://localhost:#{ENV['lando_dss_test_solr_conn_port']}")
+      else
+        run_solr('test', port: '8888') do
+          # Rake::Task['dss:solr:index'].invoke
+          sleep
+        end
       end
     else
       system('rake server:test RAILS_ENV=test')
