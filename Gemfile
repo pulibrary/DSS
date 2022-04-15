@@ -2,15 +2,13 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.6.3'
+gem 'rails', '~> 6.0'
 # Use Puma as the app server
 gem 'puma', '~> 4.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -28,7 +26,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'cancancan', '~> 1.15'
 
 gem 'pg'
-gem "blacklight", '~> 6.18.0'
+gem "blacklight", '~> 7.3.0'
 gem 'solr_wrapper', '~> 2.1'
 
 # Use Capistrano for deployment
@@ -71,7 +69,7 @@ gem 'omniauth-cas'
 gem 'select2-rails'
 gem 'ckeditor', '~> 4.2.4'
 
-gem 'pul-assets', github: 'pulibrary/pul_assets', branch: :main
+gem 'pul-assets', path: '../pul_assets'
 
 # static pages
 gem 'high_voltage', '~> 3.1'

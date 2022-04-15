@@ -205,6 +205,5 @@ class CatalogController < ApplicationController
 
     # navbar partials
     config.navbar.partials.delete(:search_history)
-    config.navbar.partials.delete(:saved_searches)
   end
 end

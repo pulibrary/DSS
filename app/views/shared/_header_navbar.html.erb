@@ -7,7 +7,6 @@
             <% unless current_user.to_s.blank? -%>
             {name: '<%= current_user %>', component: '<%= current_user %>', href: '<%= edit_user_registration_path %>'},
             <% end %>
-            {name: '<%= t('blacklight.header_links.saved_searches') %>', component: '<%= t('blacklight.header_links.saved_searches') %>', href: '<%= blacklight.saved_searches_path %>'},
             {name: '<%= t('blacklight.header_links.search_history') %>', component: '<%= t('blacklight.header_links.search_history') %>', href: '<%= blacklight.search_history_path %>'},
             {name: '<%= t('blacklight.header_links.logout') %>', component: '<%= t('blacklight.header_links.logout') %>', href: '<%= destroy_user_session_path %>'}
           ]}
