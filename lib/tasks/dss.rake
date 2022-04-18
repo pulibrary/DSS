@@ -96,6 +96,6 @@ namespace :dss do
   private
 
     def url_for_file(file)
-      "https://raw.githubusercontent.com/pulibrary/pul_solr/master/solr_configs/catalog-production/#{file}"
+      "https://raw.githubusercontent.com/pulibrary/pul_solr/main/solr_configs/dss-production/#{file}"
     end
 end
