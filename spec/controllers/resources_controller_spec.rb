@@ -55,7 +55,7 @@ RSpec.describe ResourcesController, type: :controller do
     it 'assigns all resources as @resources' do
       resource = Resource.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(assigns(:resources)).to eq([resource])
+      expect(assigns(:resources)).to include(resource)
     end
   end
 
