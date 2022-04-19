@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require blacklight/blacklight
 //= require dataTables/jquery.dataTables
 //= require dataTables/extras/dataTables.responsive

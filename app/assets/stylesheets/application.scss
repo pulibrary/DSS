@@ -20,6 +20,10 @@
 
 $logo_image: 'dss-logo.svg' !default;
 
+
+@import 'bootstrap';
+
+@import 'blacklight/blacklight';
 @import "pul-assets__blacklight";
 
 .navigation {
