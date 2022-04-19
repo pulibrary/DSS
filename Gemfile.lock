@@ -1,5 +1,7 @@
-PATH
-  remote: ../pul_assets
+GIT
+  remote: https://github.com/pulibrary/pul_assets.git
+  revision: 10fb751d3401d61ea2dad579dcd064d0d97da845
+  branch: main
   specs:
     pul-assets (0.2.2)
       bourbon (~> 4.2.6)

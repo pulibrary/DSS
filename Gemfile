@@ -71,7 +71,7 @@ gem 'omniauth-cas'
 gem 'select2-rails'
 gem 'ckeditor', '~> 4.2.4'
 
-gem 'pul-assets', path: '../pul_assets'
+gem 'pul-assets', github: 'pulibrary/pul_assets', branch: :main
 
 # static pages
 gem 'high_voltage', '~> 3.1'
