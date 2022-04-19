@@ -41,11 +41,13 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # Use sqlite3 as the database for Active Record
   gem 'byebug', platform: :mri
+  gem 'capybara'
   gem "rspec-rails"
   gem 'rails-controller-testing'
   gem "factory_bot_rails", require: false
   gem "pry-byebug"
   gem "rubocop-rspec"
+  gem 'selenium-webdriver'
   gem "timecop"
 end
 
