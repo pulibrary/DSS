@@ -6,7 +6,7 @@ gem 'rails', '~> 6.0'
 # Use Puma as the app server
 gem 'puma', '~> 4.3'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -34,7 +34,7 @@ gem 'capistrano-rails', group: :development
 gem 'capistrano', '3.7.2'
 gem 'capistrano-yarn'
 gem 'sshkit', '1.12.0'
-gem 'ffi', '~> 1.9.24'
+gem 'ffi'
 gem 'whenever', require: false
 
 group :development, :test do
@@ -76,3 +76,5 @@ gem 'high_voltage', '~> 3.1'
 
 # lux dependency
 gem 'webpacker'
+
+gem 'bootstrap', '~> 4.6'
