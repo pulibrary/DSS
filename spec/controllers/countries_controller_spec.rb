@@ -46,7 +46,7 @@ RSpec.describe CountriesController, type: :controller do
     it 'assigns all countries as @countries' do
       country = Country.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(assigns(:countries)).to eq([country])
+      expect(assigns(:countries)).to include(country)
     end
   end
 
