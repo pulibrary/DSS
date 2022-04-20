@@ -98,12 +98,12 @@
        -->
         <str name="qf">
           id
-          title_tesim
-          author_tesim
-          subject_tsim
+          title_t
+          subject_topic_facet
+          subject_geo_facet
         </str>
         <str name="pf">
-          all_text_timv^10
+          title_t^10
         </str>
 
        <str name="author_qf">
