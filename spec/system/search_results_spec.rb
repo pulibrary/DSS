@@ -7,4 +7,4 @@ RSpec.describe 'Search results page', type: :system do
     click_button 'search'
     expect(page).to have_text('Indonesia - Census of Agriculture 2003')
   end
-end 
+end
