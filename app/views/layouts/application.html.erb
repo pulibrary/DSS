@@ -45,6 +45,7 @@
   <%= render 'shared/header_navbar' %>
 
 
+  <%= content_for(:container_header) %>
   <% if admin_user? %>
     <%= render 'shared/menu--admin' %>
   <% end %>
