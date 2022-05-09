@@ -20,6 +20,11 @@
 
 $logo_image: 'dss-logo.svg' !default;
 
+$theme-colors: (
+  "primary": #337ab7
+);
+
+$link-color: #2762ae;
 
 @import 'bootstrap';
 
