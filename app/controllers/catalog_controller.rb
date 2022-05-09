@@ -120,10 +120,10 @@ class CatalogController < ApplicationController
     config.add_show_field 'url_s', label: 'URL', helper_method: :link
     config.add_show_field 'blurb_t', label: 'Description', helper_method: :html_safe
     config.add_show_field 'sample_t', label: 'Sample'
-    config.add_show_field 'resource_type_s', label: 'Format', link_to_search: true
-    config.add_show_field 'subject_topic_facet', label: 'Topic', link_to_search: true
-    config.add_show_field 'subject_geo_facet', label: 'Country', link_to_search: true
-    config.add_show_field 'region_facet', label: 'Region', link_to_search: true
+    config.add_show_field 'resource_type_s', label: 'Format', link_to_facet: true
+    config.add_show_field 'subject_topic_facet', label: 'Topic', link_to_facet: true
+    config.add_show_field 'subject_geo_facet', label: 'Country', link_to_facet: true
+    config.add_show_field 'region_facet', label: 'Region', link_to_facet: true
     config.add_show_field 'title_display', label: 'Title'
     config.add_show_field 'title_vern_display', label: 'Title'
     config.add_show_field 'subtitle_display', label: 'Subtitle'
