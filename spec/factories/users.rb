@@ -4,7 +4,6 @@ FactoryBot.define do
   factory :user do
     sequence(:uid) { |n| "uid#{n}" }
     email { "#{uid}@princeton.edu" }
-    password { 'password' }
 
     # for patrons without a net ID
     factory :guest_patron do

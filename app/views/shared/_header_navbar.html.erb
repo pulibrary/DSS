@@ -5,7 +5,7 @@
         <menu-bar type="main-menu" active="All" :menu-items="[
           {name: '<%= current_user %>', component: 'Account',  children: [
             <% unless current_user.to_s.blank? -%>
-            {name: '<%= current_user %>', component: '<%= current_user %>', href: '<%= edit_user_registration_path %>'},
+            {name: '<%= current_user %>', component: '<%= current_user %>'},
             <% end %>
             {name: '<%= t('blacklight.header_links.search_history') %>', component: '<%= t('blacklight.header_links.search_history') %>', href: '<%= blacklight.search_history_path %>'},
             {name: '<%= t('blacklight.header_links.logout') %>', component: '<%= t('blacklight.header_links.logout') %>', href: '<%= destroy_user_session_path %>'}
@@ -13,7 +13,7 @@
         ]"></menu-bar>
         <% else %>
         <menu-bar type="main-menu" active="All" :menu-items="[
-          {name: '<%= t('blacklight.header_links.login') %>', component: '<%= t('blacklight.header_links.login') %>', href: '<%= new_user_session_path %>'}
+          {name: '<%= t('blacklight.header_links.login') %>', component: '<%= t('blacklight.header_links.login') %>', href: '<%= user_cas_omniauth_authorize_path %>'}
         ]"></menu-bar>
         <% end %>
       <% end %>
