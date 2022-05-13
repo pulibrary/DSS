@@ -2,15 +2,13 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.6.3'
+gem 'rails', '~> 6.0'
 # Use Puma as the app server
 gem 'puma', '~> 4.3'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -28,7 +26,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'cancancan', '~> 1.15'
 
 gem 'pg'
-gem "blacklight", '~> 6.18.0'
+gem "blacklight", '~> 7.3.0'
 gem 'solr_wrapper', '~> 2.1'
 
 # Use Capistrano for deployment
@@ -36,18 +34,20 @@ gem 'capistrano-rails', group: :development
 gem 'capistrano', '3.7.2'
 gem 'capistrano-yarn'
 gem 'sshkit', '1.12.0'
-gem 'ffi', '~> 1.9.24'
+gem 'ffi'
 gem 'whenever', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # Use sqlite3 as the database for Active Record
   gem 'byebug', platform: :mri
+  gem 'capybara'
   gem "rspec-rails"
   gem 'rails-controller-testing'
   gem "factory_bot_rails", require: false
   gem "pry-byebug"
   gem "rubocop-rspec"
+  gem 'selenium-webdriver'
   gem "timecop"
 end
 
@@ -78,3 +78,5 @@ gem 'high_voltage', '~> 3.1'
 
 # lux dependency
 gem 'webpacker'
+
+gem 'bootstrap', '~> 4.6'

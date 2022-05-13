@@ -20,6 +20,15 @@
 
 $logo_image: 'dss-logo.svg' !default;
 
+$theme-colors: (
+  "primary": #337ab7
+);
+
+$link-color: #2762ae;
+
+@import 'bootstrap';
+
+@import 'blacklight/blacklight';
 @import "pul-assets__blacklight";
 
 .navigation {
@@ -116,6 +125,10 @@ main > .container {
     padding: 0;
   }
 
+  .constraints-container {
+    padding-left: 260px;
+  }
+
   .content--catalog {
     width: auto;
   }
@@ -204,4 +217,8 @@ select::-ms-expand {
 
 .note {
   margin-top: 1rem;
+}
+
+.facet-values .facet-label {
+  padding-bottom: 0px;
 }

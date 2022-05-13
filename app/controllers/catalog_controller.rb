@@ -46,6 +46,13 @@ class CatalogController < ApplicationController
     config.show.title_field = 'title_display'
     config.show.display_type_field = 'resource_type_s'
 
+    config.add_results_document_tool(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
+
+    config.add_show_tools_partial(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
+    config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params)
+    config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params)
+    config.add_show_tools_partial(:citation)
+
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
     #
@@ -113,10 +120,10 @@ class CatalogController < ApplicationController
     config.add_show_field 'url_s', label: 'URL', helper_method: :link
     config.add_show_field 'blurb_t', label: 'Description', helper_method: :html_safe
     config.add_show_field 'sample_t', label: 'Sample'
-    config.add_show_field 'resource_type_s', label: 'Format', link_to_search: true
-    config.add_show_field 'subject_topic_facet', label: 'Topic', link_to_search: true
-    config.add_show_field 'subject_geo_facet', label: 'Country', link_to_search: true
-    config.add_show_field 'region_facet', label: 'Region', link_to_search: true
+    config.add_show_field 'resource_type_s', label: 'Format', link_to_facet: true
+    config.add_show_field 'subject_topic_facet', label: 'Topic', link_to_facet: true
+    config.add_show_field 'subject_geo_facet', label: 'Country', link_to_facet: true
+    config.add_show_field 'region_facet', label: 'Region', link_to_facet: true
     config.add_show_field 'title_display', label: 'Title'
     config.add_show_field 'title_vern_display', label: 'Title'
     config.add_show_field 'subtitle_display', label: 'Subtitle'
@@ -205,6 +212,6 @@ class CatalogController < ApplicationController
 
     # navbar partials
     config.navbar.partials.delete(:search_history)
-    config.navbar.partials.delete(:saved_searches)
+    config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
   end
 end

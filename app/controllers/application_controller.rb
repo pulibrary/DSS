@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Adds a few additional behaviors into the application controller
   include Blacklight::Controller
-  layout 'application'
+  layout :determine_layout if respond_to? :layout
 
   protect_from_forgery with: :exception
   before_action :authenticate_user!
@@ -16,5 +16,9 @@ class ApplicationController < ActionController::Base
     else
       root_path
     end
+  end
+
+  def determine_layout
+    'application'
   end
 end

@@ -45,16 +45,19 @@
   <%= render 'shared/header_navbar' %>
 
 
+  <%= content_for(:container_header) %>
   <% if admin_user? %>
     <%= render 'shared/menu--admin' %>
   <% end %>
 
-  <%= render partial: 'shared/ajax_modal' %>
+  <%= render partial: 'shared/modal' %>
 
   <div id="main-container" class="<%= container_classes %>">
     <%= render :partial=>'pul-assets/blacklight/flash_msg', layout: 'pul-assets/blacklight/shared/flash_messages' %>
 
-    <%= yield %>
+    <div class="row">
+      <%= content_for?(:content) ? yield(:content) : yield %>
+    </div>
   </div>
   </main>
   <noscript><%= render 'pul-assets/footer' %></noscript>
