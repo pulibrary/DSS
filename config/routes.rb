@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  mount Blacklight::Engine => '/'
-  root to: 'catalog#index'
+  mount Blacklight::Engine => 'catalog'
+  root to: redirect('https://library-staging.princeton.edu/dss'), constraints: { subdomain: 'dss-staging' }, as: :staging_root
+  root to: redirect('https://library.princeton.edu/dss')
   concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
