@@ -80,3 +80,5 @@ gem 'high_voltage', '~> 3.1'
 gem 'webpacker'
 
 gem 'bootstrap', '~> 4.6'
+
+gem "honeybadger", "~> 4.12"
