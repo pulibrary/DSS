@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
 
   mount Blacklight::Engine => 'catalog'
-  root to: redirect('https://library-staging.princeton.edu/dss'), constraints: { subdomain: 'dss-staging' }, as: :staging_root
+
+  constraints(subdomain: 'dss-staging') do
+    root to: redirect('https://library-staging.princeton.edu/dss'), as: :staging_root
+    get '/computing', to: redirect('https://library-staging.princeton.edu/dss/computing')
+    get '/consultants', to: redirect('https://library-staging.princeton.edu/dss/consultants')
+    get '/specialists', to: redirect('https://library-staging.princeton.edu/dss/specialists')
+  end
   root to: redirect('https://library.princeton.edu/dss')
+  get '/computing', to: redirect('https://library.princeton.edu/dss/computing')
+  get '/consultants', to: redirect('https://library.princeton.edu/dss/consultants')
+  get '/specialists', to: redirect('https://library.princeton.edu/dss/specialists')
+
   concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
@@ -38,6 +48,4 @@ Rails.application.routes.draw do
   get '/resources/:id/solr', to: 'resources#solr', defaults: { format: :json }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  # Static pages
-  get "/*id" => 'pages#show', as: :page, format: false, constraint: HighVoltage::Constraints::RootRoute
 end
