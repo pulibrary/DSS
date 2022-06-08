@@ -1,6 +1,6 @@
 module StudiesHelper
   def build_file_path(folder_num, file_name = nil)
-    data_base_path = "http://dss2.princeton.edu/data/"
+    data_base_path = "https://dss2.princeton.edu/data/"
     if file_name.nil?
       link_to "See all included Files", "#{data_base_path}#{folder_num}"
     else
