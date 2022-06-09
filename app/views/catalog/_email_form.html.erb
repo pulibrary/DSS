@@ -1,7 +1,7 @@
 <%= form_tag url_for(:controller => controller_name, :action => "email"), :id => 'email_form', :class => "form-horizontal ajax_form", :method => :post do %>
 
   <div class="modal-body">
-    <%= render :partial=>'/flash_msg' %>
+    <%= render :partial=>'pul-assets/blacklight/flash_msg', layout: 'pul-assets/blacklight/shared/flash_messages' %>
     <% if current_user %>
     <div class="form-group">
       <label class="control-label col-sm-2" for="to">
@@ -44,6 +44,6 @@
   <button type="submit" class="btn btn-primary"> <%= t('blacklight.sms.form.submit') %></button>
   </div>
   <% else %>
-      Please <%= link_to("sign in", main_app.new_user_session_path(origin: "#{request.fullpath}")) %> to share the catalog record(s).
+      Please <%= link_to("sign in", user_cas_omniauth_authorize_path(origin: "#{request.fullpath}")) %> to share the catalog record(s).
   <% end %>
 <% end %>
