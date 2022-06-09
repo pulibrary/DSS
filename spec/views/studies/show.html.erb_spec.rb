@@ -34,7 +34,7 @@ RSpec.describe 'studies/show', type: :view do
     expect(rendered).to match(/Url/)
     expect(rendered).to match(/MyText/)
     expect(rendered).to match(%r{catalog/4})
-    expect(rendered).to include("If you are at a computer connected to the Princeton Network, you should be able to access it through the following links:</p>\n\n      <p><a href=\"http://dss2.princeton.edu/data/Folder\">See all included Files</a></p>\n")
+    expect(rendered).to include("If you are at a computer connected to the Princeton Network, you should be able to access it through the following links:</p>\n\n      <p><a href=\"https://dss2.princeton.edu/data/Folder\">See all included Files</a></p>\n")
   end
 
   context "when the study is a CD" do
@@ -49,7 +49,7 @@ RSpec.describe 'studies/show', type: :view do
       expect(rendered).to match(/Url/)
       expect(rendered).to match(/MyText/)
       expect(rendered).to match(%r{catalog/4})
-      expect(rendered).not_to include("If you are at a computer connected to the Princeton Network, you should be able to access it through the following links:</p>\n\n      <p><a href=\"http://dss2.princeton.edu/data/Folder\">See all included Files</a></p>\n")
+      expect(rendered).not_to include("If you are at a computer connected to the Princeton Network, you should be able to access it through the following links:</p>\n\n      <p><a href=\"https://dss2.princeton.edu/data/Folder\">See all included Files</a></p>\n")
       expect(rendered).to include("<p>Please go to the Microforms Office - Firestone A Floor and request CD-ROM #3</p>\n")
     end
   end
