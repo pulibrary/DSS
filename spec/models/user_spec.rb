@@ -25,5 +25,13 @@ RSpec.describe User, type: :model do
       expect { described_class.expire_guest_accounts }.to change(described_class, :count).by(-100)
     end
   end
+
+  context 'with CAS authorization only' do
+    let(:access_token) { OmniAuth::AuthHash.new(provider: "provider", uid: "testUSER123") }
+
+    it "finds or creates user in the database" do
+      expect { described_class.from_cas(access_token) }.to change(described_class, :count).by(1)
+    end
+  end
 end
 # rubocop:enable FactoryBot/CreateList

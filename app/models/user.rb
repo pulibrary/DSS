@@ -18,7 +18,6 @@ class User < ApplicationRecord
       user.uid = access_token.uid
       user.username = access_token.uid
       user.email = "#{access_token.uid}@princeton.edu"
-      user.password = SecureRandom.urlsafe_base64
       user.provider = access_token.provider
     end
   end
