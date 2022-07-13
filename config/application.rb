@@ -16,5 +16,8 @@ module DssCatalog
     # -- all .rb files in that directory are automatically loaded.
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     config.autoloader = :zeitwerk
+
+    # See https://github.com/projectblacklight/blacklight/issues/2768
+    config.active_record.yaml_column_permitted_classes = [HashWithIndifferentAccess]
   end
 end
