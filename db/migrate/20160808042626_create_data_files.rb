@@ -12,7 +12,6 @@ class CreateDataFiles < ActiveRecord::Migration[5.1]
       t.string :file_type_b
       t.string :flag_one
       t.string :flag_two
-      t.string :file_type_a
       t.string :file_type_tech
       t.string :note
       t.integer :study_num
