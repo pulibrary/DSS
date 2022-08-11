@@ -24,4 +24,5 @@ job_type :logging_rake, 'cd :path && :environment_variable=:environment bundle e
 
 every 1.day, at: '11pm', roles: [:db] do
   logging_rake 'dss:clean:guest_users', output: { error: '/tmp/clean_guest_users.log', standard: '/tmp/clean_guest_users.log' }
+  logging_rake 'blacklight:delete_old_searches', output: { error: '/tmp/clean_old_searches.log', standard: '/tmp/clean_old_searches.log' }
 end
