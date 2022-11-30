@@ -79,3 +79,5 @@ gem 'webpacker'
 gem 'bootstrap', '~> 4.6'
 
 gem "honeybadger", "~> 4.12"
+
+gem "vite_rails", "~> 3.0"
