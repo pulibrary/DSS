@@ -73,9 +73,6 @@ gem 'ckeditor', '~> 4.2.4'
 
 gem 'pul-assets', github: 'pulibrary/pul_assets', branch: :main
 
-# lux dependency
-gem 'webpacker'
-
 gem 'bootstrap', '~> 4.6'
 
 gem "honeybadger", "~> 4.12"
