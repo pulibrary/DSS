@@ -1,6 +1,7 @@
 version: 2.1
 orbs: 
   browser-tools: circleci/browser-tools@1.2.5
+  node: circleci/node@5.0.3
 jobs:
   test:
     # Primary command image where all commands run
@@ -64,9 +65,9 @@ jobs:
           keys:
             - v1-DSS-{{ checksum "yarn.lock" }}
             - v1-DSS-
-      - run:
-          name: Yarn Install
-          command: yarn install --cache-folder ~/.cache/yarn
+      - node/install:
+          install-yarn: true
+          node-version: '16.18.1'
       # Store yarn / webpacker cache
       - save_cache:
           key: v1-DSS-{{ checksum "yarn.lock" }}
