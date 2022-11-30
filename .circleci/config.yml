@@ -13,7 +13,7 @@ jobs:
           PGUSER: dss
       - image: solr:7.7-alpine
         command: bin/solr -cloud -noprompt -f -p 8888
-      - image: postgres:10.6-alpine
+      - image: postgres:13-alpine
         environment:
           POSTGRES_USER: dss
           POSTGRES_DB: dss_test
