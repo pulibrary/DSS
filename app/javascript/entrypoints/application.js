@@ -1,28 +1,25 @@
-// To see this message, add the following to the `<head>` section in your
-// views/layouts/application.html.erb
+/* eslint no-console:0 */
+// This file is automatically compiled by Webpack, along with any other files
+// present in this directory. You're encouraged to place your actual application logic in
+// a relevant structure within app/javascript and only use these pack files to reference
+// that code so it'll be compiled.
 //
-//    <%= vite_client_tag %>
-//    <%= vite_javascript_tag 'application' %>
-console.log('Vite ⚡️ Rails')
+// To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
+// layout file, like app/views/layouts/application.html.erb
 
-// If using a TypeScript entrypoint file:
-//     <%= vite_typescript_tag 'application' %>
-//
-// If you want to use .jsx or .tsx, add the extension:
-//     <%= vite_javascript_tag 'application.jsx' %>
+import Vue from "vue/dist/vue.esm"
+import system from "lux-design-system"
+import "lux-design-system/dist/system/system.css"
+import "lux-design-system/dist/system/tokens/tokens.scss"
 
-console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
+Vue.use(system)
 
-// Example: Load Rails libraries in Vite.
-//
-// import * as Turbo from '@hotwired/turbo'
-// Turbo.start()
-//
-// import ActiveStorage from '@rails/activestorage'
-// ActiveStorage.start()
-//
-// // Import all channels.
-// const channels = import.meta.globEager('./**/*_channel.js')
-
-// Example: Import a stylesheet in app/frontend/index.css
-// import '~/index.css'
+// create the LUX app and mount it to wrappers with class="lux"
+document.addEventListener('DOMContentLoaded', () => {
+  var elements = document.getElementsByClassName('lux')
+  for(var i = 0; i < elements.length; i++){
+    new Vue({
+      el: elements[i]
+    })
+  }
+})
