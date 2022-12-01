@@ -222,3 +222,13 @@ select::-ms-expand {
 .facet-values .facet-label {
   padding-bottom: 0px;
 }
+
+.no-js {
+  visibility: hidden;
+  opacity: 0;
+ }
+
+ .js {
+  visibility: visible;
+  opacity: 1;
+ }

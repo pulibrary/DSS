@@ -40,6 +40,8 @@ append :linked_dirs, 'tmp/pids', 'tmp/cache', 'tmp/sockets'
 # passenger-config restart-app which requires sudo access
 set :passenger_restart_with_touch, true
 
+set :yarn_flags, '--silent --no-progress'
+
 namespace :deploy do
 
   after :restart, :clear_cache do
