@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'cancancan', '~> 1.15'
 
 gem 'pg'
-gem "blacklight", '~> 7.3.0'
+gem "blacklight", '~> 7.3'
 gem 'solr_wrapper', '~> 2.1'
 
 # Use Capistrano for deployment
