@@ -4,15 +4,17 @@ orbs:
   node: circleci/node@5.0.3
 jobs:
   test:
-    # Primary command image where all commands run
+    parameters:
+      ruby-version:
+        type: string
     docker:
-      - image: cimg/ruby:2.7-browsers
+      - image: cimg/ruby:<< parameters.ruby-version >>-browsers
         environment:
           SOLR_URL: localhost
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: dss
-      - image: solr:7.7-alpine
+      - image: solr:8-alpine
         command: bin/solr -cloud -noprompt -f -p 8888
       - image: postgres:13-alpine
         environment:
@@ -23,16 +25,6 @@ jobs:
     working_directory: ~/DSS
     steps: &build_steps
       - checkout
-      - run:
-          name: Install Java 8
-          command: |
-            sudo apt update --allow-releaseinfo-change
-            sudo apt install software-properties-common apt-transport-https
-            wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
-            sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
-            sudo apt update
-            sudo apt install adoptopenjdk-11-hotspot
-            sudo update-alternatives --set java /usr/lib/jvm/adoptopenjdk-11-hotspot-amd64/bin/java
       #set timezone to est
       - run:
           name: Set Timezone to EST
@@ -86,4 +78,7 @@ workflows:
   version: 2
   build_accept_deploy:
     jobs:
-      - test
+      - test:
+          matrix:
+            parameters:
+              ruby-version: ["2.7.5", "3.0.5", "3.1.3"]

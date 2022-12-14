@@ -30,3 +30,10 @@ If you need to re-index you can do either of the following.
 or if you want to re-index one Resource object at a time
 
 ```rake dss:solr:reindex```
+
+## Running the tests
+
+```
+RAILS_ENV=test bundle exec rake db:setup
+bundle exec rspec
+```
