@@ -3,7 +3,7 @@ inherit_from: .rubocop_todo.yml
 require: rubocop-rspec
 AllCops:
   DisplayCopNames: true
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.1
   Exclude:
     - 'db/**/*'
     - 'script/**/*'
