@@ -31,9 +31,9 @@ gem 'solr_wrapper', '~> 2.1'
 
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
-gem 'capistrano', '3.7.2'
+gem 'capistrano', '~> 3.16.0'
 gem 'capistrano-yarn'
-gem 'sshkit', '1.12.0'
+gem 'sshkit', '~> 1.12'
 gem 'ffi'
 gem 'whenever', require: false
 
@@ -64,9 +64,9 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'rsolr', '~> 1.0'
+gem 'rsolr'
 gem "devise"
-gem 'devise-guests', '~> 0.5'
+gem 'devise-guests'
 gem 'omniauth-cas'
 gem 'select2-rails'
 gem 'ckeditor', '~> 4.2.4'
