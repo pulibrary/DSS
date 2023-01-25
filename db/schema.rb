@@ -2,16 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_15_210121) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_04_15_210121) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,8 +20,8 @@ ActiveRecord::Schema.define(version: 2022_04_15_210121) do
     t.string "document_id"
     t.string "document_type"
     t.binary "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["document_id"], name: "index_bookmarks_on_document_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
@@ -30,9 +29,9 @@ ActiveRecord::Schema.define(version: 2022_04_15_210121) do
   create_table "countries", force: :cascade do |t|
     t.string "name"
     t.integer "key_term_id"
-    t.datetime "key_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "key_time", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "countries_resources", id: false, force: :cascade do |t|
@@ -65,20 +64,20 @@ ActiveRecord::Schema.define(version: 2022_04_15_210121) do
     t.string "note"
     t.integer "study_num"
     t.string "permission"
-    t.datetime "timestamp"
+    t.datetime "timestamp", precision: nil
     t.integer "original_study_id"
     t.bigint "study_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["study_id"], name: "index_data_files_on_study_id"
   end
 
   create_table "regions", force: :cascade do |t|
     t.string "name"
     t.integer "key_term_id"
-    t.datetime "key_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "key_time", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "regions_resources", id: false, force: :cascade do |t|
@@ -100,7 +99,7 @@ ActiveRecord::Schema.define(version: 2022_04_15_210121) do
     t.integer "resource_id"
     t.string "url"
     t.text "blurb"
-    t.datetime "link_time"
+    t.datetime "link_time", precision: nil
     t.string "sample"
     t.string "principal_investigator"
     t.string "producer"
@@ -108,8 +107,8 @@ ActiveRecord::Schema.define(version: 2022_04_15_210121) do
     t.string "version"
     t.string "more_detail_url"
     t.string "resource_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "resources_subjects", id: false, force: :cascade do |t|
@@ -123,8 +122,8 @@ ActiveRecord::Schema.define(version: 2022_04_15_210121) do
     t.binary "query_params"
     t.integer "user_id"
     t.string "user_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["user_id"], name: "index_searches_on_user_id"
   end
 
@@ -138,13 +137,13 @@ ActiveRecord::Schema.define(version: 2022_04_15_210121) do
     t.string "directory"
     t.string "folder"
     t.boolean "r_flag"
-    t.datetime "timestamp"
+    t.datetime "timestamp", precision: nil
     t.boolean "auto_refresh"
     t.text "note"
     t.string "roper"
     t.integer "voyager_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "resource_id"
     t.index ["resource_id"], name: "index_studies_on_resource_id"
   end
@@ -159,24 +158,24 @@ ActiveRecord::Schema.define(version: 2022_04_15_210121) do
   create_table "subjects", force: :cascade do |t|
     t.string "name"
     t.integer "key_term_id"
-    t.datetime "key_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "key_time", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "guest", default: false
     t.string "provider"
     t.string "uid"
