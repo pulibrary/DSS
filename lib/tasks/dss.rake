@@ -3,7 +3,7 @@ require 'json'
 namespace :dss do
   namespace :servers do
     desc "Start solr and postgres servers using lando."
-    task :start do
+    task start: :environment do
       system("lando start")
       system("rake db:create")
       system("rake db:migrate")
@@ -61,14 +61,14 @@ namespace :dss do
       solr = RSolr.connect :url => Blacklight.connection_config[:url]
       resource_list = Resource.all.map { |r| r.to_solr }
       solr.add JSON.parse(resource_list.to_json)
-      solr.update data: '<commit/>'
+      solr.update data: '<commit/>', headers: { 'Content-Type' => 'text/xml' }
     end
 
     desc 'Delete all indexed Resource objects from Solr'
     task deindex: :environment do
       solr = RSolr.connect :url => Blacklight.connection_config[:url]
-      solr.update data: '<delete><query>*:*</query></delete>'
-      solr.update data: '<commit/>'
+      solr.update data: '<delete><query>*:*</query></delete>', headers: { 'Content-Type' => 'text/xml' }
+      solr.update data: '<commit/>', headers: { 'Content-Type' => 'text/xml' }
     end
 
     desc 'Reindexes all current Resource objects one by one'
@@ -81,7 +81,7 @@ namespace :dss do
     end
 
     desc 'Updates solr config files from github [Use only for local development]'
-    task :update, :solr_dir do |t, args|
+    task :update, [:solr_dir] => :environment do |t, args|
       solr_dir = args[:solr_dir] || Rails.root.join('solr')
 
       ['mapping-ISOLatin1Accent.txt', 'protwords.txt', 'schema.xml', 'solrconfig.xml',

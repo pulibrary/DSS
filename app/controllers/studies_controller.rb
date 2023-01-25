@@ -23,7 +23,7 @@ class StudiesController < ApplicationController
     if @study
       redirect_to study_path(@study)
     else
-      render status: 404
+      render status: :not_found
     end
   end
 
