@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-# rubocop:disable FactoryBot/CreateList
+# rubocop:disable RSpec/FactoryBot
 RSpec.describe User, type: :model do
   context "when there are guest users older than 7 days" do
     before do
@@ -34,4 +34,4 @@ RSpec.describe User, type: :model do
     end
   end
 end
-# rubocop:enable FactoryBot/CreateList
+# rubocop:enable RSpec/FactoryBot

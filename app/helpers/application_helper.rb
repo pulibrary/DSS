@@ -11,17 +11,21 @@ module ApplicationHelper
     end
   end
 
+  # rubocop:disable  Rails/OutputSafety
   def html_safe(args)
     args[:document][args[:field]].join('').gsub("\\'", '').html_safe
   end
+  # rubocop:enable  Rails/OutputSafety
 
   def link(args)
     study_link_array args[:document][args[:field]], args[:document][args[:field]]
   end
 
+  # rubocop:disable  Rails/OutputSafety
   def resource_id(catalog_id)
     catalog_id.gsub("resource", '').html_safe
   end
+  # rubocop:enable  Rails/OutputSafety
 
   # munges urls to get a link to a study
   def study_link_array(label, url)

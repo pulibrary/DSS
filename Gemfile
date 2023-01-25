@@ -46,7 +46,8 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem "factory_bot_rails", require: false
   gem "pry-byebug"
-  gem "rubocop-rspec"
+  gem "rubocop-rspec", require: false
+  gem 'rubocop-rails', require: false
   gem 'selenium-webdriver'
   gem "timecop"
 end
