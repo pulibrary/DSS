@@ -78,7 +78,10 @@
 
   <div class="field">
     <div class="field_head">Countries</div>
-    <%= select_tag "resource[country_ids]", options_from_collection_for_select(Country.order(:name), 'id', 'name', @resource.countries.collect(&:id)), multiple: true, class: 'select2' %>
+    <%= select_tag "resource[country_ids]", 
+        countries_for_select(Country.order(:name), 'id', 'name', @resource.countries.collect(&:id)),  
+        multiple: true, 
+        class: 'select2' %>
   </div>
 
   <div class="field">

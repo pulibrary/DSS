@@ -30,7 +30,7 @@ class ResourcesController < ApplicationController
   # POST /resources.json
   def create
     @resource = Resource.new(resource_params)
-
+    
     respond_to do |format|
       if @resource.save
         format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
@@ -74,9 +74,11 @@ class ResourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resource_params
-      params.require(:resource).permit(:name, :resource_id, :url, :blurb, 
-                                       :link_time, :sample, :principal_investigator, 
-                                       :producer, :distributor, :version, :more_detail_url, 
-                                       :resource_type, country_ids: [], subject_ids: [], region_ids: [])
+      resource_params = params.require(:resource).permit(:name, :resource_id, :url, :blurb, 
+                                                         :link_time, :sample, :principal_investigator, 
+                                                         :producer, :distributor, :version, :more_detail_url, 
+                                                         :resource_type, country_ids: [], subject_ids: [], region_ids: [])
+      resource_params[:country_ids] = Country.all.ids if resource_params[:country_ids]&.include?("all")
+      resource_params
     end
 end
