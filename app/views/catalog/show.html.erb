@@ -2,7 +2,7 @@
   <%= link_to 'Edit this Resource', "/resources/#{resource_id(@document.id)}/edit", class: 'btn pull-right heading__inline' %>
 <% end %>
 <div id="content" class="content--show">
-  <%= render_document_main_content_partial %>
+  <%= render 'show_main_content' %>
 </div>
 
 <% content_for(:sidebar) do %>
