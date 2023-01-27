@@ -60,7 +60,7 @@ RSpec.configure do |config|
   [:controller, :view].each do |type|
     config.include Devise::Test::ControllerHelpers, type:
   end
-  [:feature, :request, :system].each do |type|
+  [:request, :system].each do |type|
     config.include Devise::Test::IntegrationHelpers, type:
   end
 end
