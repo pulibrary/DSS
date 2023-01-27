@@ -33,10 +33,7 @@ RSpec/ExampleLength:
   Enabled: false
 
 RSpec/MultipleExpectations:
-  Max: 4
-  Exclude:
-    - 'spec/views/**/*'
-    - 'spec/features/**/*'
+  Enabled: false
 
 Metrics/AbcSize:
   Exclude:
