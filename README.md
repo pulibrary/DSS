@@ -37,3 +37,9 @@ or if you want to re-index one Resource object at a time
 RAILS_ENV=test bundle exec rake db:setup
 bundle exec rspec
 ```
+
+#### Running system specs in the browser
+
+   ```bash
+   RUN_IN_BROWSER=true bundle exec rspec spec/system
+   ```
