@@ -22,7 +22,11 @@
   <div class="navigation">
     <div class="container">
       <div id="header-navbar" class="navbar navbar-static-top" role="navigation">
-          <%= render partial: 'catalog/search_form' %>
+            <%= render Dss::SearchBarComponent.new(
+              classes: ['search-query-form', 'clearfix', 'navbar-form'],
+              url: search_action_url,
+              params: search_state.params_for_search.except(:qt)
+            ) %>
           <%= render partial: 'shared/user_util_links' %>
       </div>
     </div>
