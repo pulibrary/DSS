@@ -214,5 +214,7 @@ class CatalogController < ApplicationController
     # navbar partials
     config.navbar.partials.delete(:search_history)
     config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
+
+    config.search_state_fields = config.search_state_fields + [:id, :utf8]
   end
 end
