@@ -55,8 +55,7 @@
   <%= render partial: 'shared/modal' %>
 
   <div id="main-container" class="<%= container_classes %>">
-    <%= render partial: 'catalog/flash_msg', layout: 'shared/flash_messages' %>
-
+    <%= render partial: 'shared/flash_msg', layout: 'shared/flash_messages' %>
     <div class="row">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
