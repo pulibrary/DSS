@@ -41,6 +41,7 @@ class CatalogController < ApplicationController
     # solr field configuration for search results/index views
     config.index.title_field = 'title_display'
     config.index.display_type_field = 'resource_type_s'
+    config.index.constraints_component = Dss::ConstraintsComponent
 
     # solr field configuration for document/show views
     config.show.title_field = 'title_display'
