@@ -8,6 +8,6 @@ RSpec.describe 'Show page', type: :system do
 
   it 'has a bookmark checkbox' do
     visit '/catalog/resource3'
-    expect(page).to have_selector('#bookmark_toggle_resource3', visible: false)
+    expect(page).to have_selector('#bookmark_toggle_resource3', visible: :hidden)
   end
 end
