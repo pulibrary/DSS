@@ -30,7 +30,6 @@ $link-color: #2762ae;
 
 @import 'blacklight/blacklight';
 // Import for pul-assets, except for modals overrides, which were breaking the modals
-// @import "pul-assets__blacklight";
 @import "bourbon";
 @import "susy";
 @import "breakpoint";
@@ -43,7 +42,6 @@ $link-color: #2762ae;
 @import "overrides/bootstrap";
 @import "overrides/header_navbar";
 @import "overrides/dropdowns";
-// @import "overrides/modals";
 @import "overrides/menu--user";
 
 .navigation {
