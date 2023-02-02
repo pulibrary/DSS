@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Dss::System::ModalComponent, type: :component do
+RSpec.describe Blacklight::System::ModalComponent, type: :component do
   let(:rendered) do
     Capybara::Node::Simple.new(render_inline(described_class.new))
   end
