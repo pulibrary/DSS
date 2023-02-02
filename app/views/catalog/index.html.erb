@@ -1,6 +1,10 @@
 <div class="container--catalog">
   <div id="sidebar" class="lside--catalog <%= has_search_parameters? %>">
-    <%= render 'search_sidebar' %>
+      <% conf = blacklight_config.view_config(document_index_view_type) %>
+      <%= render conf.sidebar_component.new(blacklight_config: blacklight_config,
+                                            response: @response,
+                                            view_config: conf) %>
+      <%= render 'shared/quick-links' %>
   </div>
 
   <div id="content" class="content--catalog <%= has_search_parameters? %>">
