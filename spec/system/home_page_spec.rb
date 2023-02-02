@@ -7,6 +7,12 @@ describe "home page", type: :system, js: true do
     visit '/catalog'
     expect(html_errors('Unexpected end tag')).to be_empty
   end
+
+  it 'has facets' do
+    visit '/catalog'
+    expect(page).to have_content('Data Catalog')
+    expect(page).to have_content('Quick Links')
+  end
 end
 
 def html_errors(error_name)
