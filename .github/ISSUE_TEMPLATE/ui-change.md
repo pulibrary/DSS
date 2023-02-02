@@ -2,7 +2,7 @@
 name: UI change
 about: A change to the display
 title: ''
-labels: user experience
+labels: ['user experience']
 assignees: ''
 
 ---
