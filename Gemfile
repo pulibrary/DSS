@@ -7,8 +7,7 @@ gem 'rails', '~> 7.0'
 gem 'puma', '~> 4.3'
 # Use SCSS for stylesheets
 gem 'sass-rails'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'terser'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -26,7 +25,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'cancancan', '~> 1.15'
 
 gem 'pg'
-gem "blacklight", '~> 7.3'
+gem "blacklight", '~> 8.0.0.beta4'
 gem 'solr_wrapper', '~> 2.1'
 
 # Use Capistrano for deployment

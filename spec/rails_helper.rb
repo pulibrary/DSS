@@ -44,7 +44,7 @@ RSpec.configure do |config|
     if ENV["RUN_IN_BROWSER"]
       driven_by(:selenium_chrome)
     else
-      driven_by(:selenium_chrome_headless)
+      driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
     end
   end
   # RSpec Rails can automatically mix in different behaviours to your tests
