@@ -89,7 +89,7 @@ GEM
       execjs (~> 2)
     bcrypt (3.1.18)
     bindex (0.8.1)
-    blacklight (8.0.0.beta4)
+    blacklight (8.0.0.beta5)
       globalid
       i18n (>= 1.7.0)
       jbuilder (~> 2.7)
@@ -204,7 +204,7 @@ GEM
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.8.0.1)
+    mail (2.8.1)
       mini_mime (>= 0.1.1)
       net-imap
       net-pop
