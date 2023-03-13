@@ -28,7 +28,7 @@
           <% end %>
         <td>
           <% unless resource.blurb.nil? %>
-            <%= truncate(resource.blurb.gsub(/<\/?[^>]*>/, '').html_safe, :length => 230, :omission => "" , :escape => false) %>
+            <%= truncate(strip_tags(resource.blurb), :length => 230, :omission => "" , :escape => false) %>
           <% end %>
         </td>
         <td><%= resource.sample %></td>
