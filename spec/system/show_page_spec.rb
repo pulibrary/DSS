@@ -10,4 +10,9 @@ RSpec.describe 'Show page', type: :system do
     visit '/catalog/resource3'
     expect(page).to have_selector('#bookmark_toggle_resource3', visible: :hidden)
   end
+
+  it 'has no citation link' do
+    visit '/catalog/resource3'
+    expect(page).not_to have_link('Cite')
+  end
 end
