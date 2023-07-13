@@ -10,7 +10,7 @@
       <% else %>
         <%= link_to 'Add new Study', '/study/new', class: 'btn pull-left' %>
         <div class="field">
-          <div class="field_head">Select exiting Study</div>
+          <div class="field_head">Select existing study</div>
             <%= select_tag "study[resource_id]", options_from_collection_for_select(Study.order(:title), 'id', 'title'), multiple: false, class: 'select2', include_blank: true %>
           </div>
         </div>
