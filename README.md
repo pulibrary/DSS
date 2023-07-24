@@ -4,12 +4,14 @@
 
 1. ```git clone git@github.com:pulibrary/DSS.git```
 1. ```cd DSS```
+2. ```asdf install # if you are using asdf```
 1. ```bundle install```
 1. ```yarn install```
 1. ```rake dss:servers:start```
 1. ```rake db:seed```
 1. ```rake dss:solr:update```
 1. ```rake dss:solr:index```
+2. ```gem install foreman```
 1. ```foreman start```
 
 (You may need to install [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) and [foreman](https://github.com/ddollar/foreman) separately, if you haven't already.)
