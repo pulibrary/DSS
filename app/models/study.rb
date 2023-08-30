@@ -1,6 +1,7 @@
 require 'net/ssh'
 
 class Study < ApplicationRecord
+  validates :studynum, numericality: { only_integer: true }
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :countries
   has_and_belongs_to_many :regions
