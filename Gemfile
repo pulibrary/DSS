@@ -35,6 +35,8 @@ gem 'capistrano-yarn'
 gem 'sshkit', '~> 1.12'
 gem 'ffi'
 gem 'whenever', require: false
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -88,6 +88,7 @@ GEM
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
     bcrypt (3.1.18)
+    bcrypt_pbkdf (1.1.0)
     bindex (0.8.1)
     blacklight (8.0.0.beta5)
       globalid
@@ -153,6 +154,7 @@ GEM
       devise
     diff-lcs (1.5.0)
     dry-cli (0.7.0)
+    ed25519 (1.3.0)
     erubi (1.12.0)
     execjs (2.8.1)
     factory_bot (6.2.1)
@@ -429,6 +431,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt_pbkdf
   blacklight (~> 8.0.0.beta4)
   bootstrap (~> 4.6)
   byebug
@@ -441,6 +444,7 @@ DEPENDENCIES
   ckeditor (~> 4.2.4)
   devise
   devise-guests
+  ed25519
   factory_bot_rails
   ffi
   honeybadger (~> 4.12)
