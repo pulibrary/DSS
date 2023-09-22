@@ -133,6 +133,9 @@ main > .container {
     padding: 0 1.5em 0 0;
   }
 
+  .quick-links a {
+    text-decoration: underline;
+  }
   #sidebar,
   #content {
     padding: 0;
