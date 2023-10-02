@@ -44,6 +44,32 @@ $link-color: #2762ae;
 @import "overrides/dropdowns";
 @import "overrides/menu--user";
 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.region-btn-container {
+  padding-bottom: 2%;
+}
+
+a.btn.pull-right.heading__inline {
+  background: #337ab7;
+  border-color: #2762ae;
+  color: #fff;
+}
+
+a.btn.pull-right.heading__inline:hover {
+  color: white;
+  background: #589aef;
+  border-color: #2762ae;
+}
+
 .navigation {
   z-index: 2;
 }
