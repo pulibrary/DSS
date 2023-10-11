@@ -90,7 +90,7 @@ GEM
     bcrypt (3.1.18)
     bcrypt_pbkdf (1.1.0)
     bindex (0.8.1)
-    blacklight (8.0.0.beta5)
+    blacklight (8.0.1)
       globalid
       i18n (>= 1.7.0)
       jbuilder (~> 2.7)
@@ -399,7 +399,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
-    view_component (2.82.0)
+    view_component (3.0.0)
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
@@ -432,7 +432,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt_pbkdf
-  blacklight (~> 8.0.0.beta4)
+  blacklight (~> 8.0.1)
   bootstrap (~> 4.6)
   byebug
   cancancan (~> 1.15)
