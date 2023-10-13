@@ -92,7 +92,7 @@ main > .container {
 }
 
 .input-group>.search-q {
-  width: auto;
+  width: 34vw;
   height: 40px;
   margin-top: 0;
 }
@@ -116,7 +116,7 @@ main > .container {
   }
 
   .banner {
-    object-fit: cover;
+    width: 100em;
     height: 150px;
     overflow: hidden;
     display: block;
@@ -248,3 +248,19 @@ select::-ms-expand {
   visibility: visible;
   opacity: 1;
  }
+ .navigation .container {
+  padding: 0;
+  margin: 0;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+#header-navbar {
+  padding: 1rem 1rem;
+  min-height: 75px;
+}
+
+.lux-header-content {
+  max-width: none !important;
+  padding: 0 2rem !important;
+}
