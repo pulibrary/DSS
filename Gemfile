@@ -26,7 +26,6 @@ gem 'cancancan', '~> 1.15'
 
 gem 'pg'
 gem "blacklight", '~> 8.0.1'
-gem 'solr_wrapper', '~> 2.1'
 
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development

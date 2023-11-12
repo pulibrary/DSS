@@ -303,7 +303,6 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    retriable (3.1.2)
     rexml (3.2.5)
     rsolr (2.5.0)
       builder (>= 2.1.2)
@@ -367,11 +366,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    solr_wrapper (2.2.0)
-      faraday
-      retriable
-      ruby-progressbar
-      rubyzip
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -465,7 +459,6 @@ DEPENDENCIES
   sass-rails
   select2-rails
   selenium-webdriver
-  solr_wrapper (~> 2.1)
   spring
   spring-watcher-listen (~> 2.0.0)
   sshkit (~> 1.12)
