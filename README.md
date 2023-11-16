@@ -7,10 +7,10 @@
 2. ```asdf install # if you are using asdf```
 1. ```bundle install```
 1. ```yarn install```
-1. ```rake dss:servers:start```
-1. ```rake db:seed```
-1. ```rake dss:solr:update```
-1. ```rake dss:solr:index```
+1. ```bundle exec rake dss:servers:start```
+1. ```bundle exec rake db:seed```
+1. ```bundle exec rake dss:solr:update```
+1. ```bundle exec rake dss:solr:index```
 2. ```gem install foreman```
 1. ```foreman start```
 
@@ -26,12 +26,12 @@ or
 
 If you need to re-index you can do either of the following.
 
-```rake dss:solr:deindex```
-```rake dss:solr:index```
+```bundle exec rake dss:solr:deindex```
+```bundle exec rake dss:solr:index```
 
 or if you want to re-index one Resource object at a time
 
-```rake dss:solr:reindex```
+```bundle exec rake dss:solr:reindex```
 
 ## Running the tests
 
