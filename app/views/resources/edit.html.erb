@@ -5,6 +5,10 @@
   <%= link_to 'Back', resources_path %>
 </div>
 
+<div> 
+  <h4> Last update: <%= @last_update.updated_at %> </h4>
+</div>
+
 <%= render 'study_details', resource: @resource %>
 
 <%= render 'form', resource: @resource %>

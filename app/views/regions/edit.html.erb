@@ -5,4 +5,8 @@
   <%= link_to 'Back', regions_path %>
 </div>
 
+<div> 
+  <h4> Last update: <%= @last_update.updated_at %> </h4>
+</div>
+
 <%= render 'form', region: @region %>

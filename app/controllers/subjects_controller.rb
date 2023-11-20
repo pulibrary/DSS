@@ -19,6 +19,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/1/edit
   def edit
+    @last_update = Resource.order(updated_at: :desc).first
   end
 
   # POST /subjects

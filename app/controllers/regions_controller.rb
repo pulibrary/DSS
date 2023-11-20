@@ -19,6 +19,7 @@ class RegionsController < ApplicationController
 
   # GET /regions/1/edit
   def edit
+    @last_update = Resource.order(updated_at: :desc).first
   end
 
   # POST /regions
