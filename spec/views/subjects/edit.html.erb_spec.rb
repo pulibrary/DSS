@@ -7,6 +7,7 @@ RSpec.describe 'subjects/edit', type: :view do
 
   before do
     assign(:subject, lsubject)
+    assign(:last_update, lsubject.updated_at.localtime.to_fs(:date_twelve_hour))
   end
 
   it 'renders the edit subject form' do
