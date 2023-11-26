@@ -19,7 +19,7 @@ class RegionsController < ApplicationController
 
   # GET /regions/1/edit
   def edit
-    @last_update = Resource.order(updated_at: :desc).first
+    @last_update = @region.updated_at.localtime.to_fs(:date_twelve_hour)
   end
 
   # POST /regions
