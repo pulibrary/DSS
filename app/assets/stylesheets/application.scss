@@ -294,3 +294,31 @@ select::-ms-expand {
     color: white;
   }
 }
+
+.btn {
+  background-color: #337ab7;
+  color: white
+}
+
+.btn:hover {
+  color: white;
+  text-decoration: none;
+  background-color:#23578b;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  flex-direction: column;
+}
+
+.title-button {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-end;
+  padding-right: 8%;
+}
