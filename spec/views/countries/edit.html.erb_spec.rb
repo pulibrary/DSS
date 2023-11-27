@@ -7,6 +7,7 @@ RSpec.describe 'countries/edit', type: :view do
 
   before do
     assign(:country, country)
+    assign(:last_update, country.updated_at.localtime.to_fs(:date_twelve_hour))
   end
 
   it 'renders the edit country form' do

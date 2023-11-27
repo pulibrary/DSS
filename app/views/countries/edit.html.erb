@@ -2,7 +2,9 @@
 
 <div class="admin-edit">
   <%= link_to 'Show', @country %> |
-  <%= link_to 'Back', countries_path %>
+  <%= link_to 'Back', countries_path %> |
+  <p> Last update: <%= @last_update %> </p>
 </div>
+
 
 <%= render 'form', country: @country %>

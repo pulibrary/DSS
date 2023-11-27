@@ -1,8 +1,10 @@
 <h1>Editing Subject</h1>
 
+
 <div class="admin-edit">
   <%= link_to 'Show', @subject %> |
-  <%= link_to 'Back', subjects_path %>
+  <%= link_to 'Back', subjects_path %> |
+  <p> Last update: <%= @last_update %> </p>
 </div>
 
 <%= render 'form', subject: @subject %>

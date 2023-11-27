@@ -12,6 +12,7 @@ RSpec.describe 'resources/edit', type: :view do
 
   before do
     assign(:resource, resource)
+    assign(:last_update, resource.updated_at.localtime.to_fs(:date_twelve_hour))
   end
 
   it 'renders the edit resource form' do

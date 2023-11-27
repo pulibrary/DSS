@@ -2,7 +2,8 @@
 
 <div class="admin-edit">
   <%= link_to 'Show', @resource %> |
-  <%= link_to 'Back', resources_path %>
+  <%= link_to 'Back', resources_path %> |
+  <p> Last update: <%= @last_update %> </p>
 </div>
 
 <%= render 'study_details', resource: @resource %>

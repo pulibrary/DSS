@@ -19,6 +19,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/1/edit
   def edit
+    @last_update = @subject.updated_at.localtime.to_fs(:date_twelve_hour)
   end
 
   # POST /subjects
