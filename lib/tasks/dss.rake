@@ -1,16 +1,16 @@
 require 'json'
 
-namespace :dss do
-  namespace :servers do
-    desc "Start solr and postgres servers using lando."
-    task start: :environment do
-      system("lando start")
-      system("rake db:create")
-      system("rake db:migrate")
-      system("rake db:migrate RAILS_ENV=test")
-    end
+namespace :servers do
+  desc "Start solr and postgres servers using lando."
+  task start: :environment do
+    system("lando start")
+    system("rake db:create")
+    system("rake db:migrate")
+    system("rake db:migrate RAILS_ENV=test")
   end
+end
 
+namespace :dss do
   namespace :terms do
     desc 'Bulk assigns a country term id to a subject term id'
     task :country_to_subject, [:country_id, :subject_id] => :environment do |t, args|
