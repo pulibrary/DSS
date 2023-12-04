@@ -7,7 +7,7 @@
 2. ```asdf install # if you are using asdf```
 1. ```bundle install```
 1. ```yarn install```
-1. ```bundle exec rake dss:servers:start```
+1. ```bundle exec rake servers:start```
 1. ```bundle exec rake db:seed```
 1. ```bundle exec rake dss:solr:update```
 1. ```bundle exec rake dss:solr:index```
