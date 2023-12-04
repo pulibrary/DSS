@@ -1,10 +1,11 @@
 # frozen_string_literal: true
+
 require "rails_helper"
 
-describe "accessibility", type: :feature, js: true do
-  context "home page" do
+describe "accessibility", :js, type: :feature do
+  context "when visiting home page" do
     before do
-      visit "/"
+      visit "/catalog"
     end
 
     it "complies with wcag" do
@@ -13,40 +14,11 @@ describe "accessibility", type: :feature, js: true do
     end
   end
 
-  context "computing page" do
+  context "when visiting a resource page" do
     before do
-      visit "/computing"
+      visit "/catalog/resource6"
     end
-    it "complies with wcag2aa wcag21a" do
-      expect(page).to be_axe_clean
-        .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
-    end
-  end
 
-  context "consultants page" do
-    before do
-      visit "/consultants"
-    end
-    it "complies with wcag2aa wcag21a" do
-      expect(page).to be_axe_clean
-        .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
-    end
-  end
-
-  context "specialists page" do
-    before do
-      visit "/specialists"
-    end
-    it "complies with wcag2aa wcag21a" do
-      expect(page).to be_axe_clean
-        .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
-    end
-  end
-
-  context "training page" do
-    before do
-      visit "/training"
-    end
     it "complies with wcag2aa wcag21a" do
       expect(page).to be_axe_clean
         .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
