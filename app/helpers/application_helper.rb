@@ -11,6 +11,12 @@ module ApplicationHelper
     end
   end
 
+  # All screens handled by the catalog controller are public screens
+  # All other screens are considered "admin" screens
+  def admin_screen?
+    controller_name != 'catalog'
+  end
+
   # rubocop:disable  Rails/OutputSafety
   def html_safe(args)
     args[:document][args[:field]].join('').gsub("\\'", '').html_safe
@@ -40,7 +46,7 @@ module ApplicationHelper
   end
 
   def study_link(label, url)
-    if study_id = url.match(/studyno=(\d+)$/)
+    if study_id = url&.match(/studyno=(\d+)$/)
       study = Study.where(studynum: (study_id[1]).to_s).take
       unless study.nil?
         link_to('View Data Files', study_path(study))
