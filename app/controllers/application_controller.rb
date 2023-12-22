@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin_login
-    return head :forbidden unless admin_user?
+    head :forbidden unless admin_user?
   end
 
   def admin_user?

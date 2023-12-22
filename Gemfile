@@ -8,32 +8,21 @@ gem 'puma', '~> 5.6'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 gem 'terser'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-#gem 'turbolinks', '~> 5'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
 gem 'pg'
-gem "blacklight", '~> 8.0.1'
+gem "blacklight", '~> 8.0'
 
-# Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
-gem 'capistrano', '~> 3.16.0'
-gem 'capistrano-yarn'
-gem 'sshkit', '~> 1.12'
+gem 'sshkit'
 gem 'ffi'
 gem 'whenever', require: false
-gem 'ed25519'
-gem 'bcrypt_pbkdf'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  # Use sqlite3 as the database for Active Record
   gem 'byebug', platform: :mri
   gem 'capybara'
   gem "rspec-rails"
@@ -47,9 +36,13 @@ group :development, :test do
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console'
+  gem 'capistrano'
   gem 'capistrano-passenger'
+  gem 'capistrano-rails'
+  gem 'capistrano-yarn'
+
+  gem 'bcrypt_pbkdf'
+  gem 'ed25519'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -60,12 +53,12 @@ gem "devise"
 gem 'devise-guests'
 gem 'omniauth-cas'
 gem 'select2-rails'
-gem 'ckeditor', '~> 4.2.4'
+gem 'ckeditor'
 
 gem 'pul-assets', github: 'pulibrary/pul_assets', branch: :main
 
 gem 'bootstrap', '~> 4.6'
 
-gem "honeybadger", "~> 4.12"
+gem "honeybadger"
 
 gem "vite_rails", "~> 3.0"

@@ -14,7 +14,7 @@ namespace :dss do
   namespace :terms do
     desc 'Bulk assigns a country term id to a subject term id'
     task :country_to_subject, [:country_id, :subject_id] => :environment do |t, args|
-      puts (args[:country_id]).to_s
+      puts (args[:country_id])
       country = Country.find(args[:country_id])
       puts country.name
       subject = Subject.find(args[:subject_id])
@@ -23,12 +23,11 @@ namespace :dss do
       puts resources.size
       resources.each do |r|
         subjects = r.subject_ids.push(args[:subject_id].to_i)
-        puts subjects.to_s
+        puts subjects
         r.subject_ids = subjects
         r.save!
         r.reload
         r.country_ids.delete(args[:country_id].to_i)
-        r.country_ids = r.country_ids
         r.save!
         puts "updating #{r.id}"
       end

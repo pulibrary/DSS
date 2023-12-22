@@ -18,7 +18,6 @@
 //= require dataTables/extras/dataTables.responsive
 //= require pul-assets
 //= require select2
-//= require ckeditor/init
 
 //= require_tree .
 
