@@ -15,4 +15,9 @@ RSpec.describe 'Show page', type: :system do
     visit '/catalog/resource3'
     expect(page).not_to have_link('Cite')
   end
+
+  it 'does not have an .admin class, since it is not an admin screen' do
+    visit '/catalog/resource3'
+    expect(page).not_to have_selector('.admin')
+  end
 end

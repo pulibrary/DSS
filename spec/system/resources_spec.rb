@@ -40,4 +40,25 @@ RSpec.describe 'resources', type: :system do
     expect(page).to have_content('Spain')
     expect(page).to have_content('Uganda')
   end
+
+  describe('edit page') do
+    it 'has an .admin class, since it is an admin screen' do
+      visit '/resources/3/edit'
+      expect(page).to have_selector('.admin')
+    end
+  end
+
+  describe('index page') do
+    it 'has an .admin class, since it is an admin screen' do
+      visit '/resources'
+      expect(page).to have_selector('.admin')
+    end
+  end
+
+  describe('admin show page') do
+    it 'has an .admin class, since it is an admin screen' do
+      visit '/resources/3'
+      expect(page).to have_selector('.admin')
+    end
+  end
 end
