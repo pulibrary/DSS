@@ -8,4 +8,6 @@
 
 <%= render 'study_details', resource: @resource %>
 
-<%= render 'form', resource: @resource %>
+<% if admin_user? %>
+  <%= render 'form', resource: @resource %>
+<% end %>
