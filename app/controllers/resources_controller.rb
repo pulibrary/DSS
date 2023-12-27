@@ -1,7 +1,7 @@
 class ResourcesController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_resource, only: [:show, :edit, :update, :destroy, :solr]
-  skip_before_action :authenticate_user!, only: [:show]
+  before_action :require_admin_login, only: [:create, :destroy, :edit, :new, :update]
+
   # GET /resources
   # GET /resources.json
   def index

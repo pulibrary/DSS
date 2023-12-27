@@ -37,22 +37,22 @@ RSpec.describe CountriesController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # CountriesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
-
-  before do
-    sign_in FactoryBot.create(:user)
-  end
+  let(:user) { FactoryBot.create(:user) }
+  let(:admin) { FactoryBot.create(:user, role: 'admin') }
 
   describe 'GET #index' do
+    let(:country) { Country.create! valid_attributes }
+
     it 'assigns all countries as @countries' do
-      country = Country.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(assigns(:countries)).to include(country)
     end
   end
 
   describe 'GET #show' do
+    let(:country) { Country.create! valid_attributes }
+
     it 'assigns the requested country as @country' do
-      country = Country.create! valid_attributes
       get :show, params: { id: country.to_param }, session: valid_session
       expect(assigns(:country)).to eq(country)
     end
@@ -60,14 +60,17 @@ RSpec.describe CountriesController, type: :controller do
 
   describe 'GET #new' do
     it 'assigns a new country as @country' do
+      sign_in admin
       get :new, params: {}, session: valid_session
       expect(assigns(:country)).to be_a_new(Country)
     end
   end
 
   describe 'GET #edit' do
+    let(:country) { Country.create! valid_attributes }
+
     it 'assigns the requested country as @country' do
-      country = Country.create! valid_attributes
+      sign_in admin
       get :edit, params: { id: country.to_param }, session: valid_session
       expect(assigns(:country)).to eq(country)
     end
@@ -75,21 +78,47 @@ RSpec.describe CountriesController, type: :controller do
 
   describe 'POST #create' do
     context 'with valid params' do
-      it 'creates a new Country' do
-        expect do
+      context 'when not logged in' do
+        it 'does not create a new Country' do
+          expect do
+            post :create, params: { country: valid_attributes }, session: valid_session
+          end.not_to change(Country, :count)
+        end
+      end
+
+      context 'when logged in as non-admin user' do
+        before do
+          sign_in FactoryBot.create(:user)
+        end
+
+        it 'does not create a new Country' do
+          expect do
+            post :create, params: { country: valid_attributes }, session: valid_session
+          end.not_to change(Country, :count)
+        end
+      end
+
+      context 'when logged in as admin user' do
+        before do
+          sign_in FactoryBot.create(:user, role: 'admin')
+        end
+
+        it 'creates a new Country' do
+          expect do
+            post :create, params: { country: valid_attributes }, session: valid_session
+          end.to change(Country, :count).by(1)
+        end
+
+        it 'assigns a newly created country as @country' do
           post :create, params: { country: valid_attributes }, session: valid_session
-        end.to change(Country, :count).by(1)
-      end
+          expect(assigns(:country)).to be_a(Country)
+          expect(assigns(:country)).to be_persisted
+        end
 
-      it 'assigns a newly created country as @country' do
-        post :create, params: { country: valid_attributes }, session: valid_session
-        expect(assigns(:country)).to be_a(Country)
-        expect(assigns(:country)).to be_persisted
-      end
-
-      it 'redirects to the created country' do
-        post :create, params: { country: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(Country.last)
+        it 'redirects to the created country' do
+          post :create, params: { country: valid_attributes }, session: valid_session
+          expect(response).to redirect_to(Country.last)
+        end
       end
     end
 
@@ -109,38 +138,66 @@ RSpec.describe CountriesController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        { name: 'New country' }
+      end
+      let(:country) { Country.create! valid_attributes }
+
+      context 'when not logged in' do
+        it 'does not modify the requested country' do
+          expect do
+            put :update, params: { id: country.id, country: new_attributes }, session: valid_session
+            country.reload
+          end.not_to(change { Country.find(country.id) })
+          expect(country.name).to eq('Name')
+        end
       end
 
-      it 'updates the requested country' do
-        country = Country.create! valid_attributes
-        put :update, params: { id: country.to_param, country: new_attributes }, session: valid_session
-        country.reload
-        skip('Add assertions for updated state')
+      context 'when logged in as a non-admin user' do
+        before do
+          sign_in user
+        end
+
+        it 'does not modify the requested country' do
+          expect do
+            put :update, params: { id: country.id, country: new_attributes }, session: valid_session
+            country.reload
+          end.not_to(change { Country.find(country.id) })
+          expect(country.name).to eq('Name')
+        end
       end
 
-      it 'assigns the requested country as @country' do
-        country = Country.create! valid_attributes
-        put :update, params: { id: country.to_param, country: valid_attributes }, session: valid_session
-        expect(assigns(:country)).to eq(country)
-      end
+      context 'when logged in as admin user' do
+        before do
+          sign_in admin
+        end
 
-      it 'redirects to the country' do
-        country = Country.create! valid_attributes
-        put :update, params: { id: country.to_param, country: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(country)
+        it 'updates the requested country' do
+          put :update, params: { id: country.to_param, country: new_attributes }, session: valid_session
+          country.reload
+          expect(country.name).to eq('New country')
+        end
+
+        it 'assigns the requested country as @country' do
+          put :update, params: { id: country.to_param, country: valid_attributes }, session: valid_session
+          expect(assigns(:country)).to eq(country)
+        end
+
+        it 'redirects to the country' do
+          put :update, params: { id: country.to_param, country: valid_attributes }, session: valid_session
+          expect(response).to redirect_to(country)
+        end
       end
     end
 
     context 'with invalid params' do
+      let(:country) { Country.create! valid_attributes }
+
       it 'assigns the country as @country' do
-        country = Country.create! valid_attributes
         put :update, params: { id: country.to_param, country: invalid_attributes }, session: valid_session
         expect(assigns(:country)).to eq(country)
       end
 
       it "re-renders the 'edit' template" do
-        country = Country.create! valid_attributes
         put :update, params: { id: country.to_param, country: invalid_attributes }, session: valid_session
         expect(response).to render_template('edit')
       end
@@ -148,17 +205,45 @@ RSpec.describe CountriesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    it 'destroys the requested country' do
-      country = Country.create! valid_attributes
-      expect do
-        delete :destroy, params: { id: country.to_param }, session: valid_session
-      end.to change(Country, :count).by(-1)
+    context 'when not logged in' do
+      it 'does not delete anything' do
+        country = Country.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: country.to_param }, session: valid_session
+        end.not_to change(Country, :count)
+      end
     end
 
-    it 'redirects to the countries list' do
-      country = Country.create! valid_attributes
-      delete :destroy, params: { id: country.to_param }, session: valid_session
-      expect(response).to redirect_to(countries_url)
+    context 'when logged in as non-admin user' do
+      before do
+        sign_in user
+      end
+
+      it 'does not delete anything' do
+        country = Country.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: country.to_param }, session: valid_session
+        end.not_to change(Country, :count)
+      end
+    end
+
+    context 'when logged in as admin user' do
+      before do
+        sign_in admin
+      end
+
+      it 'destroys the requested country' do
+        country = Country.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: country.to_param }, session: valid_session
+        end.to change(Country, :count).by(-1)
+      end
+
+      it 'redirects to the countries list' do
+        country = Country.create! valid_attributes
+        delete :destroy, params: { id: country.to_param }, session: valid_session
+        expect(response).to redirect_to(countries_url)
+      end
     end
   end
 end

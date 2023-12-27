@@ -47,9 +47,8 @@ RSpec.describe ResourcesController, type: :controller do
   # ResourcesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  before do
-    sign_in FactoryBot.create(:user)
-  end
+  let(:user) { FactoryBot.create(:user) }
+  let(:admin) { FactoryBot.create(:user, role: 'admin') }
 
   describe 'GET #index' do
     it 'assigns all resources as @resources' do
@@ -69,6 +68,7 @@ RSpec.describe ResourcesController, type: :controller do
 
   describe 'GET #new' do
     it 'assigns a new resource as @resource' do
+      sign_in admin
       get :new, params: {}, session: valid_session
       expect(assigns(:resource)).to be_a_new(Resource)
     end
@@ -76,6 +76,7 @@ RSpec.describe ResourcesController, type: :controller do
 
   describe 'GET #edit' do
     it 'assigns the requested resource as @resource' do
+      sign_in admin
       resource = Resource.create! valid_attributes
       get :edit, params: { id: resource.to_param }, session: valid_session
       expect(assigns(:resource)).to eq(resource)
@@ -84,21 +85,47 @@ RSpec.describe ResourcesController, type: :controller do
 
   describe 'POST #create' do
     context 'with valid params' do
-      it 'creates a new Resource' do
-        expect do
+      context 'when not logged in' do
+        it 'does not create a new Resource' do
+          expect do
+            post :create, params: { resource: valid_attributes }, session: valid_session
+          end.not_to change(Resource, :count)
+        end
+      end
+
+      context 'when logged in as non-admin user' do
+        before do
+          sign_in user
+        end
+
+        it 'does not create a new Resource' do
+          expect do
+            post :create, params: { resource: valid_attributes }, session: valid_session
+          end.not_to change(Resource, :count)
+        end
+      end
+
+      context 'when logged in as admin user' do
+        before do
+          sign_in admin
+        end
+
+        it 'creates a new Resource' do
+          expect do
+            post :create, params: { resource: valid_attributes }, session: valid_session
+          end.to change(Resource, :count).by(1)
+        end
+
+        it 'assigns a newly created resource as @resource' do
           post :create, params: { resource: valid_attributes }, session: valid_session
-        end.to change(Resource, :count).by(1)
-      end
+          expect(assigns(:resource)).to be_a(Resource)
+          expect(assigns(:resource)).to be_persisted
+        end
 
-      it 'assigns a newly created resource as @resource' do
-        post :create, params: { resource: valid_attributes }, session: valid_session
-        expect(assigns(:resource)).to be_a(Resource)
-        expect(assigns(:resource)).to be_persisted
-      end
-
-      it 'redirects to the created resource' do
-        post :create, params: { resource: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(Resource.last)
+        it 'redirects to the created resource' do
+          post :create, params: { resource: valid_attributes }, session: valid_session
+          expect(response).to redirect_to(Resource.last)
+        end
       end
     end
 
@@ -118,26 +145,58 @@ RSpec.describe ResourcesController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        { name: 'New name' }
       end
 
-      it 'updates the requested resource' do
-        resource = Resource.create! valid_attributes
-        put :update, params: { id: resource.to_param, resource: new_attributes }, session: valid_session
-        resource.reload
-        skip('Add assertions for updated state')
+      context 'when not logged in' do
+        it 'does not modify the requested Resource' do
+          resource = Resource.create! valid_attributes
+          expect do
+            put :update, params: { id: resource.id, resource: new_attributes }, session: valid_session
+            resource.reload
+          end.not_to(change { Resource.find(resource.id) })
+          expect(resource.name).to eq('MyString')
+        end
       end
 
-      it 'assigns the requested resource as @resource' do
-        resource = Resource.create! valid_attributes
-        put :update, params: { id: resource.to_param, resource: valid_attributes }, session: valid_session
-        expect(assigns(:resource)).to eq(resource)
+      context 'when logged in as a non-admin user' do
+        before do
+          sign_in user
+        end
+
+        it 'does not modify the requested Resource' do
+          resource = Resource.create! valid_attributes
+          expect do
+            put :update, params: { id: resource.id, resource: new_attributes }, session: valid_session
+            resource.reload
+          end.not_to(change { Resource.find(resource.id) })
+          expect(resource.name).to eq('MyString')
+        end
       end
 
-      it 'redirects to the resource' do
-        resource = Resource.create! valid_attributes
-        put :update, params: { id: resource.to_param, resource: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(resource)
+      context 'when logged in as admin user' do
+        before do
+          sign_in admin
+        end
+
+        it 'updates the requested resource' do
+          resource = Resource.create! valid_attributes
+          put :update, params: { id: resource.to_param, resource: new_attributes }, session: valid_session
+          resource.reload
+          expect(resource.name).to eq('New name')
+        end
+
+        it 'assigns the requested resource as @resource' do
+          resource = Resource.create! valid_attributes
+          put :update, params: { id: resource.to_param, resource: valid_attributes }, session: valid_session
+          expect(assigns(:resource)).to eq(resource)
+        end
+
+        it 'redirects to the resource' do
+          resource = Resource.create! valid_attributes
+          put :update, params: { id: resource.to_param, resource: valid_attributes }, session: valid_session
+          expect(response).to redirect_to(resource)
+        end
       end
     end
 
@@ -157,17 +216,45 @@ RSpec.describe ResourcesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    it 'destroys the requested resource' do
-      resource = Resource.create! valid_attributes
-      expect do
-        delete :destroy, params: { id: resource.to_param }, session: valid_session
-      end.to change(Resource, :count).by(-1)
+    context 'when not logged in' do
+      it 'does not delete anything' do
+        resource = Resource.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: resource.to_param }, session: valid_session
+        end.not_to change(Resource, :count)
+      end
     end
 
-    it 'redirects to the resources list' do
-      resource = Resource.create! valid_attributes
-      delete :destroy, params: { id: resource.to_param }, session: valid_session
-      expect(response).to redirect_to(resources_url)
+    context 'when logged in as non-admin user' do
+      before do
+        sign_in user
+      end
+
+      it 'does not delete anything' do
+        resource = Resource.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: resource.to_param }, session: valid_session
+        end.not_to change(Resource, :count)
+      end
+    end
+
+    context 'when logged in as admin user' do
+      before do
+        sign_in admin
+      end
+
+      it 'destroys the requested resource' do
+        resource = Resource.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: resource.to_param }, session: valid_session
+        end.to change(Resource, :count).by(-1)
+      end
+
+      it 'redirects to the resources list' do
+        resource = Resource.create! valid_attributes
+        delete :destroy, params: { id: resource.to_param }, session: valid_session
+        expect(response).to redirect_to(resources_url)
+      end
     end
   end
 end

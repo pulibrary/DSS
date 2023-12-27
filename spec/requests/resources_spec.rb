@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Resources', type: :request do
   before do
-    sign_in FactoryBot.create(:user)
+    sign_in FactoryBot.create(:user, role: 'admin')
   end
 
   describe 'GET /resources' do

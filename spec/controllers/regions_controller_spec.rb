@@ -38,9 +38,8 @@ RSpec.describe RegionsController, type: :controller do
   # RegionsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  before do
-    sign_in FactoryBot.create(:user)
-  end
+  let(:user) { FactoryBot.create(:user) }
+  let(:admin) { FactoryBot.create(:user, role: 'admin') }
 
   describe 'GET #index' do
     it 'assigns all regions as @regions' do
@@ -60,6 +59,7 @@ RSpec.describe RegionsController, type: :controller do
 
   describe 'GET #new' do
     it 'assigns a new region as @region' do
+      sign_in admin
       get :new, params: {}, session: valid_session
       expect(assigns(:region)).to be_a_new(Region)
     end
@@ -67,6 +67,7 @@ RSpec.describe RegionsController, type: :controller do
 
   describe 'GET #edit' do
     it 'assigns the requested region as @region' do
+      sign_in admin
       region = Region.create! valid_attributes
       get :edit, params: { id: region.to_param }, session: valid_session
       expect(assigns(:region)).to eq(region)
@@ -75,21 +76,47 @@ RSpec.describe RegionsController, type: :controller do
 
   describe 'POST #create' do
     context 'with valid params' do
-      it 'creates a new Region' do
-        expect do
+      context 'when not logged in' do
+        it 'does not create a new Region' do
+          expect do
+            post :create, params: { region: valid_attributes }, session: valid_session
+          end.not_to change(Region, :count)
+        end
+      end
+
+      context 'when logged in as non-admin user' do
+        before do
+          sign_in user
+        end
+
+        it 'does not create a new Region' do
+          expect do
+            post :create, params: { region: valid_attributes }, session: valid_session
+          end.not_to change(Region, :count)
+        end
+      end
+
+      context 'when logged in as admin user' do
+        before do
+          sign_in admin
+        end
+
+        it 'creates a new Region' do
+          expect do
+            post :create, params: { region: valid_attributes }, session: valid_session
+          end.to change(Region, :count).by(1)
+        end
+
+        it 'assigns a newly created region as @region' do
           post :create, params: { region: valid_attributes }, session: valid_session
-        end.to change(Region, :count).by(1)
-      end
+          expect(assigns(:region)).to be_a(Region)
+          expect(assigns(:region)).to be_persisted
+        end
 
-      it 'assigns a newly created region as @region' do
-        post :create, params: { region: valid_attributes }, session: valid_session
-        expect(assigns(:region)).to be_a(Region)
-        expect(assigns(:region)).to be_persisted
-      end
-
-      it 'redirects to the created region' do
-        post :create, params: { region: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(Region.last)
+        it 'redirects to the created region' do
+          post :create, params: { region: valid_attributes }, session: valid_session
+          expect(response).to redirect_to(Region.last)
+        end
       end
     end
 
@@ -109,26 +136,58 @@ RSpec.describe RegionsController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        { name: 'My new name' }
       end
 
-      it 'updates the requested region' do
-        region = Region.create! valid_attributes
-        put :update, params: { id: region.to_param, region: new_attributes }, session: valid_session
-        region.reload
-        skip('Add assertions for updated state')
+      context 'when not logged in' do
+        it 'does not modify the requested Region' do
+          region = Region.create! valid_attributes
+          expect do
+            put :update, params: { id: region.id, region: new_attributes }, session: valid_session
+            region.reload
+          end.not_to(change { Region.find(region.id) })
+          expect(region.name).to eq('Name')
+        end
       end
 
-      it 'assigns the requested region as @region' do
-        region = Region.create! valid_attributes
-        put :update, params: { id: region.to_param, region: valid_attributes }, session: valid_session
-        expect(assigns(:region)).to eq(region)
+      context 'when logged in as a non-admin user' do
+        before do
+          sign_in user
+        end
+
+        it 'does not modify the requested Region' do
+          region = Region.create! valid_attributes
+          expect do
+            put :update, params: { id: region.id, region: new_attributes }, session: valid_session
+            region.reload
+          end.not_to(change { Region.find(region.id) })
+          expect(region.name).to eq('Name')
+        end
       end
 
-      it 'redirects to the region' do
-        region = Region.create! valid_attributes
-        put :update, params: { id: region.to_param, region: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(region)
+      context 'when logged in as admin user' do
+        before do
+          sign_in admin
+        end
+
+        it 'updates the requested region' do
+          region = Region.create! valid_attributes
+          put :update, params: { id: region.to_param, region: new_attributes }, session: valid_session
+          region.reload
+          expect(region.name).to eq('My new name')
+        end
+
+        it 'assigns the requested region as @region' do
+          region = Region.create! valid_attributes
+          put :update, params: { id: region.to_param, region: valid_attributes }, session: valid_session
+          expect(assigns(:region)).to eq(region)
+        end
+
+        it 'redirects to the region' do
+          region = Region.create! valid_attributes
+          put :update, params: { id: region.to_param, region: valid_attributes }, session: valid_session
+          expect(response).to redirect_to(region)
+        end
       end
     end
 
@@ -148,17 +207,45 @@ RSpec.describe RegionsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    it 'destroys the requested region' do
-      region = Region.create! valid_attributes
-      expect do
-        delete :destroy, params: { id: region.to_param }, session: valid_session
-      end.to change(Region, :count).by(-1)
+    context 'when not logged in' do
+      it 'does not delete anything' do
+        region = Region.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: region.to_param }, session: valid_session
+        end.not_to change(Region, :count)
+      end
     end
 
-    it 'redirects to the regions list' do
-      region = Region.create! valid_attributes
-      delete :destroy, params: { id: region.to_param }, session: valid_session
-      expect(response).to redirect_to(regions_url)
+    context 'when logged in as non-admin user' do
+      before do
+        sign_in user
+      end
+
+      it 'does not delete anything' do
+        region = Region.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: region.to_param }, session: valid_session
+        end.not_to change(Region, :count)
+      end
+    end
+
+    context 'when logged in as admin user' do
+      before do
+        sign_in admin
+      end
+
+      it 'destroys the requested region' do
+        region = Region.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: region.to_param }, session: valid_session
+        end.to change(Region, :count).by(-1)
+      end
+
+      it 'redirects to the regions list' do
+        region = Region.create! valid_attributes
+        delete :destroy, params: { id: region.to_param }, session: valid_session
+        expect(response).to redirect_to(regions_url)
+      end
     end
   end
 end

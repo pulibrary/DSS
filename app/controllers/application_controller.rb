@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   layout :determine_layout if respond_to? :layout
 
   protect_from_forgery with: :exception
-  before_action :authenticate_user!
 
   def after_sign_in_path_for(resource)
     if params[:origin]
@@ -20,5 +19,13 @@ class ApplicationController < ActionController::Base
 
   def determine_layout
     'application'
+  end
+
+  def require_admin_login
+    return head :forbidden unless admin_user?
+  end
+
+  def admin_user?
+    current_or_guest_user.role == 'admin'
   end
 end
