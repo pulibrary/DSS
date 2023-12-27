@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'data_files/edit', type: :view do
+  let(:user) { FactoryBot.create(:user, role: 'admin') }
   let(:data_file) do
     DataFile.create!(
       legacy_id: 1, files: 'MyString', size: 'MyString', comp_size: 'MyString',
@@ -13,6 +14,7 @@ RSpec.describe 'data_files/edit', type: :view do
   end
 
   before do
+    sign_in(user)
     assign(:data_file, data_file)
   end
 

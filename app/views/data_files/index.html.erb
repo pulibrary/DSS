@@ -38,12 +38,14 @@
         <td><%= data_file.note %></td>
         <td><%= data_file.study_num %></td>
         <td><%= data_file.study_id %></td>
-        <td><%= link_to 'Show', data_file %></td>
-        <td><%= link_to 'Edit', edit_data_file_path(data_file) %></td>
-        <!--
-        <td><%= link_to 'Destroy', data_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        -->
-      </tr>
+        <% if admin_user? %>
+          <td><%= link_to 'Show', data_file %></td>
+          <td><%= link_to 'Edit', edit_data_file_path(data_file) %></td>
+          <!--
+          <td><%= link_to 'Destroy', data_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          -->
+        <% end %>
+        </tr>
     <% end %>
   </tbody>
 </table>
