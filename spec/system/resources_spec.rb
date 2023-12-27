@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'resources', type: :system do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, role: 'admin') }
 
   before do
     sign_in(user)

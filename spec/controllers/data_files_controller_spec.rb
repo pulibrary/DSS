@@ -52,9 +52,8 @@ RSpec.describe DataFilesController, type: :controller do
   # DataFilesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  before do
-    sign_in FactoryBot.create(:user)
-  end
+  let(:user) { FactoryBot.create(:user) }
+  let(:admin) { FactoryBot.create(:user, role: 'admin') }
 
   describe 'GET #index' do
     it 'assigns all data_files as @data_files' do
@@ -74,6 +73,7 @@ RSpec.describe DataFilesController, type: :controller do
 
   describe 'GET #new' do
     it 'assigns a new data_file as @data_file' do
+      sign_in admin
       get :new, params: {}, session: valid_session
       expect(assigns(:data_file)).to be_a_new(DataFile)
     end
@@ -81,6 +81,7 @@ RSpec.describe DataFilesController, type: :controller do
 
   describe 'GET #edit' do
     it 'assigns the requested data_file as @data_file' do
+      sign_in admin
       data_file = DataFile.create! valid_attributes
       get :edit, params: { id: data_file.to_param }, session: valid_session
       expect(assigns(:data_file)).to eq(data_file)
@@ -89,21 +90,47 @@ RSpec.describe DataFilesController, type: :controller do
 
   describe 'POST #create' do
     context 'with valid params' do
-      it 'creates a new DataFile' do
-        expect do
+      context 'when not logged in' do
+        it 'does not create a new DataFile' do
+          expect do
+            post :create, params: { data_file: valid_attributes }, session: valid_session
+          end.not_to change(DataFile, :count)
+        end
+      end
+
+      context 'when logged in as non-admin user' do
+        before do
+          sign_in user
+        end
+
+        it 'does not create a new DataFile' do
+          expect do
+            post :create, params: { data_file: valid_attributes }, session: valid_session
+          end.not_to change(DataFile, :count)
+        end
+      end
+
+      context 'when logged in as admin user' do
+        before do
+          sign_in admin
+        end
+
+        it 'creates a new DataFile' do
+          expect do
+            post :create, params: { data_file: valid_attributes }, session: valid_session
+          end.to change(DataFile, :count).by(1)
+        end
+
+        it 'assigns a newly created data_file as @data_file' do
           post :create, params: { data_file: valid_attributes }, session: valid_session
-        end.to change(DataFile, :count).by(1)
-      end
+          expect(assigns(:data_file)).to be_a(DataFile)
+          expect(assigns(:data_file)).to be_persisted
+        end
 
-      it 'assigns a newly created data_file as @data_file' do
-        post :create, params: { data_file: valid_attributes }, session: valid_session
-        expect(assigns(:data_file)).to be_a(DataFile)
-        expect(assigns(:data_file)).to be_persisted
-      end
-
-      it 'redirects to the created data_file' do
-        post :create, params: { data_file: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(DataFile.last)
+        it 'redirects to the created data_file' do
+          post :create, params: { data_file: valid_attributes }, session: valid_session
+          expect(response).to redirect_to(DataFile.last)
+        end
       end
     end
 
@@ -123,26 +150,58 @@ RSpec.describe DataFilesController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        { note: 'A new note' }
       end
 
-      it 'updates the requested data_file' do
-        data_file = DataFile.create! valid_attributes
-        put :update, params: { id: data_file.to_param, data_file: new_attributes }, session: valid_session
-        data_file.reload
-        skip('Add assertions for updated state')
+      context 'when not logged in' do
+        it 'does not modify the requested DataFile' do
+          data_file = DataFile.create! valid_attributes
+          expect do
+            put :update, params: { id: data_file.id, data_file: new_attributes }, session: valid_session
+            data_file.reload
+          end.not_to(change { DataFile.find(data_file.id) })
+          expect(data_file.note).to eq('Note')
+        end
       end
 
-      it 'assigns the requested data_file as @data_file' do
-        data_file = DataFile.create! valid_attributes
-        put :update, params: { id: data_file.to_param, data_file: valid_attributes }, session: valid_session
-        expect(assigns(:data_file)).to eq(data_file)
+      context 'when logged in as a non-admin user' do
+        before do
+          sign_in user
+        end
+
+        it 'does not modify the requested data file' do
+          data_file = DataFile.create! valid_attributes
+          expect do
+            put :update, params: { id: data_file.id, data_file: new_attributes }, session: valid_session
+            data_file.reload
+          end.not_to(change { DataFile.find(data_file.id) })
+          expect(data_file.note).to eq('Note')
+        end
       end
 
-      it 'redirects to the data_file' do
-        data_file = DataFile.create! valid_attributes
-        put :update, params: { id: data_file.to_param, data_file: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(data_file)
+      context 'when logged in as admin user' do
+        before do
+          sign_in admin
+        end
+
+        it 'updates the requested data_file' do
+          data_file = DataFile.create! valid_attributes
+          put :update, params: { id: data_file.to_param, data_file: new_attributes }, session: valid_session
+          data_file.reload
+          expect(data_file.note).to eq('A new note')
+        end
+
+        it 'assigns the requested data_file as @data_file' do
+          data_file = DataFile.create! valid_attributes
+          put :update, params: { id: data_file.to_param, data_file: valid_attributes }, session: valid_session
+          expect(assigns(:data_file)).to eq(data_file)
+        end
+
+        it 'redirects to the data_file' do
+          data_file = DataFile.create! valid_attributes
+          put :update, params: { id: data_file.to_param, data_file: valid_attributes }, session: valid_session
+          expect(response).to redirect_to(data_file)
+        end
       end
     end
 
@@ -162,17 +221,45 @@ RSpec.describe DataFilesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    it 'destroys the requested data_file' do
-      data_file = DataFile.create! valid_attributes
-      expect do
-        delete :destroy, params: { id: data_file.to_param }, session: valid_session
-      end.to change(DataFile, :count).by(-1)
+    context 'when not logged in' do
+      it 'does not delete anything' do
+        data_file = DataFile.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: data_file.to_param }, session: valid_session
+        end.not_to change(DataFile, :count)
+      end
     end
 
-    it 'redirects to the data_files list' do
-      data_file = DataFile.create! valid_attributes
-      delete :destroy, params: { id: data_file.to_param }, session: valid_session
-      expect(response).to redirect_to(data_files_url)
+    context 'when logged in as non-admin user' do
+      before do
+        sign_in user
+      end
+
+      it 'does not delete anything' do
+        data_file = DataFile.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: data_file.to_param }, session: valid_session
+        end.not_to change(DataFile, :count)
+      end
+
+      context 'when logged in as admin user' do
+        before do
+          sign_in admin
+        end
+
+        it 'destroys the requested data_file' do
+          data_file = DataFile.create! valid_attributes
+          expect do
+            delete :destroy, params: { id: data_file.to_param }, session: valid_session
+          end.to change(DataFile, :count).by(-1)
+        end
+
+        it 'redirects to the data_files list' do
+          data_file = DataFile.create! valid_attributes
+          delete :destroy, params: { id: data_file.to_param }, session: valid_session
+          expect(response).to redirect_to(data_files_url)
+        end
+      end
     end
   end
 end

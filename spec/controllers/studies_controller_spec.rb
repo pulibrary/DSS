@@ -49,9 +49,8 @@ RSpec.describe StudiesController, type: :controller do
   # StudiesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  before do
-    sign_in FactoryBot.create(:user)
-  end
+  let(:user) { FactoryBot.create(:user) }
+  let(:admin) { FactoryBot.create(:user, role: 'admin') }
 
   describe 'GET #index' do
     it 'assigns all studies as @studies' do
@@ -71,6 +70,7 @@ RSpec.describe StudiesController, type: :controller do
 
   describe 'GET #new' do
     it 'assigns a new study as @study' do
+      sign_in admin
       get :new, params: {}, session: valid_session
       expect(assigns(:study)).to be_a_new(Study)
     end
@@ -78,6 +78,7 @@ RSpec.describe StudiesController, type: :controller do
 
   describe 'GET #edit' do
     it 'assigns the requested study as @study' do
+      sign_in admin
       study = Study.create! valid_attributes
       get :edit, params: { id: study.to_param }, session: valid_session
       expect(assigns(:study)).to eq(study)
@@ -86,21 +87,47 @@ RSpec.describe StudiesController, type: :controller do
 
   describe 'POST #create' do
     context 'with valid params' do
-      it 'creates a new Study' do
-        expect do
+      context 'when not logged in' do
+        it 'does not create a new Study' do
+          expect do
+            post :create, params: { study: valid_attributes }, session: valid_session
+          end.not_to change(Study, :count)
+        end
+      end
+
+      context 'when logged in as non-admin user' do
+        before do
+          sign_in user
+        end
+
+        it 'does not create a new Study' do
+          expect do
+            post :create, params: { study: valid_attributes }, session: valid_session
+          end.not_to change(Study, :count)
+        end
+      end
+
+      context 'when logged in as admin user' do
+        before do
+          sign_in admin
+        end
+
+        it 'creates a new Study' do
+          expect do
+            post :create, params: { study: valid_attributes }, session: valid_session
+          end.to change(Study, :count).by(1)
+        end
+
+        it 'assigns a newly created study as @study' do
           post :create, params: { study: valid_attributes }, session: valid_session
-        end.to change(Study, :count).by(1)
-      end
+          expect(assigns(:study)).to be_a(Study)
+          expect(assigns(:study)).to be_persisted
+        end
 
-      it 'assigns a newly created study as @study' do
-        post :create, params: { study: valid_attributes }, session: valid_session
-        expect(assigns(:study)).to be_a(Study)
-        expect(assigns(:study)).to be_persisted
-      end
-
-      it 'redirects to the created study' do
-        post :create, params: { study: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(Study.last)
+        it 'redirects to the created study' do
+          post :create, params: { study: valid_attributes }, session: valid_session
+          expect(response).to redirect_to(Study.last)
+        end
       end
     end
 
@@ -120,26 +147,58 @@ RSpec.describe StudiesController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        { title: 'New Title' }
       end
 
-      it 'updates the requested study' do
-        study = Study.create! valid_attributes
-        put :update, params: { id: study.to_param, study: new_attributes }, session: valid_session
-        study.reload
-        skip('Add assertions for updated state')
+      context 'when not logged in' do
+        it 'does not modify the requested Study' do
+          study = Study.create! valid_attributes
+          expect do
+            put :update, params: { id: study.id, study: new_attributes }, session: valid_session
+            study.reload
+          end.not_to(change { Study.find(study.id) })
+          expect(study.title).to eq('Title')
+        end
       end
 
-      it 'assigns the requested study as @study' do
-        study = Study.create! valid_attributes
-        put :update, params: { id: study.to_param, study: valid_attributes }, session: valid_session
-        expect(assigns(:study)).to eq(study)
+      context 'when logged in as a non-admin user' do
+        before do
+          sign_in user
+        end
+
+        it 'does not modify the requested Study' do
+          study = Study.create! valid_attributes
+          expect do
+            put :update, params: { id: study.id, study: new_attributes }, session: valid_session
+            study.reload
+          end.not_to(change { Study.find(study.id) })
+          expect(study.title).to eq('Title')
+        end
       end
 
-      it 'redirects to the study' do
-        study = Study.create! valid_attributes
-        put :update, params: { id: study.to_param, study: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(study)
+      context 'when logged in as admin user' do
+        before do
+          sign_in admin
+        end
+
+        it 'updates the requested study' do
+          study = Study.create! valid_attributes
+          put :update, params: { id: study.to_param, study: new_attributes }, session: valid_session
+          study.reload
+          expect(study.title).to eq('New Title')
+        end
+
+        it 'assigns the requested study as @study' do
+          study = Study.create! valid_attributes
+          put :update, params: { id: study.to_param, study: valid_attributes }, session: valid_session
+          expect(assigns(:study)).to eq(study)
+        end
+
+        it 'redirects to the study' do
+          study = Study.create! valid_attributes
+          put :update, params: { id: study.to_param, study: valid_attributes }, session: valid_session
+          expect(response).to redirect_to(study)
+        end
       end
     end
 
@@ -159,17 +218,45 @@ RSpec.describe StudiesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    it 'destroys the requested study' do
-      study = Study.create! valid_attributes
-      expect do
-        delete :destroy, params: { id: study.to_param }, session: valid_session
-      end.to change(Study, :count).by(-1)
+    context 'when not logged in' do
+      it 'does not delete anything' do
+        study = Study.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: study.to_param }, session: valid_session
+        end.not_to change(Study, :count)
+      end
     end
 
-    it 'redirects to the studies list' do
-      study = Study.create! valid_attributes
-      delete :destroy, params: { id: study.to_param }, session: valid_session
-      expect(response).to redirect_to(studies_url)
+    context 'when logged in as non-admin user' do
+      before do
+        sign_in user
+      end
+
+      it 'does not delete anything' do
+        study = Study.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: study.to_param }, session: valid_session
+        end.not_to change(Study, :count)
+      end
+    end
+
+    context 'when logged in as admin user' do
+      before do
+        sign_in admin
+      end
+
+      it 'destroys the requested study' do
+        study = Study.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: study.to_param }, session: valid_session
+        end.to change(Study, :count).by(-1)
+      end
+
+      it 'redirects to the studies list' do
+        study = Study.create! valid_attributes
+        delete :destroy, params: { id: study.to_param }, session: valid_session
+        expect(response).to redirect_to(studies_url)
+      end
     end
   end
 end

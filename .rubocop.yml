@@ -35,6 +35,12 @@ RSpec/ExampleLength:
 RSpec/MultipleExpectations:
   Enabled: false
 
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 4
+
 Metrics/AbcSize:
   Exclude:
     - 'app/models/resource.rb'

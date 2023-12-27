@@ -1,7 +1,7 @@
 class StudiesController < ApplicationController
   before_action :set_study, only: [:show, :edit, :update, :destroy]
+  before_action :require_admin_login, only: [:create, :destroy, :edit, :new, :update]
 
-  skip_before_action :authenticate_user!, only: [:show, :number_lookup]
   # GET /studies
   # GET /studies.json
   def index

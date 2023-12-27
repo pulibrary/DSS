@@ -38,9 +38,8 @@ RSpec.describe SubjectsController, type: :controller do
   # SubjectsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  before do
-    sign_in FactoryBot.create(:user)
-  end
+  let(:user) { FactoryBot.create(:user) }
+  let(:admin) { FactoryBot.create(:user, role: 'admin') }
 
   describe 'GET #index' do
     it 'assigns all subjects as @subjects' do
@@ -60,6 +59,7 @@ RSpec.describe SubjectsController, type: :controller do
 
   describe 'GET #new' do
     it 'assigns a new subject as @subject' do
+      sign_in admin
       get :new, params: {}, session: valid_session
       expect(assigns(:subject)).to be_a_new(Subject)
     end
@@ -67,6 +67,7 @@ RSpec.describe SubjectsController, type: :controller do
 
   describe 'GET #edit' do
     it 'assigns the requested subject as @subject' do
+      sign_in admin
       subject = Subject.create! valid_attributes
       get :edit, params: { id: subject.to_param }, session: valid_session
       expect(assigns(:subject)).to eq(subject)
@@ -75,21 +76,47 @@ RSpec.describe SubjectsController, type: :controller do
 
   describe 'POST #create' do
     context 'with valid params' do
-      it 'creates a new Subject' do
-        expect do
+      context 'when not logged in' do
+        it 'does not create a new Subject' do
+          expect do
+            post :create, params: { subject: valid_attributes }, session: valid_session
+          end.not_to change(Subject, :count)
+        end
+      end
+
+      context 'when logged in as non-admin user' do
+        before do
+          sign_in user
+        end
+
+        it 'does not create a new Subject' do
+          expect do
+            post :create, params: { subject: valid_attributes }, session: valid_session
+          end.not_to change(Subject, :count)
+        end
+      end
+
+      context 'when logged in as admin user' do
+        before do
+          sign_in admin
+        end
+
+        it 'creates a new Subject' do
+          expect do
+            post :create, params: { subject: valid_attributes }, session: valid_session
+          end.to change(Subject, :count).by(1)
+        end
+
+        it 'assigns a newly created subject as @subject' do
           post :create, params: { subject: valid_attributes }, session: valid_session
-        end.to change(Subject, :count).by(1)
-      end
+          expect(assigns(:subject)).to be_a(Subject)
+          expect(assigns(:subject)).to be_persisted
+        end
 
-      it 'assigns a newly created subject as @subject' do
-        post :create, params: { subject: valid_attributes }, session: valid_session
-        expect(assigns(:subject)).to be_a(Subject)
-        expect(assigns(:subject)).to be_persisted
-      end
-
-      it 'redirects to the created subject' do
-        post :create, params: { subject: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(Subject.last)
+        it 'redirects to the created subject' do
+          post :create, params: { subject: valid_attributes }, session: valid_session
+          expect(response).to redirect_to(Subject.last)
+        end
       end
     end
 
@@ -109,26 +136,58 @@ RSpec.describe SubjectsController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        { name: 'New subject name' }
       end
 
-      it 'updates the requested subject' do
-        subject = Subject.create! valid_attributes
-        put :update, params: { id: subject.to_param, subject: new_attributes }, session: valid_session
-        subject.reload
-        skip('Add assertions for updated state')
+      context 'when not logged in' do
+        it 'does not modify the requested Subject' do
+          subject = Subject.create! valid_attributes
+          expect do
+            put :update, params: { id: subject.id, subject: new_attributes }, session: valid_session
+            subject.reload
+          end.not_to(change { Subject.find(subject.id) })
+          expect(subject.name).to eq('Name')
+        end
       end
 
-      it 'assigns the requested subject as @subject' do
-        subject = Subject.create! valid_attributes
-        put :update, params: { id: subject.to_param, subject: valid_attributes }, session: valid_session
-        expect(assigns(:subject)).to eq(subject)
+      context 'when logged in as a non-admin user' do
+        before do
+          sign_in user
+        end
+
+        it 'does not modify the requested Subject' do
+          subject = Subject.create! valid_attributes
+          expect do
+            put :update, params: { id: subject.id, subject: new_attributes }, session: valid_session
+            subject.reload
+          end.not_to(change { Subject.find(subject.id) })
+          expect(subject.name).to eq('Name')
+        end
       end
 
-      it 'redirects to the subject' do
-        subject = Subject.create! valid_attributes
-        put :update, params: { id: subject.to_param, subject: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(subject)
+      context 'when logged in as admin user' do
+        before do
+          sign_in admin
+        end
+
+        it 'updates the requested subject' do
+          subject = Subject.create! valid_attributes
+          put :update, params: { id: subject.to_param, subject: new_attributes }, session: valid_session
+          subject.reload
+          expect(subject.name).to eq('New subject name')
+        end
+
+        it 'assigns the requested subject as @subject' do
+          subject = Subject.create! valid_attributes
+          put :update, params: { id: subject.to_param, subject: valid_attributes }, session: valid_session
+          expect(assigns(:subject)).to eq(subject)
+        end
+
+        it 'redirects to the subject' do
+          subject = Subject.create! valid_attributes
+          put :update, params: { id: subject.to_param, subject: valid_attributes }, session: valid_session
+          expect(response).to redirect_to(subject)
+        end
       end
     end
 
@@ -148,17 +207,45 @@ RSpec.describe SubjectsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    it 'destroys the requested subject' do
-      subject = Subject.create! valid_attributes
-      expect do
-        delete :destroy, params: { id: subject.to_param }, session: valid_session
-      end.to change(Subject, :count).by(-1)
+    context 'when not logged in' do
+      it 'does not delete anything' do
+        subject = Subject.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: subject.to_param }, session: valid_session
+        end.not_to change(Subject, :count)
+      end
     end
 
-    it 'redirects to the subjects list' do
-      subject = Subject.create! valid_attributes
-      delete :destroy, params: { id: subject.to_param }, session: valid_session
-      expect(response).to redirect_to(subjects_url)
+    context 'when logged in as non-admin user' do
+      before do
+        sign_in user
+      end
+
+      it 'does not delete anything' do
+        subject = Subject.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: subject.to_param }, session: valid_session
+        end.not_to change(Subject, :count)
+      end
+    end
+
+    context 'when logged in as admin user' do
+      before do
+        sign_in admin
+      end
+
+      it 'destroys the requested subject' do
+        subject = Subject.create! valid_attributes
+        expect do
+          delete :destroy, params: { id: subject.to_param }, session: valid_session
+        end.to change(Subject, :count).by(-1)
+      end
+
+      it 'redirects to the subjects list' do
+        subject = Subject.create! valid_attributes
+        delete :destroy, params: { id: subject.to_param }, session: valid_session
+        expect(response).to redirect_to(subjects_url)
+      end
     end
   end
 end
