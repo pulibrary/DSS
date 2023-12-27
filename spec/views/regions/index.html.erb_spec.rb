@@ -3,7 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'regions/index', type: :view do
+  let(:user) { FactoryBot.create(:user, role: 'admin') }
+
   before do
+    sign_in(user)
     assign(:regions, [
              Region.create!(
                name: 'Name',

@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'resources/edit', type: :view do
+  let(:user) { FactoryBot.create(:user, role: 'admin') }
   let(:resource) do
     Resource.create!(name: 'MyString', resource_id: 1, url: 'MyString',
                      blurb: 'MyText', sample: 'MyString', principal_investigator: 'MyString',
@@ -11,6 +12,7 @@ RSpec.describe 'resources/edit', type: :view do
   end
 
   before do
+    sign_in(user)
     assign(:resource, resource)
     assign(:last_update, resource.updated_at.localtime.to_fs(:date_twelve_hour))
   end
