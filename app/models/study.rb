@@ -6,7 +6,7 @@ class Study < ApplicationRecord
   has_and_belongs_to_many :countries
   has_and_belongs_to_many :regions
   has_many :data_files
-  belongs_to :resource
+  belongs_to :resource, optional: true
   accepts_nested_attributes_for :data_files, reject_if: lambda {|attributes| attributes['files'].blank?}
 
   # remove until import is taken care of.
