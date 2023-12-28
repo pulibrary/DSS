@@ -2,23 +2,16 @@
 
 require 'rails_helper'
 
-# rubocop:disable RSpec/FactoryBot
 RSpec.describe User, type: :model do
   context "when there are guest users older than 7 days" do
     before do
       # There's an initial user that we don't want
-      described_class.all.find_each(&:destroy)
+      described_class.find_each(&:destroy)
       Timecop.freeze(Time.now.utc - 10.days) do
-        100.times do
-          FactoryBot.create(:guest_patron, guest: true)
-        end
-        10.times do
-          FactoryBot.create(:user)
-        end
+        FactoryBot.create_list(:guest_patron, 100, guest: true)
+        FactoryBot.create_list(:user, 10)
       end
-      10.times do
-        FactoryBot.create(:guest_patron)
-      end
+      FactoryBot.create_list(:guest_patron, 10)
     end
 
     it "expires them" do
@@ -34,4 +27,3 @@ RSpec.describe User, type: :model do
     end
   end
 end
-# rubocop:enable RSpec/FactoryBot

@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 7.0'
 # Use Puma as the app server
-gem 'puma', '~> 5.6'
+gem 'puma'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 gem 'terser'
@@ -61,4 +61,4 @@ gem 'bootstrap', '~> 4.6'
 
 gem "honeybadger"
 
-gem "vite_rails", "~> 3.0"
+gem "vite_rails"

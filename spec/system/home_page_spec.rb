@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe "home page", type: :system, js: true do
+describe "home page", :js, type: :system do
   it 'HTML start and end tags are nested properly' do
     visit '/catalog'
     expect(html_errors('Unexpected end tag')).to be_empty

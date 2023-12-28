@@ -41,7 +41,7 @@ namespace :dss do
       resources.each do |r|
         if !r.url.nil? && dss_url = /(^http:\/\/dss.princeton.edu\/cgi-bin\/catalog\/search.cgi\?studyno=)(\d+)/.match(r.url)
           studynum = dss_url[2]
-            study = Study.where(studynum: studynum.to_s).take
+            study = Study.find_by(studynum: studynum.to_s)
             unless study.nil?
               puts "matching study num #{studynum} with study id #{study.id}"
               study.resource_id = r.id
