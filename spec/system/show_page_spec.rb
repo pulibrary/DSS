@@ -8,7 +8,7 @@ RSpec.describe 'Show page', type: :system do
 
   it 'has a bookmark checkbox' do
     visit '/catalog/resource3'
-    expect(page).to have_selector('#bookmark_toggle_resource3', visible: :hidden)
+    expect(page).to have_css('#bookmark_toggle_resource3', visible: :hidden)
   end
 
   it 'has no citation link' do
@@ -18,6 +18,6 @@ RSpec.describe 'Show page', type: :system do
 
   it 'does not have an .admin class, since it is not an admin screen' do
     visit '/catalog/resource3'
-    expect(page).not_to have_selector('.admin')
+    expect(page).not_to have_css('.admin')
   end
 end

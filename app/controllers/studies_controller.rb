@@ -19,7 +19,7 @@ class StudiesController < ApplicationController
 
   # GET/studynum/1234
   def number_lookup
-    @study = Study.where('studynum = :studynum',  studynum: params[:studynum].to_i).take
+    @study = Study.find_by('studynum = :studynum',  studynum: params[:studynum].to_i)
     if @study
       redirect_to study_path(@study)
     else

@@ -36,7 +36,7 @@ module ApplicationHelper
   # munges urls to get a link to a study
   def study_link_array(label, url)
     if study_id = url.first.match(/studyno=(\d+)$/)
-      study = Study.where(studynum: (study_id[1]).to_s).take
+      study = Study.find_by(studynum: (study_id[1]).to_s)
       unless study.nil?
         link_to('View Data Files', study_path(study))
       end
@@ -47,7 +47,7 @@ module ApplicationHelper
 
   def study_link(label, url)
     if study_id = url&.match(/studyno=(\d+)$/)
-      study = Study.where(studynum: (study_id[1]).to_s).take
+      study = Study.find_by(studynum: (study_id[1]).to_s)
       unless study.nil?
         link_to('View Data Files', study_path(study))
       end

@@ -13,7 +13,7 @@ RSpec.describe 'resources', type: :system do
     visit '/resources/new'
     expect(page).to have_content('New Resource')
     select('Indonesia', from: 'resource_country_ids')
-    click_on('Create Resource')
+    click_button('Create Resource')
     expect(page).to have_content('Resource was successfully created.')
     expect(page.all('dd ul li').last.text).to eq('Indonesia')
   end
@@ -23,7 +23,7 @@ RSpec.describe 'resources', type: :system do
     expect(page).to have_content('New Resource')
     select('Indonesia', from: 'resource_country_ids')
     select('Libya', from: 'resource_country_ids')
-    click_on('Create Resource')
+    click_button('Create Resource')
     expect(page).to have_content('Resource was successfully created.')
     # The last two list items will be Indonesia and Libya
     expect(page.all('dd ul li')[-2].text).to eq('Indonesia')
@@ -34,7 +34,7 @@ RSpec.describe 'resources', type: :system do
     visit '/resources/new'
     expect(page).to have_content('New Resource')
     select('All Countries', from: 'resource_country_ids')
-    click_on('Create Resource')
+    click_button('Create Resource')
     expect(page).to have_content('Indonesia')
     expect(page).to have_content('Libya')
     expect(page).to have_content('Spain')
@@ -44,21 +44,21 @@ RSpec.describe 'resources', type: :system do
   describe('edit page') do
     it 'has an .admin class, since it is an admin screen' do
       visit '/resources/3/edit'
-      expect(page).to have_selector('.admin')
+      expect(page).to have_css('.admin')
     end
   end
 
   describe('index page') do
     it 'has an .admin class, since it is an admin screen' do
       visit '/resources'
-      expect(page).to have_selector('.admin')
+      expect(page).to have_css('.admin')
     end
   end
 
   describe('admin show page') do
     it 'has an .admin class, since it is an admin screen' do
       visit '/resources/3'
-      expect(page).to have_selector('.admin')
+      expect(page).to have_css('.admin')
     end
   end
 end
