@@ -44,6 +44,9 @@ $link-color: #2762ae;
 @import "overrides/dropdowns";
 @import "overrides/menu--user";
 
+dt {
+  color:black;
+}
 .navigation {
   z-index: 2;
 }
