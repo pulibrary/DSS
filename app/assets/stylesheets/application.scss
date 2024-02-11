@@ -44,6 +44,10 @@ $link-color: #2762ae;
 @import "overrides/dropdowns";
 @import "overrides/menu--user";
 
+*, h1, h2, h3, h4 {
+  font-family: 'Atkinson Hyperlegible','Times New Roman', sans-serif;
+}
+
 .navigation {
   z-index: 2;
 }
