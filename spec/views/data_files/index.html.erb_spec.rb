@@ -47,6 +47,11 @@ RSpec.describe 'data_files/index', type: :view do
            ])
   end
 
+  it 'does not show alert banner when logged in' do
+    render
+    assert_select 'p', count: 0, text: 'Access to these data files is restricted to currently enrolled/employed members of Princeton University'
+  end
+
   it 'renders a list of data_files' do
     render
 
