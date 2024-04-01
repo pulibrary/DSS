@@ -39,7 +39,13 @@
     <% end %>
     <%= vite_client_tag %>
 
+    <!-- enable Atkinson Hyperlegible font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+
   </head>
+  
   <body class="<%= render_body_class %>">
     <a class="skip-main" href="#main-content">Skip to main content</a>
   <noscript><%= render 'shared/header_navbar_noscript' %></noscript>
