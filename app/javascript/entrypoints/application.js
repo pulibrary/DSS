@@ -4,29 +4,40 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Vue from "vue/dist/vue.esm"
-import system from "lux-design-system"
-import "lux-design-system/dist/system/system.css"
-import "lux-design-system/dist/system/tokens/tokens.scss"
+import { createApp } from "vue";
+import { LuxLibraryFooter, LuxLibraryHeader, LuxMenuBar, LuxLogoUniversity, LuxLogoLibraryIcon, LuxLibraryLogo, LuxLogoLibrary, LuxWrapper, LuxSpacer } from "lux-design-system";
+import "lux-design-system/dist/style.css";
 
-Vue.use(system)
+// Create a factory function that will create vue
+// apps, which we can then mount to any element with
+// the class .lux
+const app = createApp({});
+const createMyApp = () => createApp(app);
 
 // create the LUX app and mount it to wrappers with class="lux"
 document.addEventListener('DOMContentLoaded', () => {
-  var elements = document.getElementsByClassName('lux')
-  for(var i = 0; i < elements.length; i++){
-    new Vue({
-      el: elements[i]
-    })
+  const elements = document.getElementsByClassName('lux')
+  for (let i = 0; i < elements.length; i++) {
+    createMyApp()
+      .component("lux-library-footer", LuxLibraryFooter)
+      .component("lux-library-header", LuxLibraryHeader)
+      .component("lux-menu-bar", LuxMenuBar)
+      .component("lux-logo-university", LuxLogoUniversity)
+      .component("lux-logo-library-icon", LuxLogoLibraryIcon)
+      .component("lux-library-logo", LuxLibraryLogo)
+      .component("lux-logo-library", LuxLogoLibrary)
+      .component("lux-wrapper", LuxWrapper)
+      .component("lux-spacer", LuxSpacer)
+      .mount(elements[i]);
   }
 })
 
 // Modified from code found: https://petrey.co/2017/05/the-most-effective-way-to-avoid-the-fouc/
 let page_ready = false;
-const show_dom = (H) => H.className=H.className.replace(/\bno-js\b/,'js');
+const show_dom = (H) => H.className = H.className.replace(/\bno-js\b/, 'js');
 
 window.addEventListener('load', () => {
-  if (page_ready) show_dom(document.documentElement); 
+  if (page_ready) show_dom(document.documentElement);
   page_ready = true;
 });
 
