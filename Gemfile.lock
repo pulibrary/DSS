@@ -296,7 +296,8 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.2.6)
+    rexml (3.2.8)
+      strscan (>= 3.0.9)
     rsolr (2.5.0)
       builder (>= 2.1.2)
       faraday (>= 0.9, < 3, != 2.0.0)
@@ -375,6 +376,7 @@ GEM
       mutex_m
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    strscan (3.1.0)
     susy (2.2.14)
       sass (>= 3.3.0, < 3.5)
     terser (1.1.20)
