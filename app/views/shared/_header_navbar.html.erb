@@ -13,7 +13,7 @@
         ]"></lux-menu-bar>
         <% else %>
         <lux-menu-bar type="main-menu" active="All" :menu-items="[
-          {name: '<%= t('blacklight.header_links.login') %>', component: '<%= t('blacklight.header_links.login') %>', href: '<%= user_cas_omniauth_authorize_path %>'}
+          {name: '<%= t('blacklight.header_links.login') %>', component: '<%= t('blacklight.header_links.login') %>', href: '<%= user_cas_omniauth_authorize_path %>', method: 'post'}
         ]"></lux-menu-bar>
         <% end %>
       <% end %>
