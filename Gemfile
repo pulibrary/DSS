@@ -16,7 +16,8 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 
 gem 'pg'
-gem "blacklight", '~> 8.0'
+gem "blacklight", '~> 8.1.0'
+gem "view_component", "~> 2.66"
 
 gem 'sshkit'
 gem 'ffi'
