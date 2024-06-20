@@ -393,7 +393,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
-    view_component (3.10.0)
+    view_component (2.83.0)
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
@@ -421,7 +421,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt_pbkdf
-  blacklight (~> 8.0)
+  blacklight (~> 8.1.0)
   bootstrap (~> 4.6)
   byebug
   capistrano
@@ -456,6 +456,7 @@ DEPENDENCIES
   terser
   timecop
   tzinfo-data
+  view_component (~> 2.66)
   vite_rails
   whenever
 
