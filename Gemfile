@@ -53,6 +53,7 @@ gem 'rsolr'
 gem "devise"
 gem 'devise-guests'
 gem 'omniauth-cas'
+gem 'omniauth-rails_csrf_protection'
 gem 'select2-rails'
 gem 'ckeditor'
 
