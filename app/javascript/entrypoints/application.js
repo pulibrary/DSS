@@ -6,7 +6,6 @@
 
 import { createApp } from "vue";
 import { LuxLibraryFooter, LuxLibraryHeader, LuxMenuBar, LuxLogoUniversity, LuxLogoLibraryIcon, LuxLibraryLogo, LuxLogoLibrary, LuxWrapper, LuxSpacer } from "lux-design-system";
-import "lux-design-system/dist/style.css";
 
 // Create a factory function that will create vue
 // apps, which we can then mount to any element with
