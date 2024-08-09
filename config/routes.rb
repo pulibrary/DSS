@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   mount Blacklight::Engine => 'catalog'
 
+  mount HealthMonitor::Engine => '/'
+
   constraints(subdomain: 'dss-staging') do
     root to: redirect('https://library-staging.princeton.edu/dss'), as: :staging_root
     get '/computing', to: redirect('https://library-staging.princeton.edu/dss/computing')
