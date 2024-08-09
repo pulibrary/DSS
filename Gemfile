@@ -9,6 +9,9 @@ gem 'puma'
 gem 'sass-rails'
 gem 'terser'
 
+# Health monitor
+gem 'health-monitor-rails', '~>12.2'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
@@ -34,6 +37,7 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'selenium-webdriver'
   gem "timecop"
+  gem 'webmock', require: false
 end
 
 group :development do
