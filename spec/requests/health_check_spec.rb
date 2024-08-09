@@ -1,9 +1,10 @@
 # frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe "Health Check", type: :request do
   describe "GET /health" do
-    let(:solr_url) { /\/solr\/admin\/cores\?action=STATUS/ }
+    let(:solr_url) { %r{/solr/admin/cores\?action=STATUS} }
 
     context 'when all services are up' do
       before do
@@ -12,6 +13,7 @@ RSpec.describe "Health Check", type: :request do
             body: { responseHeader: { status: 0 } }.to_json, headers: { 'Content-Type' => 'text/json' }
           )
       end
+
       it "has a health check" do
         get "/health.json"
         expect(response).to be_successful
@@ -33,7 +35,7 @@ RSpec.describe "Health Check", type: :request do
         expect(solr_stub).to have_been_requested
         expect(response).not_to be_successful
         expect(response.status).to eq 503
-        solr_response = JSON.parse(response.body)["results"].find { |x| x["name"] == "Solr" }
+        solr_response = response.parsed_body["results"].find { |x| x["name"] == "Solr" }
         expect(solr_response["message"]).to start_with "The solr has an invalid status"
       end
     end
