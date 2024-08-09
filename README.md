@@ -16,6 +16,16 @@
 
 (You may need to install [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) and [foreman](https://github.com/ddollar/foreman) separately, if you haven't already.)
 
+### Making yourself an admin user
+- If you have not yet logged in, bring the rails server up, and log in to the application via the UI
+- Go on the rails console `bundle exec rails c`
+- Find your user and assign it the role of 'admin'
+```ruby
+user = User.find_by(uid: YOUR_UID)
+user.role = 'admin'
+user.save!
+```
+
 ## Production Deployment
 Deploy with Capistrano
 ```bundle exec cap production deploy```
