@@ -4,16 +4,7 @@ Rails.application.routes.draw do
 
   mount HealthMonitor::Engine => '/'
 
-  constraints(subdomain: 'dss-staging') do
-    root to: redirect('https://library-staging.princeton.edu/dss'), as: :staging_root
-    get '/computing', to: redirect('https://library-staging.princeton.edu/dss/computing')
-    get '/consultants', to: redirect('https://library-staging.princeton.edu/dss/consultants')
-    get '/specialists', to: redirect('https://library-staging.princeton.edu/dss/specialists')
-  end
-  root to: redirect('https://library.princeton.edu/dss')
-  get '/computing', to: redirect('https://library.princeton.edu/dss/computing')
-  get '/consultants', to: redirect('https://library.princeton.edu/dss/consultants')
-  get '/specialists', to: redirect('https://library.princeton.edu/dss/specialists')
+  root to: redirect('https://library.princeton.edu/services/data-and-statistical-services')
 
   concern :searchable, Blacklight::Routes::Searchable.new
 
