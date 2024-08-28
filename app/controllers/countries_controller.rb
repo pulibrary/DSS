@@ -69,7 +69,6 @@ class CountriesController < ApplicationController
       @country = Country.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def country_params
       params.require(:country).permit(:name, :key_term_id)
     end

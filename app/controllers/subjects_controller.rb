@@ -69,7 +69,6 @@ class SubjectsController < ApplicationController
       @subject = Subject.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
       params.require(:subject).permit(:name, :key_term_id)
     end

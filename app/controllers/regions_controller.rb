@@ -69,7 +69,6 @@ class RegionsController < ApplicationController
       @region = Region.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def region_params
       params.require(:region).permit(:name, :key_term_id)
     end
