@@ -11,10 +11,9 @@
 1. ```bundle exec rake db:seed```
 1. ```bundle exec rake dss:solr:update```
 1. ```bundle exec rake dss:solr:index```
-2. ```gem install foreman```
-1. ```foreman start```
+2. ```bundle exec rails s```
 
-(You may need to install [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) and [foreman](https://github.com/ddollar/foreman) separately, if you haven't already.)
+(You may need to install [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) separately, if you haven't already.)
 
 ### Making yourself an admin user
 - If you have not yet logged in, bring the rails server up, and log in to the application via the UI
