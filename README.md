@@ -20,7 +20,7 @@
 - Go on the rails console `bundle exec rails c`
 - Find your user and assign it the role of 'admin'
 ```ruby
-user = User.find_by(uid: YOUR_UID)
+user = User.find_by(uid: "YOUR_UID")
 user.role = 'admin'
 user.save!
 ```
