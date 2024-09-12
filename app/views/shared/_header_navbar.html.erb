@@ -21,7 +21,7 @@
   </header>
   <div class="navigation">
     <div class="container">
-      <div id="header-navbar" class="navbar navbar-static-top" role="navigation">
+      <div id="header-navbar" class="navbar navbar-static-top" aria-label="Navigation Bar" role="navigation">
             <%= render Dss::SearchBarComponent.new(
               classes: ['search-query-form', 'clearfix', 'navbar-form'],
               url: search_action_url,
