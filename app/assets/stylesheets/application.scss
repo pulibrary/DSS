@@ -52,6 +52,10 @@ dt {
   font-family: 'Atkinson Hyperlegible','Dejavu Sans', Helvetica, sans-serif;
 }
 
+main {
+  padding: 0 0 0 0;
+}
+
 .navigation {
   z-index: 2;
 }
@@ -122,9 +126,6 @@ main > .container {
 }
 
 @media (min-width: 768px) {
-  main {
-    padding: 0 0 2em 0;
-  }
 
   .banner {
     width: 100em;
