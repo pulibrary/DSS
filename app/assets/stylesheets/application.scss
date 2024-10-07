@@ -52,6 +52,18 @@ dt {
   font-family: 'Atkinson Hyperlegible','Dejavu Sans', Helvetica, sans-serif;
 }
 
+.lux-header-content .full-name {
+  font-family: var(--font-family-text);
+}
+
+.lux-library-links span {
+  font-family: var(--font-family-text);
+}
+
+.lux-library-links a {
+  font-family: var(--font-family-text);
+}
+
 main {
   padding: 0 0 0 0;
 }
