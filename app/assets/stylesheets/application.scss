@@ -47,8 +47,25 @@ $link-color: #2762ae;
 dt {
   color:black;
 }
+
 *, h1, h2, h3, h4 {
   font-family: 'Atkinson Hyperlegible','Dejavu Sans', Helvetica, sans-serif;
+}
+
+.lux-header-content .full-name {
+  font-family: var(--font-family-text);
+}
+
+.lux-library-links span {
+  font-family: var(--font-family-text);
+}
+
+.lux-library-links a {
+  font-family: var(--font-family-text);
+}
+
+main {
+  padding: 0 0 0 0;
 }
 
 .navigation {
@@ -121,9 +138,6 @@ main > .container {
 }
 
 @media (min-width: 768px) {
-  main {
-    padding: 0 0 2em 0;
-  }
 
   .banner {
     width: 100em;
