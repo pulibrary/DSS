@@ -10,7 +10,7 @@ gem 'sass-rails'
 gem 'terser'
 
 # Health monitor
-gem 'health-monitor-rails', '~>12.2'
+gem 'health-monitor-rails', '12.4.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
