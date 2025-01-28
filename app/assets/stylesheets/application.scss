@@ -343,3 +343,8 @@ select::-ms-expand {
   align-items: flex-end;
   padding-right: 8%;
 }
+
+.custom-scroll {
+  max-height: 70vh;
+  overflow-y: auto;
+}
