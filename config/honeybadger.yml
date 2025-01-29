@@ -1,3 +1,5 @@
 exceptions:
   rake_rescue: true
-  ignore: 'Blacklight::Exceptions::RecordNotFound'
+  ignore:
+    - 'Blacklight::Exceptions::RecordNotFound'
+    - 'ActionDispatch::RemoteIp::IpSpoofAttackError'
