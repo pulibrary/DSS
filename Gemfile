@@ -61,8 +61,6 @@ gem 'omniauth-rails_csrf_protection'
 gem 'select2-rails'
 gem 'ckeditor'
 
-gem 'pul-assets', github: 'pulibrary/pul_assets', branch: :main
-
 gem 'bootstrap', '~> 4.6'
 
 gem "honeybadger"
