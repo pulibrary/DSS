@@ -12,6 +12,9 @@ gem 'terser'
 # Health monitor
 gem 'health-monitor-rails'
 
+gem 'jquery-datatables'
+gem 'normalize-rails'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
@@ -59,5 +62,5 @@ gem 'ckeditor'
 gem 'bootstrap', '~> 4.6'
 
 gem "honeybadger"
-
+gem "modernizr-rails"
 gem "vite_rails"
