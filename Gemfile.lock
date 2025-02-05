@@ -171,6 +171,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jquery-datatables (1.10.20)
     jquery-rails (4.6.0)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -221,6 +222,7 @@ GEM
     nokogiri (1.17.1)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
+    normalize-rails (8.0.1)
     omniauth (2.1.2)
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
@@ -447,7 +449,9 @@ DEPENDENCIES
   health-monitor-rails (= 12.4.0)
   honeybadger
   jbuilder (~> 2.5)
+  jquery-datatables
   jquery-rails
+  normalize-rails
   omniauth-cas
   omniauth-rails_csrf_protection
   pg

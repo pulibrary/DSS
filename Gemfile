@@ -12,6 +12,9 @@ gem 'terser'
 # Health monitor
 gem 'health-monitor-rails', '12.4.0'
 
+gem 'jquery-datatables'
+gem 'normalize-rails'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
