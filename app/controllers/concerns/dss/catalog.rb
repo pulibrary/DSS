@@ -3,7 +3,12 @@ module Dss
     extend ActiveSupport::Concern
 
     def studylink
-      redirect_to "/studynum/#{params[:studyno]}"
+      study = Study::find_by(studynum: params[:studyno])
+      if study
+        redirect_to "/studynum/#{study.studynum}"
+      else
+        render file: "#{Rails.root}/public/404.html", status: :not_found
+      end
     end
 
     def validate_email_params
