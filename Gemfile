@@ -12,6 +12,9 @@ gem 'terser'
 # Health monitor
 gem 'health-monitor-rails', '12.4.0'
 
+gem 'jquery-datatables'
+gem 'normalize-rails'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
@@ -60,8 +63,6 @@ gem 'omniauth-cas'
 gem 'omniauth-rails_csrf_protection'
 gem 'select2-rails'
 gem 'ckeditor'
-
-gem 'pul-assets', github: 'pulibrary/pul_assets', branch: :main
 
 gem 'bootstrap', '~> 4.6'
 
