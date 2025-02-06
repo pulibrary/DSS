@@ -14,7 +14,7 @@ rule:
     #   ruby_rails_open_redirect - https://github.com/pulibrary/DSS/issues/479
     #   ruby_rails_password_length - https://github.com/pulibrary/DSS/issues/480
     #   ruby_rails_default_encryption - https://github.com/pulibrary/DSS/issues/481
-    skip-rule: [ruby_rails_open_redirect, ruby_rails_password_length, ruby_rails_default_encryption]
+    skip-rule: [ruby_rails_password_length, ruby_rails_default_encryption]
 scan:
     context: ""
     data_subject_mapping: ""
