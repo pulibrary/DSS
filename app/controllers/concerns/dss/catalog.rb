@@ -3,11 +3,11 @@ module Dss
     extend ActiveSupport::Concern
 
     def studylink
-      study = Study::find_by(studynum: params[:studyno])
+      study = Study.find_by(studynum: params[:studyno])
       if study
         redirect_to "/studynum/#{study.studynum}"
       else
-        render file: "#{Rails.root}/public/404.html", status: :not_found
+        render file: Rails.root.join("public/404.html"), status: :not_found
       end
     end
 
