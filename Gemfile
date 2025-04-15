@@ -19,7 +19,7 @@ gem 'jquery-rails'
 gem 'jbuilder'
 
 gem 'pg'
-gem "blacklight", '~> 8.3.0'
+gem "blacklight"
 gem "view_component", "~> 2.66"
 
 gem 'sshkit'
