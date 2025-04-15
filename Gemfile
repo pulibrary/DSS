@@ -16,7 +16,7 @@ gem 'health-monitor-rails', '12.4.0'
 gem 'jquery-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder'
 
 gem 'pg'
 gem "blacklight", '~> 8.3.0'
