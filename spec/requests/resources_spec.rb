@@ -16,20 +16,20 @@ RSpec.describe 'Resources', type: :request do
 
   describe 'POST /resources/new' do
     it 'can create a new resource with a country' do
-      expect(Resource.count).to eq 4
+      expect(Resource.count).to eq 32
       post resources_path, params: { resource: { country_ids: %w[1 2] } }
       expect(flash[:notice]).to eq("Resource was successfully created.")
       expect(response).to be_a_redirect
-      expect(Resource.count).to eq 5
+      expect(Resource.count).to eq 33
       expect(Resource.last.countries.size).to eq 2
     end
 
     it 'can create a new resource with all the countries' do
-      expect(Resource.count).to eq 4
+      expect(Resource.count).to eq 32
       post resources_path, params: { resource: { country_ids: ["all"] } }
       expect(flash[:notice]).to eq("Resource was successfully created.")
       expect(response).to be_a_redirect
-      expect(Resource.count).to eq 5
+      expect(Resource.count).to eq 33
       expect(Resource.last.countries.size).to eq 4
     end
   end
