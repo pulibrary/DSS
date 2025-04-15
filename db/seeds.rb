@@ -1,3 +1,4 @@
+require 'csv'
 [
   {country: 'Indonesia', title: 'Indonesia - Census of Agriculture 2003'},
   {country: 'Libya', title: 'The effect of settler farming on indigenous agriculture: Evidence from Italian Libya'},
@@ -7,4 +8,7 @@
   Resource.create(name: resource[:title],
                   countries: [Country.create(name: resource[:country])],
                   resource_type: 'Single study')
+end
+CSV.foreach(Rails.root.join('db', 'seed_resources.csv'), headers: true) do |row|
+  Resource.create(name: row['title'], blurb: row['blurb'])
 end
