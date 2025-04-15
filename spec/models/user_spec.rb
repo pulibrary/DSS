@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
     before do
       # There's an initial user that we don't want
       described_class.find_each(&:destroy)
-      Timecop.freeze(Time.now.utc - 10.days) do
+      travel_to(Time.now.utc - 10.days) do
         FactoryBot.create_list(:guest_patron, 100, guest: true)
         FactoryBot.create_list(:user, 10)
       end

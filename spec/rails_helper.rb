@@ -72,4 +72,6 @@ RSpec.configure do |config|
   [:request, :system].each do |type|
     config.include Devise::Test::IntegrationHelpers, type:
   end
+
+  config.include ActiveSupport::Testing::TimeHelpers
 end
