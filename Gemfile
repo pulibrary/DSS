@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.2'
+gem 'rails', '~> 8.0'
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
@@ -10,7 +10,7 @@ gem 'sass-rails'
 gem 'terser'
 
 # Health monitor
-gem 'health-monitor-rails', '12.4.0'
+gem 'health-monitor-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -20,7 +20,6 @@ gem 'jbuilder'
 
 gem 'pg'
 gem "blacklight"
-gem "view_component", "~> 2.66"
 
 gem 'sshkit'
 gem 'ffi'
