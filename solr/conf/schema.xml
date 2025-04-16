@@ -435,40 +435,6 @@
       </analyzer>
     </fieldtype>
 
-    <!-- charFilter + WhitespaceTokenizer  -->
-    <!--
-    <fieldType name="text_char_norm" class="solr.TextField" positionIncrementGap="100" >
-      <analyzer>
-        <charFilter class="solr.MappingCharFilterFactory" mapping="mapping-ISOLatin1Accent.txt"/>
-        <tokenizer class="solr.WhitespaceTokenizerFactory"/>
-      </analyzer>
-    </fieldType>
-    -->
-
-    <fieldType name="lccn" class="solr.TextField">
-      <analyzer type="index">
-        <tokenizer class="solr.KeywordTokenizerFactory"/>
-      </analyzer>
-      <analyzer type="query">
-        <tokenizer class="solr.KeywordTokenizerFactory"/>
-        <filter class="edu.umich.lib.solr_filters.LCCNNormalizerFilterFactory"/>
-        <filter class="solr.PatternReplaceFilterFactory" pattern="([\p{Punct}])" replacement=""/>
-        <filter class="solr.LengthFilterFactory" min="1" max="100"/>
-      </analyzer>
-    </fieldType>
-
-    <fieldType name="isbn" class="solr.TextField">
-      <analyzer type="index">
-        <tokenizer class="solr.KeywordTokenizerFactory"/>
-      </analyzer>
-      <analyzer type="query">
-        <tokenizer class="solr.PatternTokenizerFactory" pattern="[;,]\s*" />
-        <filter class="edu.umich.lib.solr_filters.ISBNNormalizerFilterFactory"/>
-        <filter class="solr.PatternReplaceFilterFactory" pattern="([\p{Punct}])" replacement=""/>
-        <filter class="solr.LengthFilterFactory" min="1" max="100"/>
-      </analyzer>
-    </fieldType>
-
     <!-- This is an example of using the KeywordTokenizer along
          With various TokenFilterFactories to produce a sortable field
          that does not include some properties of the source text
@@ -643,9 +609,6 @@
 
 
    <!-- these fields are also used for display, so they must be stored -->
-   <field name="isbn_t" type="isbn" indexed="true" stored="true" multiValued="true"/>
-   <field name="lccn_s" type="lccn" indexed="true" stored="true" multiValued="true"/>
-   <field name="issn_s" type="alphaNumSort" indexed="true" stored="true" multiValued="true"/>
    <field name="language_facet" type="string" indexed="true" stored="true" multiValued="true" />
    <field name="subject_facet" type="descendent_path" indexed="true" stored="true" multiValued="true" />
    <field name="subject_era_facet" type="string" indexed="true" stored="true" multiValued="true" />
@@ -733,13 +696,6 @@
         or to add multiple fields to the same field for easier/faster searching.  -->
    <!-- Copy Fields -->
 
-   <!-- author keyword -->
-   <copyField source="author_display" dest="author_main_unstem_search"/>
-   <copyField source="author_s" dest="author_unstem_search"/>
-
-   <!-- publisher keyword -->
-   <copyField source="pub_created_s" dest="pub_created_unstem_search"/>
-
    <!-- unstemmed fields -->
    <copyField source="title_display" dest="title_unstem_search"/>
    <copyField source="subject_display" dest="subject_unstem_search"/>
@@ -748,43 +704,6 @@
 
    <!-- sort fields -->
    <copyField source="pub_date" dest="pub_date_sort"/>
-
-   <!-- left-anchored search fields -->
-   <copyField source="title_a_index" dest="title_245a_la"/>
-   <copyField source="title_a_index" dest="title_245a_lr"/>
-   <copyField source="title_display" dest="title_245_la"/>
-   <copyField source="title_display" dest="title_245_lr"/>
-   <copyField source="title_vern_display" dest="title_245_la"/>
-   <copyField source="title_vern_display" dest="title_245_lr"/>
-   <copyField source="title_sort" dest="title_245_la"/>
-   <copyField source="title_vern_sort" dest="title_245_la"/>
-   <copyField source="title_no_h_index" dest="title_245_la"/>
-   <copyField source="title_245_la" dest="title_245_lr"/>
-   <copyField source="other_title_index" dest="title_la"/>
-   <copyField source="series_title_index" dest="title_la"/>
-   <copyField source="series_statement_index" dest="title_la"/>
-   <copyField source="uniform_title_s" dest="title_la"/>
-   <copyField source="title_la" dest="title_lr"/>
-   <copyField source="content_title_index" dest="title_addl_la"/>
-   <copyField source="contains_title_index" dest="title_addl_la"/>
-   <copyField source="linked_title_index" dest="title_addl_la"/>
-   <copyField source="linked_series_title_index" dest="title_addl_la"/>
-   <copyField source="linked_series_index" dest="title_addl_la"/>
-   <copyField source="series_ae_index" dest="title_addl_la"/>
-   <copyField source="original_version_series_index" dest="title_addl_la"/>
-   <copyField source="title_addl_la" dest="title_addl_lr"/>
-
-   <copyField source="more_in_this_series_t" dest="more_in_this_series_la"/>
-
-   <!-- advanced search fields cjk config -->
-   <copyField source="pub_created_vern_display" dest="cjk_publisher"/>
-
-   <!-- Above, multiple source fields are copied to the [text] field.
-    Another way to map multiple source fields to the same
-    destination field is to use the dynamic field syntax.
-    copyField also supports a maxChars to copy setting.  -->
-
-  <!--    <copyField source="*_t" dest="text" maxChars="3000"/> -->
 
   <!-- default, catch all search field -->
    <copyField source="id" dest="text"/>
@@ -795,8 +714,6 @@
    <copyField source="title_vern_display" dest="text"/>
 
    <!-- these fields are also used for display, so they must be stored -->
-   <copyField source="isbn_s" dest="isbn_t"/>
-   <copyField source="isbn_s" dest="text"/>
    <copyField source="language_facet" dest="text"/>
    <copyField source="subject_era_facet" dest="text"/>
    <copyField source="subject_geo_facet" dest="text"/>
@@ -853,9 +770,6 @@
    <copyField source="*_facet" dest="text"/>
    <copyField source="*_sort" dest="text"/>
    <copyField source="*_unstem_search" dest="text"/>
-   <copyField source="title_245_la" dest="text"/>
-   <copyField source="title_la" dest="text"/>
-   <copyField source="title_addl_la" dest="text"/>
 
    <!-- copy name to alphaNameSort, a field designed for sorting by name -->
    <!-- <copyField source="name" dest="alphaNameSort"/> -->
