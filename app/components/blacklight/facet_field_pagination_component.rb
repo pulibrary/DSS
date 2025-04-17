@@ -3,6 +3,7 @@
 module Blacklight
   class FacetFieldPaginationComponent < Blacklight::Component
     def initialize(facet_field:, button_classes: %w[btn btn-outline-secondary])
+      super
       @facet_field = facet_field
       @button_classes = button_classes.join(' ')
     end
