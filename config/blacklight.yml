@@ -12,14 +12,11 @@
 
 development:
   adapter: solr
-  url: <%= ENV['SOLR_URL'] || "http://#{ENV["lando_dss_development_solr_conn_host"] || "127.0.0.1"}:#{ENV["lando_dss_development_solr_conn_port"] || 8983}/solr/" %>
-  collection: dss-core-dev
+  url: <%= ENV['SOLR_URL'] || "http://#{ENV["lando_dss_development_solr_conn_host"] || "127.0.0.1"}:#{ENV["lando_dss_development_solr_conn_port"] || 8983}/solr/#{ ENV['SOLR_COLLECTION'] || "dss-core-dev" }" %>
 test: &test
   adapter: solr
-  url: <%= "http://#{ENV["lando_dss_test_solr_conn_host"] || "127.0.0.1"}:#{ENV['SOLR_TEST_PORT'] || ENV["lando_dss_test_solr_conn_port"] || 8888}/solr/" %>
-  collection: dss-core-test
+  url: <%= "http://#{ENV["lando_dss_test_solr_conn_host"] || "127.0.0.1"}:#{ENV['SOLR_TEST_PORT'] || ENV["lando_dss_test_solr_conn_port"] || 8888}/solr/dss-core-test" %>
 production:
   adapter: solr
-  url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8983/solr/" %>
-  collection: blacklight-core
+  url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8983/solr/#{ ENV['SOLR_COLLECTION'] || "blacklight-core" }" %>
 mincount: 1

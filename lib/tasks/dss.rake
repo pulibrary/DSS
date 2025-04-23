@@ -57,8 +57,13 @@ namespace :dss do
 
     desc 'Send all Resource objects to Solr at once for indexing'
     task :index, [:collection] => :environment do |t, args|
-      args.with_defaults(:collection => Blacklight.connection_config[:collection])
-      solr = RSolr.connect :url => "#{Blacklight.connection_config[:url]}#{args[:collection]}"
+      if args[:collection]
+        solr_base_url = Blacklight.connection_config[:url].split('/')
+        solr_base_url.pop
+        solr = RSolr.connect :url => "#{solr_base_url.join('/')}/#{args[:collection]}"
+      else
+        solr = RSolr.connect :url => Blacklight.connection_config[:url]
+      end 
       resource_list = Resource.all.map { |r| r.to_solr }
       solr.add JSON.parse(resource_list.to_json)
       solr.update data: '<commit/>', headers: { 'Content-Type' => 'text/xml' }
@@ -66,7 +71,7 @@ namespace :dss do
 
     desc 'Delete all indexed Resource objects from Solr'
     task deindex: :environment do
-      solr = RSolr.connect :url => "#{Blacklight.connection_config[:url]}#{Blacklight.connection_config[:collection]}"
+      solr = RSolr.connect :url => Blacklight.connection_config[:url]
       solr.update data: '<delete><query>*:*</query></delete>', headers: { 'Content-Type' => 'text/xml' }
       solr.update data: '<commit/>', headers: { 'Content-Type' => 'text/xml' }
     end
