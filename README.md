@@ -1,5 +1,8 @@
 # README
 
+## Application
+This application provides access to the data sets that are managed by the Library's [Data and Statistical Services](https://library.princeton.edu/services/data-and-statistical-services) unit. Access to the materials is restricted to currently enrolled/employed members of Princeton University. 
+
 ## Local Development Basic Setup
 
 1. ```git clone git@github.com:pulibrary/DSS.git```
