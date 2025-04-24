@@ -63,7 +63,7 @@ namespace :dss do
         solr = RSolr.connect :url => "#{solr_base_url.join('/')}/#{args[:collection]}"
       else
         solr = RSolr.connect :url => Blacklight.connection_config[:url]
-      end 
+      end
       resource_list = Resource.all.map { |r| r.to_solr }
       solr.add JSON.parse(resource_list.to_json)
       solr.update data: '<commit/>', headers: { 'Content-Type' => 'text/xml' }
