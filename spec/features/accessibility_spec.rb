@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
-describe 'accessibility', type: :feature, js: true do
-  context '/catalog' do
+describe 'accessibility', :js, type: :feature do
+  context 'when visiting /catalog' do
     it 'complies with wcag' do
       visit '/catalog'
       expect(page).to be_axe_clean
@@ -10,7 +11,8 @@ describe 'accessibility', type: :feature, js: true do
         .excluding('.icons a')
     end
   end
-  context 'facet search' do
+
+  context 'when visiting facet search' do
     it 'complies with wcag' do
       visit '/catalog?f%5Bsubject_geo_facet%5D%5B%5D=Indonesia'
       expect(page).to be_axe_clean
@@ -18,7 +20,8 @@ describe 'accessibility', type: :feature, js: true do
         .excluding('.icons a')
     end
   end
-  context '/resources' do
+
+  context 'when visiting /resources' do
     it 'complies with wcag' do
       visit '/resources'
       expect(page).to be_axe_clean
@@ -31,7 +34,8 @@ describe 'accessibility', type: :feature, js: true do
         .excluding('[id^=DataTables_Table_]')
     end
   end
-  context '/studies' do
+
+  context 'when visiting /studies' do
     it 'complies with wcag' do
       visit '/studies'
       expect(page).to be_axe_clean
@@ -40,7 +44,8 @@ describe 'accessibility', type: :feature, js: true do
         .excluding('[id^=DataTables_Table_]')
     end
   end
-  context '/data_files' do
+
+  context 'when visiting /data_files' do
     it 'complies with wcag' do
       visit '/data_files'
       expect(page).to be_axe_clean
@@ -49,7 +54,8 @@ describe 'accessibility', type: :feature, js: true do
         .excluding('[id^=DataTables_Table_]')
     end
   end
-  context '/subjects' do
+
+  context 'when visiting /subjects' do
     it 'complies with wcag' do
       visit '/subjects'
       expect(page).to be_axe_clean
@@ -58,7 +64,8 @@ describe 'accessibility', type: :feature, js: true do
         .excluding('[id^=DataTables_Table_]')
     end
   end
-  context '/countries' do
+
+  context 'when visiting /countries' do
     it 'complies with wcag' do
       visit '/countries'
       expect(page).to be_axe_clean
@@ -67,7 +74,8 @@ describe 'accessibility', type: :feature, js: true do
         .excluding('[id^=DataTables_Table_]')
     end
   end
-  context '/regions' do
+
+  context 'when visiting /regions' do
     it 'complies with wcag' do
       visit '/regions'
       expect(page).to be_axe_clean
