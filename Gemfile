@@ -47,6 +47,10 @@ group :development do
   gem 'ed25519'
 end
 
+group :test do
+  gem 'axe-core-api'
+  gem 'axe-core-rspec'
+end
 
 gem 'rsolr'
 gem "devise"
