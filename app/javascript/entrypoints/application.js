@@ -4,9 +4,10 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+// Import lux and vue
 import { createApp } from "vue";
-import { LuxLibraryFooter, LuxLibraryHeader, LuxMenuBar, LuxLogoUniversity, LuxLogoLibraryIcon, LuxLibraryLogo, LuxLogoLibrary, LuxWrapper, LuxSpacer } from "lux-design-system";
 import "lux-design-system/dist/style.css";
+import { LuxLibraryFooter, LuxLibraryHeader, LuxMenuBar, LuxLogoUniversity, LuxLogoLibraryIcon, LuxLibraryLogo, LuxLogoLibrary, LuxWrapper, LuxSpacer } from "lux-design-system";
 
 // Create a factory function that will create vue
 // apps, which we can then mount to any element with
@@ -14,11 +15,12 @@ import "lux-design-system/dist/style.css";
 const app = createApp({});
 const createMyApp = () => createApp(app);
 
-// create the LUX app and mount it to wrappers with class="lux"
+// Create the LUX app and mount it to wrappers with class="lux"
 document.addEventListener('DOMContentLoaded', () => {
   const elements = document.getElementsByClassName('lux')
   for (let i = 0; i < elements.length; i++) {
     createMyApp()
+      // Add necessary LUX components
       .component("lux-library-footer", LuxLibraryFooter)
       .component("lux-library-header", LuxLibraryHeader)
       .component("lux-menu-bar", LuxMenuBar)
