@@ -351,12 +351,13 @@ select::-ms-expand {
 }
 
 .prev_next_links .disabled, .prev_next_links .disabled:hover, .prev_next_links .disabled:focus {
-    color: #6c757d;
-    background-color: #fff;
-    border: 1px solid #e0ddd3;
-    cursor: not-allowed;
+  color: #6c757d;
 }
 
 .admin-edit a {
   text-decoration: underline;
+}
+
+.dataTables_paginate .paginate_button.disabled, .dataTables_paginate .paginate_button.current, .dataTables_paginate .ellipsis {
+  color: #6c757d;
 }
