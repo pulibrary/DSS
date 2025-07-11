@@ -356,3 +356,7 @@ select::-ms-expand {
     border: 1px solid #e0ddd3;
     cursor: not-allowed;
 }
+
+.admin-edit a {
+  text-decoration: underline;
+}
