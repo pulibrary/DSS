@@ -34,9 +34,9 @@
         <td><%= resource.sample %></td>
         <td><%= resource.resource_type %></td>
         <% if admin_user? %>
-          <td><%= link_to 'Show', resource %></td>
-          <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
-          <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Show', resource, style: "text-decoration: underline" %></td>
+          <td><%= link_to 'Edit', edit_resource_path(resource), style: "text-decoration: underline" %></td>
+          <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: underline" %></td>
         <% end %>
         </tr>
     <% end %>
