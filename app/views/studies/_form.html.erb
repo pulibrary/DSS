@@ -58,7 +58,11 @@
 
   <div class="field">
     <%= f.label :timestamp %>
-    <%= f.datetime_select :timestamp %>
+    <%= form_with model: @study, builder: TimestampFormBuilder do |f| %>
+      <div class="field">
+        <%= f.custom_datetime_select :timestamp %>
+      </div>
+    <% end %>
   </div>
 
   <div class="field">
@@ -84,7 +88,7 @@
   <h3>Tags</h3>
   <div class="field">
     <div class="field_head">Regions</div>
-    <%= select_tag "study[region_ids]", options_from_collection_for_select(Region.order(:name), 'id', 'name', @study.regions.collect(&:id)), multiple: true, class: 'select2' %>
+    <%= select_tag "study[region_ids]", options_from_collection_for_select(Region.order(:name), 'id', 'name', @study.regions.collect(&:id)), multiple: true, class: 'select2'  %>
   </div>
 
   <div class="field">
