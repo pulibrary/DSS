@@ -1,8 +1,6 @@
 require_relative 'boot'
 
 require 'rails/all'
-require 'susy'
-require 'breakpoint'
 require_relative "lando_env"
 
 # Require the gems listed in Gemfile, including any gems
