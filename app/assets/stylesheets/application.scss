@@ -361,6 +361,10 @@ select::-ms-expand {
   text-decoration: underline;
 }
 
+#DataTables_Table_0_paginate > .disabled {
+  color: #6c757d;
+}
+
 #DataTables_Table_0_paginate > * {
     color: #6c757d;
 }
