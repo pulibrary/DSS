@@ -88,11 +88,7 @@
 
   <div class="field">
     <%= f.label :timestamp %>
-    <%= form_with model: @data_file, builder: TimestampFormBuilder do |f| %>
-      <div class="field">
-        <%= f.labelled_datetime_select :timestamp %>
-      </div>
-    <% end %>
+    <%= TimestampFieldBuilder.new.labelled_datetime_select(@data_file, @resource_name, self, :timestamp) %>
   </div>
 
   <h3>Related Resource</h3>
