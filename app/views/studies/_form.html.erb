@@ -60,7 +60,7 @@
     <%= f.label :timestamp %>
     <%= form_with model: @study, builder: TimestampFormBuilder do |f| %>
       <div class="field">
-        <%= f.custom_datetime_select :timestamp %>
+        <%= f.labelled_datetime_select :timestamp %>
       </div>
     <% end %>
   </div>
