@@ -35,7 +35,7 @@
     <%= f.label :link_time %>
     <%= form_with model: @resource, builder: TimestampFormBuilder do |f| %>
       <div class="field">
-        <%= f.custom_datetime_select :link_time %>
+        <%= f.labelled_datetime_select :timestamp %>
       </div>
     <% end %>
   </div>
