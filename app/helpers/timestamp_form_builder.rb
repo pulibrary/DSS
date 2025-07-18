@@ -6,13 +6,13 @@ class TimestampFormBuilder < ActionView::Helpers::FormBuilder
     # Use the model's timestamp or default to current time
     value = @object.send(method) || Time.current
 
-    (1..5).each do |num|
-      method_name = "select_#{labels[num-1].downcase}"
+    labels.each_with_index do |label, num|
+      method_name = "select_#{label.downcase}"
       result << @template.send(
         method_name,
         value,
-        { field_name: "#{method}(#{num}i)", prefix: @object_name },
-        html_options.merge("aria-label" => labels[num-1])
+        { field_name: "#{method}(#{num +1}i)", prefix: @object_name },
+        html_options.merge("aria-label" => label)
       )
     end
     
