@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= f.label :link_time %>
-    <%= f.datetime_select :link_time %>
+    <%= TimestampFieldBuilder.new.labelled_datetime_select(@resource, @resource_name, self, :link_time) %>
   </div>
 
   <div class="field">
