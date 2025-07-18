@@ -1,6 +1,6 @@
 class TimestampFieldBuilder
-  def labelled_datetime_select(object, object_name, template, method, options = {}, html_options = {})
-    labels = ["Year", "Month", "Day", "Hour", "Minute"]
+  def labelled_datetime_select(object, object_name, template, method, html_options = {})
+    labels = %w[Year Month Day Hour Minute]
     result = ""
 
     # Use the model's timestamp or default to current time
@@ -11,11 +11,13 @@ class TimestampFieldBuilder
       result << template.send(
         method_name,
         value,
-        { field_name: "#{method}(#{num +1}i)", prefix: object_name },
+        { field_name: "#{method}(#{num + 1}i)", prefix: object_name },
         html_options.merge("aria-label" => label)
       )
     end
 
+    # rubocop:disable Rails/OutputSafety
     result.html_safe
+    # rubocop:enable Rails/OutputSafety
   end
 end
