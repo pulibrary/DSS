@@ -360,3 +360,7 @@ select::-ms-expand {
 .admin-edit a {
   text-decoration: underline;
 }
+
+#DataTables_Table_0_paginate > .disabled {
+  color: #6c757d;
+}
