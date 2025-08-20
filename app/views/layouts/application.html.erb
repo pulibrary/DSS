@@ -29,15 +29,7 @@
     <%= content_for(:head) %>
 
     <% if Rails.env.production? %>
-    <!-- Google tag (gtag.js) -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-7PLVE2ZCTC"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-7PLVE2ZCTC');
-      </script>
+      <%= render partial: 'shared/analytics' %>
     <% end %>
     <%= vite_client_tag %>
 
@@ -49,6 +41,9 @@
   </head>
   
   <body class="<%= render_body_class %>">
+  <% if Rails.env.production? %>
+    <%= render partial: 'shared/analytics_noscript' %>
+  <% end %>
     <a class="skip-main" href="#main-content">Skip to main content</a>
   <noscript><%= render 'shared/header_navbar_noscript' %></noscript>
   <%= render 'shared/header_navbar' %>
