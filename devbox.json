@@ -1,0 +1,53 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.16.0/.schema/devbox.schema.json",
+  "env": {
+    "DEVBOX_COREPACK_ENABLED": "true",
+    "TMPDIR": "/private/tmp/dss",
+    "LD_LIBRARY_PATH": "$PWD/.devbox/nix/profile/default/lib",
+    "FONTCONFIG_PATH": "$PWD/.devbox/nix/profile/default/etc/fonts"
+  },
+  "packages": [
+    "ruby_3_3",
+    "nodejs",
+    "yarn",
+    "postgresql",
+    "libxml2",
+    "libxslt",
+    "openssl",
+    "readline",
+    "libffi",
+    "libyaml",
+    "zlib",
+    "pkg-config",
+    "gcc",
+    "gnumake",
+    "git",
+    "rsync"
+  ],
+  "env": {
+    "BUNDLE_PATH": ".bundle",
+    "BUNDLE_BIN": "bin",
+    "PATH": "bin:$PATH",
+    "RAILS_ENV": "development"
+  },
+  "shell": {
+    "init_hook": [
+      "ruby -v",
+      "node -v",
+      "yarn -v || true",
+      "gem --version",
+      "bundle config set path \"$BUNDLE_PATH\"",
+      "bundle config set bin \"$BUNDLE_BIN\""
+    ],
+    "scripts": {
+      "setup": "gem install bundler -v 2.4.5 --no-document && bundle install && yarn install",
+      "rails:server": "bundle exec rails server -b 0.0.0.0 -p 3000",
+      "vite:dev": "bundle exec rake vite:dev",
+      "vite:build": "bundle exec rake vite:build",
+      "test": "bundle exec rspec",
+      "lint": "bundle exec rubocop",
+      "cap:staging": "bundle exec cap staging deploy",
+      "cap:prod": "bundle exec cap production deploy"
+    }
+  }
+}
