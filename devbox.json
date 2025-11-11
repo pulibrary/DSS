@@ -36,7 +36,6 @@
       "node -v",
       "yarn -v || true",
       "gem --version",
-      "if [ ! -x bin/bundle ]; then gem install bundler -v 2.4.5 --no-document; fi",
       "bundle config set path \"$BUNDLE_PATH\"",
       "bundle config set bin \"$BUNDLE_BIN\""
     ],
