@@ -12,7 +12,7 @@ RSpec.describe 'Flash messages', type: :system do
     click_link('Log Out')
     visit '/catalog'
     expect(page).to have_text('Signed out successfully.')
-    find('#main-flashes > div > div > button > span').click
+    find('#main-flashes .btn-close').click
     expect(page).to have_no_content('Signed out successfully.')
   end
 end

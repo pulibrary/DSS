@@ -8,7 +8,7 @@ RSpec.describe 'Show page', type: :system do
 
   it 'has a bookmark checkbox' do
     visit '/catalog/resource3'
-    expect(page).to have_css('input.toggle-bookmark')
+    expect(page).to have_css('.toggle-bookmark')
   end
 
   it 'has no citation link' do

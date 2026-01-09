@@ -203,5 +203,7 @@ class CatalogController < ApplicationController
 
     config.search_state_fields = config.search_state_fields + [:id, :utf8]
     config.show.document_actions.delete(:citation)
+
+    config.advanced_search.enabled = false
   end
 end

@@ -6,5 +6,6 @@
 </div>
 
 <% content_for(:sidebar) do %>
-  <%= render_document_sidebar_partial @document %>
+  <% presenter = document_presenter(@document) %>
+  <%= render presenter.view_config.sidebar_component.new(presenter: presenter) %>
 <% end %>

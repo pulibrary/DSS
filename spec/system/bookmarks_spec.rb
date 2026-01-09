@@ -7,7 +7,7 @@ RSpec.describe 'Bookmarks page', type: :system do
     visit '/catalog'
     fill_in 'q', with: 'Indonesia'
     click_button 'search'
-    find("input.toggle-bookmark", match: :first).check
+    find(".toggle-bookmark *[data-checkboxsubmit-target='span']", match: :first).click
     expect(page).to have_css("#bookmarks_nav > span", text: '1')
     visit '/bookmarks'
     expect(page).to have_text('Indonesia - Census of Agriculture 2003')
