@@ -58,7 +58,7 @@ gem 'ckeditor'
 
 gem 'pul-assets', github: 'pulibrary/pul_assets', branch: :main
 
-gem 'bootstrap', '~> 4.6'
+gem 'bootstrap'
 
 gem "honeybadger"
 
