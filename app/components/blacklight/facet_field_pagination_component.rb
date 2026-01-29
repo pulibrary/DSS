@@ -2,11 +2,12 @@
 
 module Blacklight
   class FacetFieldPaginationComponent < Blacklight::Component
+    # rubocop:disable Lint/MissingSuper
     def initialize(facet_field:, button_classes: %w[btn btn-outline-secondary])
-      super
       @facet_field = facet_field
       @button_classes = button_classes.join(' ')
     end
+    # rubocop:enable Lint/MissingSuper
 
     def sort_facet_url(sort)
       @facet_field.paginator.params_for_resort_url(sort, @facet_field.search_state.to_h)
