@@ -663,11 +663,6 @@
     "@vue/compiler-dom" "3.5.8"
     "@vue/shared" "3.5.8"
 
-"@vue/devtools-api@^6.0.0-beta.11":
-  version "6.6.4"
-  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.6.4.tgz#cbe97fe0162b365edc1dba80e173f90492535343"
-  integrity sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==
-
 "@vue/reactivity@3.4.21":
   version "3.4.21"
   resolved "https://registry.yarnpkg.com/@vue/reactivity/-/reactivity-3.4.21.tgz#affd3415115b8ebf4927c8d2a0d6a24bccfa9f02"
@@ -1186,18 +1181,16 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-lux-design-system@^5.0.0:
-  version "5.6.4"
-  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-5.6.4.tgz#82c61b8d5663408deac5b2de8fd68fb06b66dd1b"
-  integrity sha512-m+dWGowEIKQ8SjPQnjY8xQPWumPGSTVHuza9bI1PdvwJ/WkvRVn1Obxsrpy1v1teBi5lhE/c45eXqeFBliwafg==
+lux-design-system@^7.3.1:
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-7.3.1.tgz#a6933f0d8720417f1f0732697a612f6822992faf"
+  integrity sha512-6GygQ/AYyAen5y7X5tTtiCnt1+EMWtSKIiBU9S2wiwuzmQprl4wFX9TPqf6x35Z3FwVKI33Veb8pHXOX27Xhpw==
   dependencies:
     core-js "^3.8.3"
     register-service-worker "^1.7.2"
     v-calendar "^3.1.2"
     vue-draggable-plus "^0.3.5"
-    vue-multiselect "^3.0.0-beta.3"
     vue3-cookies "^1.0.6"
-    vuex "^4.0.0"
 
 magic-string@^0.30.11, magic-string@^0.30.7:
   version "0.30.11"
@@ -1586,11 +1579,6 @@ vue-draggable-plus@^0.3.5:
   resolved "https://registry.yarnpkg.com/vue-draggable-plus/-/vue-draggable-plus-0.3.5.tgz#e37f2eaf6b50a8aa061952784dbc7cf2be071183"
   integrity sha512-HqIxV4Wr4U5LRPLRi2oV+EJ4g6ibyRKhuaiH4ZQo+LxK4zrk2XcBk9UyXC88OXp4SAq0XYH4Wco/T3LX5kJ79A==
 
-vue-multiselect@^3.0.0-beta.3:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/vue-multiselect/-/vue-multiselect-3.1.0.tgz#4c7b5d66577fda1b04eef9db1cf8ef1966606604"
-  integrity sha512-+i/fjTqFBpaay9NP+lU7obBeNaw2DdFDFs4mqhsM0aEtKRdvIf7CfREAx2o2B4XDmPrBt1r7x1YCM3BOMLaUgQ==
-
 vue-screen-utils@^1.0.0-beta.13:
   version "1.0.0-beta.13"
   resolved "https://registry.yarnpkg.com/vue-screen-utils/-/vue-screen-utils-1.0.0-beta.13.tgz#0c739e19f6ffbffab63184aba7b6d710b6a63681"
@@ -1624,13 +1612,6 @@ vue@^3.4.21:
     "@vue/runtime-dom" "3.4.21"
     "@vue/server-renderer" "3.4.21"
     "@vue/shared" "3.4.21"
-
-vuex@^4.0.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vuex/-/vuex-4.1.0.tgz#aa1b3ea5c7385812b074c86faeeec2217872e36c"
-  integrity sha512-hmV6UerDrPcgbSy9ORAtNXDr9M4wlNP4pEFKye4ujJF8oqgFFuxDCdOLS3eNoRTtq5O3hoBDh9Doj1bQMYHRbQ==
-  dependencies:
-    "@vue/devtools-api" "^6.0.0-beta.11"
 
 which@^2.0.1:
   version "2.0.2"
