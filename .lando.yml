@@ -1,18 +1,24 @@
 name: dss
 services:
   dss_test_solr:
-    type: solr:8.4
+    type: solr:custom
     portforward: true
     core: dss-core-test
+    overrides:
+      image: quay.io/pulibrary/ci-solr:9.9-v1.0.1
+      command: server/scripts/lando-start.sh
     config:
       dir: "solr/conf"
   dss_database:
     type: postgres:13
     portforward: true
   dss_development_solr:
-    type: solr:8.4
+    type: solr:custom
     portforward: true
     core: dss-core-dev
+    overrides:
+      image: quay.io/pulibrary/ci-solr:9.9-v1.0.1
+      command: server/scripts/lando-start.sh
     config:
       dir: "solr/conf"
 proxy:
