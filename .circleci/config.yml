@@ -14,8 +14,9 @@ jobs:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: dss
-      - image: solr:8-alpine
-        command: bin/solr -cloud -noprompt -f -p 8888
+          SOLR_TEST_PORT: 8984
+      - image: ghcr.io/pulibrary/ci-solr:9.9-v1.0.0
+        command: server/scripts/ci-start.sh
       - image: postgres:13-alpine
         environment:
           POSTGRES_USER: dss
@@ -58,10 +59,10 @@ jobs:
       - run:
           name: Load config into solr
           command: |
-            cd solr/config
+            cd solr/conf
             zip -1 -r solr_config.zip ./*
-            curl -H "Content-type:application/octet-stream" --data-binary @solr_config.zip "http://localhost:8888/solr/admin/configs?action=UPLOAD&name=dss-core-test"
-            curl -H 'Content-type: application/json' http://localhost:8888/api/collections/ -d '{create: {name: dss-core-test, config: dss-core-test, numShards: 1}}'
+            curl -H "Content-type:application/octet-stream" --data-binary @solr_config.zip "http://localhost:8984/solr/admin/configs?action=UPLOAD&name=dss-core-test"
+            curl -H 'Content-type: application/json' http://localhost:8984/api/collections/ -d '{"name": "dss-core-test", "config": "dss-core-test", "numShards": 1}'
       - run:
           name: Wait for Postgres
           command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
