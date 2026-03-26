@@ -10,13 +10,14 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require normalize-rails
  *= require select2
- *= require dataTables/extras/dataTables.responsive
- *= require pul-assets
  *= require_self
  *= require_tree .
  */
+
+@use "menu_horizontal";
+@use "shared_mixins";
+@use "skip_main";
 
 $logo_image: 'dss-logo.svg' !default;
 
@@ -29,20 +30,6 @@ $link-color: #2762ae;
 @import 'bootstrap';
 
 @import 'blacklight/blacklight';
-// Import for pul-assets, except for modals overrides, which were breaking the modals
-@import "bourbon";
-@import "susy";
-@import "breakpoint";
-
-@import "utils/variables";
-@import "utils/mixins";
-@import "utils/helpers";
-@import "utils/font-stack";
-
-@import "overrides/bootstrap";
-@import "overrides/header_navbar";
-@import "overrides/dropdowns";
-@import "overrides/menu--user";
 
 dt {
   color:black;
@@ -77,13 +64,8 @@ main {
   height: 55px;
 }
 
-.schedule .schedule--current {
-  background: $yellow-light;
-}
-
-.banner,
-.interior-photo {
-  display: none;
+.banner img {
+  max-width: 100%;
 }
 
 .container--catalog {
@@ -371,4 +353,206 @@ select::-ms-expand {
 
 .accordion-header {
   width: 100%;
+}
+
+#header-navbar {
+    height: 75px; // change as needed
+    .navbar-brand,
+    .navbar-form,
+    .navbar-right {
+        @include shared_mixins.vertical-align();
+    }
+}
+
+.navbar-brand {
+    /* The main logo image for the Blacklight instance */
+    width: 150px;
+    height: 50px;
+    background: transparent image_url($logo_image) no-repeat top left;
+    background-size: contain;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    float: left;
+}
+
+.navbar-form {
+    margin: 0 1em 0;
+    select {
+        margin: 0;
+    }
+}
+
+.navbar-right {
+    .navbar-nav {
+        float: left;
+        li {
+            display: inline;
+            list-style-type: none;
+            padding-right: 20px;
+        }
+    }
+}
+
+.search-query-form {
+    z-index: 1;
+    .input-group {
+        width: 100%;
+    }
+    .input-group-addon {
+        &.for-search-field {
+            width: 15ch;
+        }
+    }
+}
+
+.facet-count {
+    float: right;
+    text-align: right;
+}
+
+.twitter-typeahead input {
+    margin: 0;
+}
+
+.page_links {
+    display: inline-block;
+    margin-top: 0.7em;
+}
+
+.constraints-container {
+    margin-bottom: 1em;
+}
+
+.bookmark_toggle {
+    margin: 0;
+
+    label {
+      font-weight: normal;
+      margin: 0;
+      cursor: pointer;
+    }
+}
+
+.btn-group {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0;
+
+  .btn {
+    font-size: 14px;
+    height: 35px;
+    text-decoration: none;
+
+    &.active:hover {
+      background-color: var(--color-gray-10);
+      border: 1px solid #e0ddd3;
+      color: $black;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.btn-group>.btn:last-child:not(:first-child) {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.constraint-value.btn:hover,
+.constraints-value.btn:focus {
+  background: var(--color-gray-10);
+  color: var(--color-black);
+  border: 1px solid #e0ddd3;
+}
+
+.constraint > .btn:last-child:not(:first-child) {
+  &:hover {
+    text-decoration: none;
+    background: var(--color-brick-red);
+  }
+
+  &.remove {
+    height: 35px;
+  }
+
+  .glyphicon-remove:after {
+    content: "x";
+    text-decoration: none;
+  }
+}
+
+.prev_next_links {
+  .disabled,
+  .disabled:hover,
+  .disabled:focus {
+    color: var(--color-grayscale-light);
+    background-color: var(--color-white);
+    border: 1px solid #e0ddd3;
+    cursor: not-allowed;
+  }
+}
+
+.sort_options .active {
+  box-shadow: inset 0 3px 5px rgba(0,0,0,0.125)
+}
+
+.appliedFilter .constraint-value {
+  cursor: default;
+  border-right: 0;
+}
+
+.appliedFilter .filterName:after {
+  content: ":";
+}
+
+.flash_messages {
+  padding: 0 1em;
+  display: inline-block;
+  width: 100%;
+}
+
+.button_to {
+  margin: 0;
+}
+
+td.actions {
+  text-align: right;
+}
+
+.navigation .navbar-right a {
+  font-family: var(--font-family-system);
+  font-size: 1rem;
+}
+
+.navigation .navbar-right .navbar-nav li {
+  padding-right: 0;
+}
+
+.document-title-heading {
+  font-size: 1.2em;
+  margin: 0 0 1em;
+}
+
+.document-metadata {
+  clear: both;
+}
+
+
+#sortAndPerPage {
+  clear: both;
+  margin-bottom: 1em;
+}
+
+.search_history td,
+.saved_searches td {
+    vertical-align: middle;
 }

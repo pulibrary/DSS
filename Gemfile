@@ -6,7 +6,7 @@ gem 'rails', '~> 8.0'
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
-gem 'sass-rails'
+gem 'dartsass-sprockets'
 gem 'terser'
 
 # Health monitor
@@ -55,8 +55,7 @@ gem 'omniauth-cas'
 gem 'omniauth-rails_csrf_protection'
 gem 'select2-rails'
 gem 'ckeditor'
-
-gem 'pul-assets', github: 'pulibrary/pul_assets', branch: :main
+gem 'jquery-datatables-rails'
 
 gem 'bootstrap'
 

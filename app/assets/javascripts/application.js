@@ -15,8 +15,6 @@
 //= require bootstrap
 //= require blacklight/blacklight
 //= require dataTables/jquery.dataTables
-//= require dataTables/extras/dataTables.responsive
-//= require pul-assets
 //= require select2
 
 //= require_tree .
