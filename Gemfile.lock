@@ -172,7 +172,9 @@ GEM
     hashie (5.0.0)
     health-monitor-rails (12.8.0)
       railties (>= 6.1)
-    honeybadger (5.4.1)
+    honeybadger (6.5.2)
+      logger
+      ostruct
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     io-console (0.8.2)
