@@ -1,20 +1,41 @@
-# README
+# DSS
 
 ## Application
 This application provides access to the data sets that are managed by the Library's [Data and Statistical Services](https://library.princeton.edu/services/data-and-statistical-services) unit. Access to the materials is restricted to currently enrolled/employed members of Princeton University. 
 
 ## Local Development Basic Setup
 
-1. ```git clone git@github.com:pulibrary/DSS.git```
-1. ```cd DSS```
-2. ```asdf install # if you are using asdf```
-1. ```bundle install```
-1. ```yarn install```
-1. ```bundle exec rake servers:start```
-1. ```bundle exec rake db:seed```
-1. ```bundle exec rake dss:solr:update```
-1. ```bundle exec rake dss:solr:index```
-2. ```bundle exec rails s```
+This repo ships a `devbox.json` that provisions Ruby, Node/Yarn, PostgreSQL client libs, and native build deps needed by Rails, Nokogiri, pg, Vite
+
+## Prereqs
+
+  * macOS/Linux with Devbox installed: https://www.jetify.com/devbox/docs/install/
+
+  * Docker, to run services in containers
+
+> We previously used `asdf`/`mise`. Those files can remain in the repo, but Devbox is now the canonical workflow.
+
+## Quickstart
+
+```bash
+git clone git@github.com:pulibrary/DSS.git
+cd DSS
+
+# enter the dev environment
+devbox shell
+
+# install Ruby gems and JS deps
+devbox run setup
+
+# seed and index (first-time setup)
+bundle exec rake db:seed
+bundle exec rake dss:solr:update
+bundle exec rake dss:solr:index
+
+# run Vite and Rails in separate terminals
+devbox run vite:dev         # terminal 1
+devbox run rails:server     # terminal 2 (http://localhost:3000)
+```
 
 (You may need to install [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) separately, if you haven't already.)
 
