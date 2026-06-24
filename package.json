@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "caniuse-lite": "^1.0.30001793",
-    "lux-design-system": "^7.6.2",
+    "lux-design-system": "^7.7.1",
     "vue": "^3.5.34"
   },
   "devDependencies": {
