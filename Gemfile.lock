@@ -171,7 +171,7 @@ GEM
     hashdiff (1.1.1)
     hashie (5.1.0)
       logger
-    health-monitor-rails (12.8.0)
+    health-monitor-rails (12.9.0)
       railties (>= 6.1)
     honeybadger (6.5.2)
       logger
