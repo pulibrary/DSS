@@ -162,7 +162,7 @@ GEM
       logger
     faraday-net_http (3.4.4)
       net-http (~> 0.5)
-    ffi (1.16.3)
+    ffi (1.17.4)
     globalid (1.4.0)
       activesupport (>= 6.1)
     google-protobuf (4.34.1)
