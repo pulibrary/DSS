@@ -19,5 +19,9 @@ module DssCatalog
 
     # See https://github.com/projectblacklight/blacklight/issues/2768
     config.active_record.yaml_column_permitted_classes = [HashWithIndifferentAccess]
+
+    config.rails_semantic_logger.appenders do |appenders|
+      appenders.add(file_name: "log/#{Rails.env}.log", formatter: :json)
+    end
   end
 end
