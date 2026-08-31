@@ -56,6 +56,7 @@ gem 'omniauth-rails_csrf_protection'
 gem 'select2-rails'
 gem 'ckeditor'
 gem 'jquery-datatables-rails'
+gem 'rails_semantic_logger'
 
 gem 'bootstrap'
 
