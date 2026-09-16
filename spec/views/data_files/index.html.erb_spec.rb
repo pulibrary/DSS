@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'data_files/index', type: :view do
-  let(:user) { FactoryBot.create(:user, role: 'admin') }
+  let(:user) { create(:user, role: 'admin') }
 
   before do
     sign_in(user)

@@ -37,8 +37,8 @@ RSpec.describe CountriesController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # CountriesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
-  let(:user) { FactoryBot.create(:user) }
-  let(:admin) { FactoryBot.create(:user, role: 'admin') }
+  let(:user) { create(:user) }
+  let(:admin) { create(:user, role: 'admin') }
 
   describe 'GET #index' do
     let(:country) { Country.create! valid_attributes }
@@ -88,7 +88,7 @@ RSpec.describe CountriesController, type: :controller do
 
       context 'when logged in as non-admin user' do
         before do
-          sign_in FactoryBot.create(:user)
+          sign_in create(:user)
         end
 
         it 'does not create a new Country' do
@@ -100,7 +100,7 @@ RSpec.describe CountriesController, type: :controller do
 
       context 'when logged in as admin user' do
         before do
-          sign_in FactoryBot.create(:user, role: 'admin')
+          sign_in create(:user, role: 'admin')
         end
 
         it 'creates a new Country' do

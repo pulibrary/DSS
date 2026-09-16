@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'regions/index', type: :view do
-  let(:user) { FactoryBot.create(:user, role: 'admin') }
+  let(:user) { create(:user, role: 'admin') }
 
   before do
     sign_in(user)
@@ -21,7 +21,7 @@ RSpec.describe 'regions/index', type: :view do
 
   it 'renders a list of regions' do
     render
-    assert_select 'tr>td', text: 'Name'.to_s, count: 2
+    assert_select 'tr>td', text: 'Name', count: 2
     assert_select 'tr>td', text: 2.to_s, count: 2
   end
 end

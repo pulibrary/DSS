@@ -16,8 +16,7 @@ class TimestampFieldBuilder
       )
     end
 
-    # rubocop:disable Rails/OutputSafety
+    # rubocop:disable-next Rails/OutputSafety
     result.html_safe
-    # rubocop:enable Rails/OutputSafety
   end
 end

@@ -13,11 +13,13 @@ RSpec.describe 'Show page', type: :system do
 
   it 'has no citation link' do
     visit '/catalog/resource3'
-    expect(page).not_to have_link('Cite')
+    # rubocop:disable-next Capybara/RSpec/NegationMatcherAfterVisit
+    expect(page).to have_no_link('Cite')
   end
 
   it 'does not have an .admin class, since it is not an admin screen' do
     visit '/catalog/resource3'
-    expect(page).not_to have_css('.admin')
+    # rubocop:disable-next Capybara/RSpec/NegationMatcherAfterVisit
+    expect(page).to have_no_css('.admin')
   end
 end

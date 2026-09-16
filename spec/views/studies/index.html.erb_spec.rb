@@ -36,12 +36,12 @@ RSpec.describe 'studies/index', type: :view do
                voyager_id: 402
              )
            ])
-    @user = assign(:user, FactoryBot.create(:user))
+    @user = assign(:user, create(:user))
   end
 
   it 'renders a list of studies' do
     render
-    puts rendered
+
     assert_select 'tr>td', text: 303.to_s
     assert_select 'tr>td', text: 305.to_s
     assert_select 'tr>td', text: 'Title 1'

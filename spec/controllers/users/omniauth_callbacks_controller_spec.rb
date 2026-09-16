@@ -21,7 +21,7 @@ RSpec.describe Users::OmniauthCallbacksController do
       end
 
       describe 'who is an admin in the database' do
-        let(:user) { FactoryBot.create(:user, role: 'admin') }
+        let(:user) { create(:user, role: 'admin') }
 
         before do
           allow(User).to receive(:from_cas).and_return(user)

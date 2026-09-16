@@ -12,7 +12,7 @@ RSpec.describe 'subjects/show', type: :view do
 
   it 'renders attributes in <p>' do
     render
-    expect(rendered).to match(/Name/)
-    expect(rendered).to match(/2/)
+    expect(rendered).to include('Name')
+    expect(rendered).to include('2')
   end
 end

@@ -21,16 +21,16 @@ RSpec.describe 'resources/show', type: :view do
 
   it 'renders attributes in <p>' do
     render
-    expect(rendered).to match(/Name/)
-    expect(rendered).to match(/2/)
-    expect(rendered).to match(/Url/)
-    expect(rendered).to match(/MyText/)
-    expect(rendered).to match(/Sample/)
-    expect(rendered).to match(/Principal Investigator/)
-    expect(rendered).to match(/Producer/)
-    expect(rendered).to match(/Distributor/)
-    expect(rendered).to match(/Version/)
-    expect(rendered).to match(/More Detail Url/)
-    expect(rendered).to match(/Resource Type/)
+    expect(rendered).to include('Name')
+    expect(rendered).to include('2')
+    expect(rendered).to include('Url')
+    expect(rendered).to include('MyText')
+    expect(rendered).to include('Sample')
+    expect(rendered).to include('Principal Investigator')
+    expect(rendered).to include('Producer')
+    expect(rendered).to include('Distributor')
+    expect(rendered).to include('Version')
+    expect(rendered).to include('More Detail Url')
+    expect(rendered).to include('Resource Type')
   end
 end

@@ -19,7 +19,7 @@ RSpec.describe 'studies/new', type: :view do
                      roper: 'MyString',
                      voyager_id: 1
                    ))
-    @user = assign(:user, FactoryBot.create(:user))
+    @user = assign(:user, create(:user))
   end
 
   it 'renders new study form' do
