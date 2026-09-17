@@ -11,6 +11,7 @@ module Dss
       end
     end
 
+    # rubocop:disable-next Naming/PredicateMethod
     def validate_email_params
       if current_user.nil?
         flash[:error] = 'You must be logged in to send an email.'
@@ -21,7 +22,6 @@ module Dss
       end
       flash[:error].blank?
     end
-
 
   end
 end

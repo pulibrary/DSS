@@ -10,8 +10,8 @@ describe "home page", :js, type: :system do
 
   it 'has facets' do
     visit '/catalog'
-    expect(page).to have_content('Data Catalog')
-    expect(page).to have_content('Quick Links')
+    expect(page).to have_text('Data Catalog')
+    expect(page).to have_text('Quick Links')
   end
 end
 

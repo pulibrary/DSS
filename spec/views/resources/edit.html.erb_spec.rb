@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'resources/edit', type: :view do
-  let(:user) { FactoryBot.create(:user, role: 'admin') }
+  let(:user) { create(:user, role: 'admin') }
   let(:resource) do
     Resource.create!(name: 'MyString', resource_id: 1, url: 'MyString',
                      blurb: 'MyText', sample: 'MyString', principal_investigator: 'MyString',

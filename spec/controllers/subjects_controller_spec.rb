@@ -38,8 +38,8 @@ RSpec.describe SubjectsController, type: :controller do
   # SubjectsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  let(:user) { FactoryBot.create(:user) }
-  let(:admin) { FactoryBot.create(:user, role: 'admin') }
+  let(:user) { create(:user) }
+  let(:admin) { create(:user, role: 'admin') }
 
   describe 'GET #index' do
     it 'assigns all subjects as @subjects' do

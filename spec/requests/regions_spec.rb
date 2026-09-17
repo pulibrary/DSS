@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Regions', type: :request do
   before do
-    sign_in FactoryBot.create(:user)
+    sign_in create(:user)
   end
 
   describe 'GET /regions' do

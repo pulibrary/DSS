@@ -37,20 +37,17 @@ class Study < ApplicationRecord
     end
     ## denote format as study
     solr_doc["resource_type_s"] = 'Study'
-    subject_values = []
-    subjects.each do |subject|
-      subject_values << subject.name
+    subject_values = subjects.map do |subject|
+      subject.name
     end
     solr_doc['subject_topic_facet'] = subject_values
-    country_values = []
-    countries.each do |country|
-      country_values << country.name
+    country_values = countries.map do |country|
+      country.name
     end
     solr_doc['subject_geo_facet'] = country_values
     solr_doc
-    region_values = []
-    regions.each do |region|
-      region_values << region.name
+    region_values = regions.map do |region|
+      region.name
     end
     solr_doc['region_facet'] = region_values
     solr_doc
@@ -82,7 +79,7 @@ class Study < ApplicationRecord
 
   protected
     def solr_url
-      (Blacklight.blacklight_yml[Rails.env]['url']).to_s
+      Blacklight.blacklight_yml[Rails.env]['url'].to_s
     end
     
 end

@@ -2,7 +2,7 @@ module Dss
   class ConstraintsComponent < Blacklight::ConstraintsComponent
     attr_accessor :classes
 
-    # rubocop:disable Metrics/ParameterLists
+    # rubocop:disable-next Metrics/ParameterLists
     def initialize(search_state:,
                    tag: :div,
                    render_headers: true,
@@ -14,6 +14,5 @@ module Dss
                    start_over_component: Blacklight::StartOverButtonComponent)
       super
     end
-    # rubocop:enable Metrics/ParameterLists
   end
 end

@@ -49,8 +49,8 @@ RSpec.describe StudiesController, type: :controller do
   # StudiesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  let(:user) { FactoryBot.create(:user) }
-  let(:admin) { FactoryBot.create(:user, role: 'admin') }
+  let(:user) { create(:user) }
+  let(:admin) { create(:user, role: 'admin') }
 
   describe 'GET #index' do
     it 'assigns all studies as @studies' do

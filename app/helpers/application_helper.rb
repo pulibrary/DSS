@@ -17,26 +17,24 @@ module ApplicationHelper
     controller_name != 'catalog'
   end
 
-  # rubocop:disable  Rails/OutputSafety
+  # rubocop:disable-next  Rails/OutputSafety
   def html_safe(args)
     args[:document][args[:field]].join('').gsub("\\'", '').html_safe
   end
-  # rubocop:enable  Rails/OutputSafety
 
   def link(args)
     study_link_array args[:document][args[:field]], args[:document][args[:field]]
   end
 
-  # rubocop:disable  Rails/OutputSafety
+  # rubocop:disable-next  Rails/OutputSafety
   def resource_id(catalog_id)
     catalog_id.gsub("resource", '').html_safe
   end
-  # rubocop:enable  Rails/OutputSafety
 
   # munges urls to get a link to a study
   def study_link_array(label, url)
     if study_id = url.first.match(/studyno=(\d+)$/)
-      study = Study.find_by(studynum: (study_id[1]).to_s)
+      study = Study.find_by(studynum: study_id[1].to_s)
       unless study.nil?
         link_to('View Data Files', study_path(study))
       end
@@ -47,7 +45,7 @@ module ApplicationHelper
 
   def study_link(label, url)
     if study_id = url&.match(/studyno=(\d+)$/)
-      study = Study.find_by(studynum: (study_id[1]).to_s)
+      study = Study.find_by(studynum: study_id[1].to_s)
       unless study.nil?
         link_to('View Data Files', study_path(study))
       end

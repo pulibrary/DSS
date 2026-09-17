@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'studies/edit', type: :view do
-  let(:user) { FactoryBot.create(:user, role: 'admin') }
+  let(:user) { create(:user, role: 'admin') }
   let(:study) do
     Study.create!(legacy_id: 1, studynum: 1, title: 'MyString', medium: 'MyString', icpsr_num: 'MyString',
                   url: 'MyString', directory: 'MyString', folder: 'MyString', r_flag: false, auto_refresh: false,
@@ -13,7 +13,7 @@ RSpec.describe 'studies/edit', type: :view do
   before do
     sign_in(user)
     assign(:study, study)
-    assign(:user, FactoryBot.create(:user))
+    assign(:user, create(:user))
   end
 
   it 'renders the edit study form' do

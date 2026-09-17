@@ -721,16 +721,6 @@ Rails/WhereNot: # new in 2.8
   Enabled: false
 Rails/WhereNotWithMultipleConditions: # new in 2.17
   Enabled: false
-Capybara/MatchStyle: # new in <<next>>
-  Enabled: false
-Capybara/NegationMatcher: # new in 2.14
-  Enabled: false
-Capybara/SpecificActions: # new in 2.14
-  Enabled: false
-Capybara/SpecificFinders: # new in 2.13
-  Enabled: false
-Capybara/SpecificMatcher: # new in 2.12
-  Enabled: false
 RSpec/BeEq: # new in 2.9.0
   Enabled: false
 RSpec/BeNil: # new in 2.9.0
@@ -752,18 +742,4 @@ RSpec/SortMetadata: # new in 2.14
 RSpec/SubjectDeclaration: # new in 2.5
   Enabled: false
 RSpec/VerifiedDoubleReference: # new in 2.10.0
-  Enabled: false
-FactoryBot/ConsistentParenthesesStyle: # new in 2.14
-  Enabled: false
-FactoryBot/FactoryNameStyle: # new in 2.16
-  Enabled: false
-FactoryBot/SyntaxMethods: # new in 2.7
-  Enabled: false
-RSpec/Rails/AvoidSetupHook: # new in 2.4
-  Enabled: false
-RSpec/Rails/HaveHttpStatus: # new in 2.12
-  Enabled: false
-RSpec/Rails/InferredSpecType: # new in 2.14
-  Enabled: false
-RSpec/Rails/MinitestAssertions: # new in 2.17
   Enabled: false
