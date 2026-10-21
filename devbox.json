@@ -1,0 +1,57 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.18.0/.schema/devbox.schema.json",
+  "packages": [
+    "git@latest",
+    "ruby@3.3.6",
+    "nodejs@22",
+    "yarn@1.22",
+    "postgresql@latest",
+    "lsof@latest",
+    "path:flakes/solr#default",
+    "postgresql.pg_config"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to DSS devbox. Run `devbox run test` or `devbox run dev`'"
+    ],
+    "scripts": {
+      "setup": [
+        "devbox services up -b || echo 'services are already running'",
+        "test -f \"$PGDATA/PG_VERSION\" || initdb",
+        "bundle check || bundle install",
+        "yarn install",
+        "devbox run create_solr_collections",
+        "RAILS_ENV=development bundle exec rake db:prepare",
+        "RAILS_ENV=development bundle exec rake dss:solr:index || true"
+      ],
+      "db:prepare": [
+        "RAILS_ENV=development bundle exec rake db:prepare",
+        "RAILS_ENV=test bundle exec rake db:prepare"
+      ],
+      "test": [
+        "devbox run setup",
+        "bundle exec rspec"
+      ],
+      "dev": [
+        "devbox run setup",
+        "bundle exec rails s"
+      ],
+      "reindex": [
+        "devbox run setup",
+        "bundle exec rake dss:solr:index"
+      ],
+      "create_solr_collections": [
+        "[ $(curl -s -o /dev/null -w '%{http_code}' http://localhost:${SOLR_PORT:-8983}/solr/dss-core-dev/admin/ping) -eq '200' ] || solr create_core -c dss-core-dev -d solr/conf -p ${SOLR_PORT:-8983}",
+        "[ $(curl -s -o /dev/null -w '%{http_code}' http://localhost:${SOLR_PORT:-8983}/solr/dss-core-test/admin/ping) -eq '200' ] || solr create_core -c dss-core-test -d solr/conf -p ${SOLR_PORT:-8983}"
+      ],
+      "delete_solr_collections": [
+        "curl -X POST http://localhost:${SOLR_PORT:-8983}/api/cores/dss-core-dev/unload -H 'Content-Type: application/json' -d '{\"deleteIndex\":true,\"deleteDataDir\":true,\"deleteInstanceDir\":true}' || echo 'dss-core-dev core was already deleted'",
+        "curl -X POST http://localhost:${SOLR_PORT:-8983}/api/cores/dss-core-test/unload -H 'Content-Type: application/json' -d '{\"deleteIndex\":true,\"deleteDataDir\":true,\"deleteInstanceDir\":true}' || echo 'dss-core-test core was already deleted'"
+      ],
+      "recreate_solr_collections": [
+        "devbox run delete_solr_collections",
+        "devbox run create_solr_collections"
+      ]
+    }
+  }
+}

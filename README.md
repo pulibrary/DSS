@@ -57,3 +57,9 @@ bundle exec rspec
    ```bash
    RUN_IN_BROWSER=true bundle exec rspec spec/system
    ```
+
+## Experimental devbox setup
+
+* `devbox shell`
+* `devbox run test`
+* `devbox run dev`
