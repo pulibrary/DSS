@@ -45,7 +45,7 @@ RSpec.describe RegionsController, type: :controller do
     it 'assigns all regions as @regions' do
       region = Region.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(assigns(:regions)).to eq([region])
+      expect(assigns(:regions)).to include region
     end
   end
 

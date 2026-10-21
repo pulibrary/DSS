@@ -93,6 +93,10 @@ GEM
       rails (>= 7.0, < 9)
       view_component (>= 3.0, < 5.0)
       zeitwerk
+    blacklight-hierarchy (6.9.0)
+      blacklight (>= 7.18, < 10)
+      deprecation
+      rails (>= 7.1, < 9)
     bootstrap (5.3.8)
       popper_js (>= 2.11.8, < 3)
     builder (3.3.0)
@@ -138,6 +142,8 @@ GEM
       sprockets-rails
       tilt
     date (3.6.0)
+    deprecation (1.1.0)
+      activesupport
     devise (5.0.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -509,6 +515,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt_pbkdf
   blacklight
+  blacklight-hierarchy
   bootstrap
   byebug
   capistrano

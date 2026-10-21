@@ -1,7 +1,6 @@
 class Resource < ApplicationRecord
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :countries
-  has_and_belongs_to_many :regions
 
   # remove until import is taken care of.
   after_save :index_record
@@ -33,19 +32,15 @@ class Resource < ApplicationRecord
         solr_doc["#{name}_t"] = [ value ]
       end
     end
-    subject_values = subjects.map do |subject|
-      subject.name
-    end
-    solr_doc['subject_topic_facet'] = subject_values
-    country_values = countries.map do |country|
-      country.name
-    end
-    solr_doc['subject_geo_facet'] = country_values
-    solr_doc
-    region_values = regions.map do |region|
-      region.name
-    end
-    solr_doc['region_facet'] = region_values
+    solr_doc['subject_topic_facet'] = subjects.map(&:name)
+    solr_doc['subject_geo_facet'] = countries.map(&:name)
+    solr_doc['hierarchical_country_facet'] = countries_with_regions.flat_map do |country|
+      if country.regions.any?
+        country.regions.flat_map { |region| [region.name, "#{region.name}|||#{country.name}"] }
+      else
+        country.name
+      end
+    end.uniq
     solr_doc
   end
 
@@ -73,15 +68,11 @@ class Resource < ApplicationRecord
   end
 
   def subjects
-    subjects = Subject.find(self.subject_ids).sort_by{ |subject| subject.name }
+    Subject.find(self.subject_ids).sort_by{ |subject| subject.name }
   end
 
-  def countries
-    countries = Country.find(self.country_ids).sort_by{ |country| country.name }
-  end
-
-  def regions
-    regions = Region.find(self.region_ids).sort_by{ |region| region.name }
+  def countries_with_regions
+    Country.left_outer_joins(:regions).find(country_ids).sort_by{ |country| country.name }
   end
 
   protected

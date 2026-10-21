@@ -15,4 +15,11 @@ RSpec.describe Region, type: :model do
       described_class.create(name: nil)
     end.to raise_error ActiveRecord::NotNullViolation
   end
+
+  it 'has a country map as a hash' do
+    mapping = described_class.country_map
+    expect(mapping['Africa']).to include a_hash_including(label: 'Benin')
+    expect(mapping['Africa']).to include a_hash_including(label: 'Eritrea')
+    expect(mapping['Africa']).to include a_hash_including(label: 'Tanzania')
+  end
 end

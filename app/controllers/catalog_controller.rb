@@ -79,7 +79,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'subject_topic_facet', label: 'Topic', limit: 25, index_range: 'A'..'Z', sort: 'index', collapse: true
     config.add_facet_field 'language_facet', label: 'Language', limit: true
     config.add_facet_field 'lc_1letter_facet', label: 'Call Number'
-    config.add_facet_field 'subject_geo_facet', label: 'Country', limit: 10, sort: 'index', collapse: true
+    config.add_facet_field 'hierarchical_country_facet', label: 'Country', limit: 1000, sort: 'index', collapse: true, component: Blacklight::Hierarchy::FacetFieldListComponent, item_presenter: HierarchicalFacetItemPresenter
     config.add_facet_field 'region_facet', label: 'Region', limit: 10
     config.add_facet_field 'resource_type_s', label: 'Format'
     config.add_facet_field 'subject_era_facet', label: 'Era'
@@ -205,5 +205,11 @@ class CatalogController < ApplicationController
     config.show.document_actions.delete(:citation)
 
     config.advanced_search.enabled = false
+
+    config.facet_display = {
+      hierarchy: {
+        'hierarchical_country' => [['facet'], '|||']
+      }
+    }
   end
 end

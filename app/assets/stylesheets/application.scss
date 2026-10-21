@@ -556,3 +556,85 @@ td.actions {
 .saved_searches td {
     vertical-align: middle;
 }
+
+
+:root {
+  --bl-h-remove-color: var(--bs-secondary-color);
+
+  /* unexpanded icon (it is LuxIconArrowRight)  */
+  --bl-h-closed-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cpath stroke-width='3' d='M5.5,24c-0.1,0-0.3-0.1-0.4-0.2c-0.2-0.2-0.2-0.5,0-0.7L17.7,12L5.2,0.9C5,0.7,4.9,0.4,5.1,0.2c0.2-0.2,0.5-0.2,0.7,0 l13,11.5c0.1,0.1,0.2,0.2,0.2,0.4s-0.1,0.3-0.2,0.4l-13,11.5C5.7,24,5.6,24,5.5,24z'/%3e%3c/svg%3e");
+
+  /* expanded icon (it is LuxIconArrowDown) */
+  --bl-h-opened-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cpath stroke-width='3' d='M12,19c-0.1,0-0.3-0.1-0.4-0.2L0.1,5.8c-0.2-0.2-0.2-0.5,0-0.7c0.2-0.2,0.5-0.2,0.7,0L12,17.7L23.1,5.2 c0.2-0.2,0.5-0.2,0.7,0c0.2,0.2,0.2,0.5,0,0.7l-11.5,13C12.3,18.9,12.1,19,12,19z'/%3e%3c/svg%3e");
+}
+
+.facet-hierarchy {
+  list-style-type: none;
+  padding-left: 0;
+  flex: 1 1 100%;
+  width: 100%;
+
+  ul {
+    list-style-type: none;
+    padding-left: var(--space-x-small);
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .facet-label {
+    flex: 1;
+  }
+
+  .facet-select {
+    flex: 1;
+    word-break: break-word;
+  }
+
+  .facet-count {
+    float: right;
+    flex: 0 0 auto;
+    padding-left: 0.5rem;
+  }
+
+  .toggle-handle {
+    background-color: transparent;
+    border: 0;
+    margin: 0 var(--space-xx-small) 0 0;
+    width: 1rem;
+    height: 1rem;
+    padding: 0;
+    vertical-align: top;
+    display: flex;
+    align-items: flex-start;
+    display: inline-block;
+
+    .closed,
+    .opened {
+      display: none;
+    }
+  }
+
+  button.toggle-handle[aria-expanded="false"] {
+    background-image: var(--bl-h-closed-icon);
+  }
+
+  button.toggle-handle[aria-expanded="true"] {
+    background-image: var(--bl-h-opened-icon);
+  }
+
+  .h-node,
+  .h-leaf {
+    display: flex;
+    flex-wrap: wrap;
+    padding: var(--space-xx-small) 0;
+    align-items: center;
+  }
+
+  .h-leaf {
+    padding-left: 1.5rem;
+  }
+
+  .remove {
+    color: var(--color-brick-red);
+  }
+}

@@ -47,6 +47,8 @@ class RegionsController < ApplicationController
     redirect_to regions_url, notice: 'Region was successfully destroyed.'
   end
 
+  def country_map = render json: Region.country_map.to_json
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_region

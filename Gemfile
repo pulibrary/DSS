@@ -20,6 +20,7 @@ gem 'jbuilder'
 
 gem 'pg'
 gem "blacklight"
+gem 'blacklight-hierarchy'
 
 gem 'sshkit'
 gem 'ffi'

@@ -34,6 +34,7 @@ class StudiesController < ApplicationController
 
   # GET /studies/1/edit
   def edit
+    @current_countries = current_countries(@study)
   end
 
   # POST /studies
@@ -84,6 +85,8 @@ class StudiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the allow list through.
     def study_params
-      params.require(:study).permit(:legacy_id, :studynum, :title, :medium, :icpsr_num, :url, :directory, :folder, :r_flag, :timestamp, :auto_refresh, :note, :roper, :voyager_id, :resource_id, country_ids: [], subject_ids: [], region_ids: [], data_files_attributes: [:id, :files, :file_type_a, :file_type_b, :flag_one, :flag_two, :file_type_tech, :part, :studynum, :note])
+      params.require(:study).permit(:legacy_id, :studynum, :title, :medium, :icpsr_num, :url, :directory, :folder, :r_flag, :timestamp, :auto_refresh, :note, :roper, :voyager_id, :resource_id, country_ids: [], subject_ids: [], data_files_attributes: [:id, :files, :file_type_a, :file_type_b, :flag_one, :flag_two, :file_type_tech, :part, :studynum, :note])
     end
+
+    def current_countries(study) = study.countries.pluck(:id, :name).map { { id: it[0], label: it[1] } }
 end

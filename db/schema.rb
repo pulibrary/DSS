@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_27_170521) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_27_185226) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -33,6 +33,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_27_170521) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["name"], name: "index_countries_on_name", unique: true
+  end
+
+  create_table "countries_regions", id: false, force: :cascade do |t|
+    t.bigint "country_id"
+    t.bigint "region_id"
   end
 
   create_table "countries_resources", id: false, force: :cascade do |t|
@@ -80,20 +85,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_27_170521) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["name"], name: "index_regions_on_name", unique: true
-  end
-
-  create_table "regions_resources", id: false, force: :cascade do |t|
-    t.bigint "region_id"
-    t.bigint "resource_id"
-    t.index ["region_id"], name: "index_regions_resources_on_region_id"
-    t.index ["resource_id"], name: "index_regions_resources_on_resource_id"
-  end
-
-  create_table "regions_studies", id: false, force: :cascade do |t|
-    t.bigint "region_id"
-    t.bigint "study_id"
-    t.index ["region_id"], name: "index_regions_studies_on_region_id"
-    t.index ["study_id"], name: "index_regions_studies_on_study_id"
   end
 
   create_table "resources", force: :cascade do |t|
@@ -190,4 +181,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_27_170521) do
     t.index ["uid"], name: "index_users_on_uid"
     t.index ["username"], name: "index_users_on_username"
   end
+
+  add_foreign_key "countries_regions", "countries", name: "countries_regions_country_id_fkey"
+  add_foreign_key "countries_regions", "regions", name: "countries_regions_region_id_fkey"
 end

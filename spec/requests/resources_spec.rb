@@ -30,7 +30,7 @@ RSpec.describe 'Resources', type: :request do
       end.to change(Resource, :count).by(1)
       expect(flash[:notice]).to eq("Resource was successfully created.")
       expect(response).to be_a_redirect
-      expect(Resource.last.countries.size).to be > 5
+      expect(Resource.last.countries.size).to be > 150
     end
   end
 
@@ -52,7 +52,7 @@ RSpec.describe 'Resources', type: :request do
         expect(resource.countries.size).to eq(2)
         patch resource_url(resource), params: { resource: new_attributes }
         resource.reload
-        expect(resource.countries.size).to be > 5
+        expect(resource.countries.size).to be > 150
       end
     end
   end

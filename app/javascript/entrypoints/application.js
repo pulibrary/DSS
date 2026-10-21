@@ -5,7 +5,9 @@
 // that code so it'll be compiled.
 
 import { createApp } from "vue";
-import { LuxLibraryFooter, LuxLibraryHeader, LuxMenuBar, LuxLogoUniversity, LuxLogoLibraryIcon, LuxLibraryLogo, LuxLogoLibrary, LuxWrapper, LuxSpacer } from "lux-design-system";
+import { LuxInputMultiselect, LuxLibraryFooter, LuxLibraryHeader, LuxMenuBar, LuxLogoUniversity, LuxLogoLibraryIcon,
+  LuxLibraryLogo, LuxLogoLibrary, LuxWrapper, LuxSpacer } from "lux-design-system";
+import CountryInput from "../country_input.vue"
 import "lux-design-system/dist/style.css";
 
 // Create a factory function that will create vue
@@ -19,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const elements = document.getElementsByClassName('lux')
   for (let i = 0; i < elements.length; i++) {
     createMyApp()
+      .component("country-input", CountryInput)
+      .component("lux-input-multiselect", LuxInputMultiselect)
       .component("lux-library-footer", LuxLibraryFooter)
       .component("lux-library-header", LuxLibraryHeader)
       .component("lux-menu-bar", LuxMenuBar)
