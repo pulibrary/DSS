@@ -167,12 +167,16 @@ GEM
       net-http (~> 0.5)
     ffi (1.17.4-aarch64-linux-gnu)
     ffi (1.17.4-arm64-darwin)
+    ffi (1.17.4-x86_64-linux-gnu)
     globalid (1.4.0)
       activesupport (>= 6.1)
     google-protobuf (4.34.1-aarch64-linux-gnu)
       bigdecimal
       rake (~> 13.3)
     google-protobuf (4.34.1-arm64-darwin)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.34.1-x86_64-linux-gnu)
       bigdecimal
       rake (~> 13.3)
     hashdiff (1.2.1)
@@ -256,6 +260,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.4-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.19.4-x86_64-linux-gnu)
+      racc (~> 1.4)
     omniauth (2.1.4)
       hashie (>= 3.4.6)
       logger
@@ -276,6 +282,7 @@ GEM
       racc
     pg (1.7.0-aarch64-linux)
     pg (1.7.0-arm64-darwin)
+    pg (1.7.0-x86_64-linux)
     popper_js (2.11.8)
     pp (0.6.4)
       prettyprint
@@ -410,6 +417,8 @@ GEM
       google-protobuf (~> 4.31)
     sass-embedded (1.98.0-arm64-darwin)
       google-protobuf (~> 4.31)
+    sass-embedded (1.98.0-x86_64-linux-gnu)
+      google-protobuf (~> 4.31)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -493,6 +502,7 @@ GEM
 PLATFORMS
   aarch64-linux
   arm64-darwin-24
+  x86_64-linux
 
 DEPENDENCIES
   bcrypt_pbkdf
