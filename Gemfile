@@ -51,6 +51,7 @@ end
 
 
 gem 'rsolr'
+gem 'csv'
 gem "devise"
 gem 'devise-guests'
 gem 'omniauth-cas'
