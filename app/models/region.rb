@@ -3,8 +3,8 @@ class Region < ApplicationRecord
   after_save :index_attached_records
 
   def index_attached_records
-    if self.countries.any?
-      Resource.where(countries: self.countries).each { it.save! }
-    end
+    return unless self.countries.any?
+
+    Resource.where(countries: self.countries).find_each { it.save! }
   end
 end
