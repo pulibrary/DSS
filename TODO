@@ -2,21 +2,9 @@ TODO
 
 Goal: Bobray just enters the countries.  
 
-* Lux: Implement v-model for the multiselect
 * Migration: Keep current countries BUT they have a 0-to-many relationship with regions
 * Model: Give a 0-to-many relationship between country -> region
 * Create a new dropdown for Countries -- that uses LuxMultiSelect -- it should be a vue component that has a button to batch add all
 * Migration to add regions to the countries based on spreadsheet
-* On change to Region, reindex everything
-* On change to Country, reindex everything
-* Migration to remove any regions that are attached to a resource, and remove that column
 * Remove rails-multiselect gem
 * 
-
-
-Hi Bobray!  I'll be working on the Countries/Regions facet for the DSS catalog.  I wanted to confirm the behavior you expect in the facet.  I understand that you are looking for a hierarchical facet display similar to the catalog.
-
-* If a user clicks on Asia in the facet, would https://dss.princeton.edu/catalog/resource6346 display since it is about a country within Asia?  Or not, because it is not about Asia as a whole region?
-* If a user clicks Asia and then narrows down to Indonesia, would https://dss.princeton.edu/catalog/resource2224 display, since it has some information about Indonesia?  Or not, because it is not specific to Indonesia?
-
-I guess my general question is: how specific/general is each step of the hierarchy?  Happy to zoom too, if it would be easier to work this out in a conversation.
