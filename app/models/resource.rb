@@ -1,7 +1,6 @@
 class Resource < ApplicationRecord
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :countries
-  has_and_belongs_to_many :regions
 
   # remove until import is taken care of.
   after_save :index_record
@@ -42,11 +41,6 @@ class Resource < ApplicationRecord
     end
     solr_doc['subject_geo_facet'] = country_values
     solr_doc
-    region_values = regions.map do |region|
-      region.name
-    end
-    solr_doc['region_facet'] = region_values
-    solr_doc
   end
 
   def catalog_id
@@ -78,10 +72,6 @@ class Resource < ApplicationRecord
 
   def countries
     countries = Country.find(self.country_ids).sort_by{ |country| country.name }
-  end
-
-  def regions
-    regions = Region.find(self.region_ids).sort_by{ |region| region.name }
   end
 
   protected

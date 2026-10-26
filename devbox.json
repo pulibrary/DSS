@@ -28,6 +28,10 @@
         "RAILS_ENV=development bundle exec rake db:prepare",
         "RAILS_ENV=test bundle exec rake db:prepare"
       ],
+      "db:rebuild": [
+        "RAILS_ENV=development bundle exec rake db:drop db:create db:migrate db:seed",
+        "RAILS_ENV=test bundle exec rake db:drop db:create db:migrate db:seed"
+      ],
       "test": [
         "devbox run setup",
         "bundle exec rspec"

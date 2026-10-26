@@ -77,7 +77,7 @@ class ResourcesController < ApplicationController
       resource_params = params.require(:resource).permit(:name, :resource_id, :url, :blurb,
                                                          :link_time, :sample, :principal_investigator,
                                                          :producer, :distributor, :version, :more_detail_url,
-                                                         :resource_type, country_ids: [], subject_ids: [], region_ids: [])
+                                                         :resource_type, country_ids: [], subject_ids: [])
       resource_params[:country_ids] = Country.ids if resource_params[:country_ids]&.include?("all")
       resource_params
     end
