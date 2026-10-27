@@ -9,11 +9,11 @@ RSpec.describe 'regions/index', type: :view do
     sign_in(user)
     assign(:regions, [
              Region.create!(
-               name: 'Name',
+               name: 'Name 1',
                key_term_id: 2
              ),
              Region.create!(
-               name: 'Name',
+               name: 'Name 2',
                key_term_id: 2
              )
            ])
@@ -21,7 +21,8 @@ RSpec.describe 'regions/index', type: :view do
 
   it 'renders a list of regions' do
     render
-    assert_select 'tr>td', text: 'Name', count: 2
+    assert_select 'tr>td', text: 'Name 1'
+    assert_select 'tr>td', text: 'Name 2'
     assert_select 'tr>td', text: 2.to_s, count: 2
   end
 end

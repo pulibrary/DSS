@@ -3,5 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe Country, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "can't make duplicate countries" do
+    described_class.create(name: 'My nice test country')
+    expect do
+      described_class.create(name: 'My nice test country')
+    end.to raise_error ActiveRecord::RecordNotUnique
+  end
+
+  it "can't make a country without a name" do
+    expect do
+      described_class.create(name: nil)
+    end.to raise_error ActiveRecord::NotNullViolation
+  end
 end
