@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2022_04_15_210121) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_27_170521) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -27,11 +27,12 @@ ActiveRecord::Schema[7.2].define(version: 2022_04_15_210121) do
   end
 
   create_table "countries", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "key_term_id"
     t.datetime "key_time", precision: nil
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.index ["name"], name: "index_countries_on_name", unique: true
   end
 
   create_table "countries_resources", id: false, force: :cascade do |t|
@@ -73,11 +74,12 @@ ActiveRecord::Schema[7.2].define(version: 2022_04_15_210121) do
   end
 
   create_table "regions", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "key_term_id"
     t.datetime "key_time", precision: nil
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.index ["name"], name: "index_regions_on_name", unique: true
   end
 
   create_table "regions_resources", id: false, force: :cascade do |t|
