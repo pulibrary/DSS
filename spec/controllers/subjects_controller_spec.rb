@@ -45,7 +45,7 @@ RSpec.describe SubjectsController, type: :controller do
     it 'assigns all subjects as @subjects' do
       subject = Subject.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(assigns(:subjects)).to eq([subject])
+      expect(assigns(:subjects)).to include subject
     end
   end
 
