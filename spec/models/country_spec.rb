@@ -58,5 +58,18 @@ RSpec.describe Country, type: :model do
       studies = Study.joins(:countries).where(countries: { id: new.id })
       expect(studies.pluck(:title)).to eq ['Study 1', 'Study 2', 'Study 3']
     end
+
+    it 'reindexes upon merge' do
+      solr_connection = instance_double(RSolr::Client, add: nil, commit: nil)
+      allow(RSolr).to receive(:connect).and_return(solr_connection)
+
+      old = described_class.create(name: 'Old') do |country|
+        Resource.create(name: 'Resource 1', countries: [country])
+      end
+      new = described_class.create(name: 'New')
+      described_class.merge_countries(old:, new:)
+
+      expect(solr_connection).to have_received(:add).with(a_hash_including('subject_geo_facet' => ['New']))
+    end
   end
 end

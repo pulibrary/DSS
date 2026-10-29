@@ -12,7 +12,9 @@ class Country < ApplicationRecord
   end
 
   def self.merge_countries(old:, new:)
-    new.update(regions: old.regions | new.regions, resources: old.resources | new.resources)
+    resources = old.resources | new.resources
+    new.update(regions: old.regions | new.regions, resources:)
+    resources.each { it.update(countries: it.countries - [old]) }
 
     studies_to_update = Study.joins(:countries).where(countries: old)
     studies_to_update.each { it.update(countries: it.countries + [new] - [old]) }
