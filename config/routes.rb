@@ -41,4 +41,7 @@ Rails.application.routes.draw do
   get '/resources/:id/solr', to: 'resources#solr', defaults: { format: :json }
   get '/country_list', to: 'countries#list'
   get '/region_country_map', to: 'regions#country_map'
+
+  get '/merge_countries', to: 'countries#merge_form'
+  post '/merge_countries', to: 'countries#handle_merge_submission'
 end

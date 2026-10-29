@@ -5,8 +5,9 @@
 // that code so it'll be compiled.
 
 import { createApp } from "vue";
-import { LuxInputMultiselect, LuxLibraryFooter, LuxLibraryHeader, LuxMenuBar, LuxLogoUniversity, LuxLogoLibraryIcon,
-  LuxLibraryLogo, LuxLogoLibrary, LuxWrapper, LuxSpacer } from "lux-design-system";
+import { LuxAutocompleteInput, LuxHeading, LuxHyperlink, LuxInputButton, LuxInputMultiselect, LuxLibraryFooter, LuxLibraryHeader,
+  LuxLogoUniversity, LuxLogoLibraryIcon,
+  LuxLibraryLogo, LuxLogoLibrary, LuxMenuBar, LuxWrapper, LuxSpacer } from "lux-design-system";
 import CountryInput from "../country_input.vue"
 import "lux-design-system/dist/style.css";
 
@@ -22,6 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
   for (let i = 0; i < elements.length; i++) {
     createMyApp()
       .component("country-input", CountryInput)
+      .component("lux-autocomplete-input", LuxAutocompleteInput)
+      .component("lux-heading", LuxHeading)
+      .component("lux-hyperlink", LuxHyperlink)
+      .component("lux-input-button", LuxInputButton)
       .component("lux-input-multiselect", LuxInputMultiselect)
       .component("lux-library-footer", LuxLibraryFooter)
       .component("lux-library-header", LuxLibraryHeader)
