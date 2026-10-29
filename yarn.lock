@@ -316,25 +316,6 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.5.44.tgz#eefe91aa2e17c617260c4ae4c21246be5d85642e"
   integrity sha512-H82XLH0DjmSOdbEwO15x3QTo1f5PWEtv237eLpYKc0mqLu+B8hnq16lFWmuBmNurkeiG3wr+oM1FhOll/YVFRg==
 
-"blacklight-frontend@>=7.1 <10.0.0":
-  version "9.2.1"
-  resolved "https://registry.yarnpkg.com/blacklight-frontend/-/blacklight-frontend-9.2.1.tgz#f7b6a38855d0fd56f291f9f8141671e0e8f36ec6"
-  integrity sha512-ahDgeQJaAQRwLupb1DeF/IW8eIGPYLBtxDB/3qABnmqv5V3yunj0TXVy/7rbOwVh/ITBls0nigUxsmZIR9rn7A==
-  dependencies:
-    bootstrap ">=5.3.5 <6.0.0"
-
-blacklight-hierarchy@^6.9.0:
-  version "6.9.0"
-  resolved "https://registry.yarnpkg.com/blacklight-hierarchy/-/blacklight-hierarchy-6.9.0.tgz#55ad4d3f9c72ccb4411757286d3772b161fa3ce3"
-  integrity sha512-ZKrbQfQTGgkOgYczd9cBDZuHEDpMyEHitdTFDnqJnvEByolMZnq96KNB//3b4Q9jo4toGm+6Sy1fK59+BmCP+Q==
-  dependencies:
-    blacklight-frontend ">=7.1 <10.0.0"
-
-"bootstrap@>=5.3.5 <6.0.0":
-  version "5.3.8"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.3.8.tgz#6401a10057a22752d21f4e19055508980656aeed"
-  integrity sha512-HP1SZDqaLDPwsNiqRqi5NcP0SSXciX2s9E+RyqJIIqGo+vJeN5AJVM98CXmW/Wux0nQ5L7jeWUdplCEf0Ee+tg==
-
 chokidar@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-5.0.0.tgz#949c126a9238a80792be9a0265934f098af369a5"
