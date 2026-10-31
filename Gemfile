@@ -7,6 +7,7 @@ gem 'rails', '~> 8.0'
 gem 'puma'
 # Use SCSS for stylesheets
 gem 'dartsass-sprockets'
+gem 'dry-operation'
 gem 'terser'
 
 # Health monitor
@@ -20,6 +21,7 @@ gem 'jbuilder'
 
 gem 'pg'
 gem "blacklight"
+gem 'blacklight-hierarchy'
 
 gem 'sshkit'
 gem 'ffi'

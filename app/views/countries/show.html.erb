@@ -4,6 +4,8 @@
 <h1 class="heading__block"><%= @country.name %></h1>
 
 <dl>
+  <dt>Regions</dt>
+  <dd><%= @country.regions.map(&:name).join(", ") %></dd>
   <dt>Key term</dt>
   <dd><%= @country.key_term_id %></dd>
 </dl>

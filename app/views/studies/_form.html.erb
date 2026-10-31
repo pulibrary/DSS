@@ -81,15 +81,9 @@
     <%= f.number_field :voyager_id %>
   </div>
 
-  <h3>Tags</h3>
-  <div class="field">
-    <div class="field_head">Regions</div>
-    <%= select_tag "study[region_ids]", options_from_collection_for_select(Region.order(:name), 'id', 'name', @study.regions.collect(&:id)), multiple: true, class: 'select2'  %>
-  </div>
-
-  <div class="field">
+  <div class="lux field">
     <div class="field_head">Countries</div>
-    <%= select_tag "study[country_ids]", options_from_collection_for_select(Country.order(:name), 'id', 'name', @study.countries.collect(&:id)), multiple: true, class: 'select2' %>
+    <country-input form-control-name="study[country_ids][]" <% if @current_countries %> :current-countries="<%= @current_countries.to_json %>"<% end %>/>
   </div>
 
   <div class="field">

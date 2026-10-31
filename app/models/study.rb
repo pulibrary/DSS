@@ -1,10 +1,9 @@
-require 'net/ssh'
+# frozen_string_literal: true
 
 class Study < ApplicationRecord
   validates :studynum, numericality: { only_integer: true }
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :countries
-  has_and_belongs_to_many :regions
   has_many :data_files
   belongs_to :resource, optional: true
   accepts_nested_attributes_for :data_files, reject_if: lambda {|attributes| attributes['files'].blank?}
@@ -46,11 +45,6 @@ class Study < ApplicationRecord
     end
     solr_doc['subject_geo_facet'] = country_values
     solr_doc
-    region_values = regions.map do |region|
-      region.name
-    end
-    solr_doc['region_facet'] = region_values
-    solr_doc
   end
 
   def index_record
@@ -71,10 +65,6 @@ class Study < ApplicationRecord
 
   def countries
     countries = Country.find(self.country_ids).sort_by{ |country| country.name }
-  end
-
-  def regions
-    regions = Region.find(self.region_ids).sort_by{ |region| region.name }
   end
 
   protected

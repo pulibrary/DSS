@@ -39,6 +39,9 @@ Rails.application.routes.draw do
   get '/cgi-bin/catalog/search.cgi', to: 'catalog#studylink'
   get '/studynum/:studynum', to: 'studies#number_lookup'
   get '/resources/:id/solr', to: 'resources#solr', defaults: { format: :json }
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/country_list', to: 'countries#list'
+  get '/region_country_map', to: 'regions#country_map'
 
+  get '/merge_countries', to: 'countries#merge_form'
+  post '/merge_countries', to: 'countries#handle_merge_submission'
 end

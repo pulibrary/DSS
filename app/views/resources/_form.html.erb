@@ -71,17 +71,9 @@
     <%= f.select :resource_type, options_for_select(format_types, @resource.resource_type) %>
   </div>
 
-  <div class="field">
-    <div class="field_head">Regions</div>
-    <%= select_tag "resource[region_ids]", options_from_collection_for_select(Region.order(:name), 'id', 'name', @resource.regions.collect(&:id)), multiple: true, class: 'select2' %>
-  </div>
-
-  <div class="field">
+  <div class="lux field">
     <div class="field_head">Countries</div>
-    <%= select_tag "resource[country_ids]", 
-        countries_for_select(Country.order(:name), 'id', 'name', @resource.countries.collect(&:id)),  
-        multiple: true, 
-        class: 'select2' %>
+    <country-input form-control-name="resource[country_ids][]" <% if @current_countries %> :current-countries="<%= @current_countries.to_json %>"<% end %>/>
   </div>
 
   <div class="field">

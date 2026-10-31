@@ -1,12 +1,14 @@
 class Region < ApplicationRecord
-  has_and_belongs_to_many :resources
-
+  has_and_belongs_to_many :countries
   after_save :index_attached_records
 
+  def self.country_map
+    joins(:countries).to_h { |region| [region.name, region.countries.map { { id: it.id, label: it.name } }] }
+  end
+
   def index_attached_records
-    resources = Region.includes(:resources).find(self.id).resources
-    resources.each do |r|
-      r.save!
-    end
+    return unless self.countries.any?
+
+    Resource.where(countries: self.countries).find_each { it.save! }
   end
 end

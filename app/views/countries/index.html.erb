@@ -1,6 +1,9 @@
 <h1>Countries</h1>
 
-<%= link_to 'Add New Country', new_country_path, class: 'btn pull-right heading__inline' %>
+<div class="lux admin-controls">
+  <lux-hyperlink href="<%= new_country_path %>" variation="button solid">Add New Country</lux-hyperlink>
+  <lux-hyperlink href="/merge_countries" variation="button outline" size="small">Merge Countries</lux-hyperlink>
+</div>
 
 <table>
   <thead>

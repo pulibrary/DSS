@@ -15,6 +15,17 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
+  <div class="field lux">
+    <lux-input-multiselect :items="<%= @regions.to_json %>"
+      <% if @current_regions %>:default-values="<%= @current_regions&.to_json %>"<% end %>
+      label="Regions"
+      selected-items-label="Selected regions"
+      none-selected-label="No regions selected">
+      <template v-slot:hidden-input="{ selectedItems }">
+        <input v-for="item in selectedItems" type="hidden" name="country[region_ids][]" :value="item.id"></input>
+      </template>
+    </lux-input-multiselect>
+  </div>
 
   <div class="field">
     <%= f.label :key_term_id %>

@@ -1,0 +1,8 @@
+<form class="lux" method="post">
+  <lux-heading level="h1" size="h2">Merge two countries</lux-heading>
+  <p>All resources and regions that are associated with the second (old) country will be moved to the resources and regions of the first country (Country to keep)</p>
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <lux-autocomplete-input label="Country to keep" :items="<%= @countries.to_json %>" name="new_id"></lux-autocomplete-input>
+  <lux-autocomplete-input label="Country to merge" :items="<%= @countries.to_json %>" name="old_id"></lux-autocomplete-input>
+  <lux-input-button type="submit" variation="solid">Merge</lux-input-button>
+</form>

@@ -25,6 +25,7 @@ class ResourcesController < ApplicationController
   # GET /resources/1/edit
   def edit
     @last_update = @resource.updated_at.localtime.to_fs(:date_twelve_hour)
+    @current_countries = current_countries(@resource)
   end
 
   # POST /resources
@@ -77,8 +78,10 @@ class ResourcesController < ApplicationController
       resource_params = params.require(:resource).permit(:name, :resource_id, :url, :blurb,
                                                          :link_time, :sample, :principal_investigator,
                                                          :producer, :distributor, :version, :more_detail_url,
-                                                         :resource_type, country_ids: [], subject_ids: [], region_ids: [])
+                                                         :resource_type, country_ids: [], subject_ids: [])
       resource_params[:country_ids] = Country.ids if resource_params[:country_ids]&.include?("all")
       resource_params
     end
+
+    def current_countries(resource) = resource.countries.pluck(:id, :name).map { { id: it[0], label: it[1] } }
 end
