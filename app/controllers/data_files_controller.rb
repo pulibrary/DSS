@@ -65,10 +65,10 @@ class DataFilesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_data_file
-      @data_file = DataFile.find(params[:id])
+      @data_file = DataFile.find(params.expect(:id))
     end
 
     def data_file_params
-      params.require(:data_file).permit(:legacy_id, :files, :size, :comp_size, :line_count, :line_length, :part, :file_type_a, :file_type_b, :flag_one, :flag_two, :file_type_a, :file_type_tech, :note, :study_num, :permission, :timestamp, :study_id)
+      params.expect(data_file: [:legacy_id, :files, :size, :comp_size, :line_count, :line_length, :part, :file_type_a, :file_type_b, :flag_one, :flag_two, :file_type_a, :file_type_tech, :note, :study_num, :permission, :timestamp, :study_id])
     end
 end

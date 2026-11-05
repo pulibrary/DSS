@@ -66,10 +66,10 @@ class SubjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subject
-      @subject = Subject.find(params[:id])
+      @subject = Subject.find(params.expect(:id))
     end
 
     def subject_params
-      params.require(:subject).permit(:name, :key_term_id)
+      params.expect(subject: [:name, :key_term_id])
     end
 end
