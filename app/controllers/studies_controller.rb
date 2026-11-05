@@ -48,7 +48,7 @@ class StudiesController < ApplicationController
         format.json { render :show, status: :created, location: @study }
       else
         format.html { render :new }
-        format.json { render json: @study.errors, status: :unprocessable_entity }
+        format.json { render json: @study.errors, status: :unprocessable_content }
       end
     end
   end
@@ -62,7 +62,7 @@ class StudiesController < ApplicationController
         format.json { render :show, status: :ok, location: @study }
       else
         format.html { render :edit }
-        format.json { render json: @study.errors, status: :unprocessable_entity }
+        format.json { render json: @study.errors, status: :unprocessable_content }
       end
     end
   end

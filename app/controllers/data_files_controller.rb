@@ -33,7 +33,7 @@ class DataFilesController < ApplicationController
         format.json { render :show, status: :created, location: @data_file }
       else
         format.html { render :new }
-        format.json { render json: @data_file.errors, status: :unprocessable_entity }
+        format.json { render json: @data_file.errors, status: :unprocessable_content }
       end
     end
   end
@@ -47,7 +47,7 @@ class DataFilesController < ApplicationController
         format.json { render :show, status: :ok, location: @data_file }
       else
         format.html { render :edit }
-        format.json { render json: @data_file.errors, status: :unprocessable_entity }
+        format.json { render json: @data_file.errors, status: :unprocessable_content }
       end
     end
   end

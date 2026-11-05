@@ -9,6 +9,6 @@ RSpec.describe Blacklight::System::ModalComponent, type: :component do
 
   it "renders parts of the" do
     expect(rendered).to have_xpath('.//span[text()="×"]')
-    expect(rendered).to have_no_selector('.visually-hidden', text: '×')
+    expect(rendered).to have_no_css('.visually-hidden', text: '×')
   end
 end
