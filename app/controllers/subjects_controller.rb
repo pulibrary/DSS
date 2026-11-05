@@ -34,7 +34,7 @@ class SubjectsController < ApplicationController
         format.json { render :show, status: :created, location: @subject }
       else
         format.html { render :new }
-        format.json { render json: @subject.errors, status: :unprocessable_entity }
+        format.json { render json: @subject.errors, status: :unprocessable_content }
       end
     end
   end
@@ -48,7 +48,7 @@ class SubjectsController < ApplicationController
         format.json { render :show, status: :ok, location: @subject }
       else
         format.html { render :edit }
-        format.json { render json: @subject.errors, status: :unprocessable_entity }
+        format.json { render json: @subject.errors, status: :unprocessable_content }
       end
     end
   end
@@ -66,10 +66,10 @@ class SubjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subject
-      @subject = Subject.find(params[:id])
+      @subject = Subject.find(params.expect(:id))
     end
 
     def subject_params
-      params.require(:subject).permit(:name, :key_term_id)
+      params.expect(subject: [:name, :key_term_id])
     end
 end

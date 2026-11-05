@@ -52,10 +52,10 @@ class RegionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_region
-      @region = Region.find(params[:id])
+      @region = Region.find(params.expect(:id))
     end
 
     def region_params
-      params.require(:region).permit(:name, :key_term_id)
+      params.expect(region: [:name, :key_term_id])
     end
 end

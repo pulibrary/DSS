@@ -48,7 +48,7 @@ class StudiesController < ApplicationController
         format.json { render :show, status: :created, location: @study }
       else
         format.html { render :new }
-        format.json { render json: @study.errors, status: :unprocessable_entity }
+        format.json { render json: @study.errors, status: :unprocessable_content }
       end
     end
   end
@@ -62,7 +62,7 @@ class StudiesController < ApplicationController
         format.json { render :show, status: :ok, location: @study }
       else
         format.html { render :edit }
-        format.json { render json: @study.errors, status: :unprocessable_entity }
+        format.json { render json: @study.errors, status: :unprocessable_content }
       end
     end
   end
@@ -80,12 +80,12 @@ class StudiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_study
-      @study = Study.find(params[:id])
+      @study = Study.find(params.expect(:id))
     end
 
     # Never trust parameters from the scary internet, only allow the allow list through.
     def study_params
-      params.require(:study).permit(:legacy_id, :studynum, :title, :medium, :icpsr_num, :url, :directory, :folder, :r_flag, :timestamp, :auto_refresh, :note, :roper, :voyager_id, :resource_id, country_ids: [], subject_ids: [], data_files_attributes: [:id, :files, :file_type_a, :file_type_b, :flag_one, :flag_two, :file_type_tech, :part, :studynum, :note])
+      params.expect(study: [:legacy_id, :studynum, :title, :medium, :icpsr_num, :url, :directory, :folder, :r_flag, :timestamp, :auto_refresh, :note, :roper, :voyager_id, :resource_id, { country_ids: [], subject_ids: [], data_files_attributes: [:id, :files, :file_type_a, :file_type_b, :flag_one, :flag_two, :file_type_tech, :part, :studynum, :note] }])
     end
 
     def current_countries(study) = study.countries.pluck(:id, :name).map { { id: it[0], label: it[1] } }

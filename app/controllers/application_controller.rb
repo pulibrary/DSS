@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     if params[:origin]
       request.flash.delete('alert')
       request.flash.keep('notice')
-      params[:origin].chomp('/email')
+      params.expect(:origin).chomp('/email')
     elsif !request.env['omniauth.origin'].nil?
       request.env['omniauth.origin']
     else

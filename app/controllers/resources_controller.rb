@@ -39,7 +39,7 @@ class ResourcesController < ApplicationController
         format.json { render :show, status: :created, location: @resource }
       else
         format.html { render :new }
-        format.json { render json: @resource.errors, status: :unprocessable_entity }
+        format.json { render json: @resource.errors, status: :unprocessable_content }
       end
     end
   end
@@ -53,7 +53,7 @@ class ResourcesController < ApplicationController
         format.json { render :show, status: :ok, location: @resource }
       else
         format.html { render :edit }
-        format.json { render json: @resource.errors, status: :unprocessable_entity }
+        format.json { render json: @resource.errors, status: :unprocessable_content }
       end
     end
   end
@@ -71,14 +71,14 @@ class ResourcesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_resource
-      @resource = Resource.find(params[:id])
+      @resource = Resource.find(params.expect(:id))
     end
 
     def resource_params
-      resource_params = params.require(:resource).permit(:name, :resource_id, :url, :blurb,
-                                                         :link_time, :sample, :principal_investigator,
-                                                         :producer, :distributor, :version, :more_detail_url,
-                                                         :resource_type, country_ids: [], subject_ids: [])
+      resource_params = params.expect(resource: [:name, :resource_id, :url, :blurb,
+                                                 :link_time, :sample, :principal_investigator,
+                                                 :producer, :distributor, :version, :more_detail_url,
+                                                 :resource_type, { country_ids: [], subject_ids: [] }])
       resource_params[:country_ids] = Country.ids if resource_params[:country_ids]&.include?("all")
       resource_params
     end
